@@ -1,0 +1,173 @@
+// App entry point: routing, sidebar, page lifecycle.
+
+import { loadManifest, loadLesson } from './data.js';
+import { renderLessonView, renderAllExercisesView } from './render.js';
+import { state, markLessonOpened, isLessonComplete } from './state.js';
+
+const lessonNavEl = document.getElementById('lesson-nav');
+const contentEl = document.getElementById('content');
+const sidebarEl = document.getElementById('sidebar');
+const backdropEl = document.getElementById('sidebar-backdrop');
+const menuToggleEl = document.getElementById('menu-toggle');
+
+let manifest = null;
+const lessonByNumber = new Map();
+
+async function init() {
+  try {
+    manifest = await loadManifest();
+  } catch (e) {
+    showLoadError(e);
+    return;
+  }
+
+  // Preload all lessons so the sidebar can show titles + completion checks.
+  await Promise.all(
+    manifest.map(async (entry) => {
+      try {
+        const lesson = await loadLesson(entry.file);
+        lessonByNumber.set(entry.number, lesson);
+      } catch (err) {
+        console.warn(`Failed to preload ${entry.file}`, err);
+      }
+    })
+  );
+
+  renderSidebar();
+
+  window.addEventListener('hashchange', route);
+  window.addEventListener('romanian:progress', renderSidebar);
+  menuToggleEl.addEventListener('click', toggleSidebar);
+  backdropEl.addEventListener('click', closeSidebar);
+
+  if (!location.hash || location.hash === '#') {
+    location.hash = `#/lesson/${manifest[0].number}/learn`;
+    return; // hashchange will fire route()
+  }
+  await route();
+}
+
+function showLoadError(err) {
+  contentEl.innerHTML = '';
+  const p = document.createElement('p');
+  p.className = 'error';
+  p.innerHTML =
+    'Could not load lesson data. ES modules need a local server — open a terminal in the project folder and run:<br><br>' +
+    '<code>python -m http.server 8000</code><br><br>' +
+    'Then visit <code>http://localhost:8000</code>.';
+  contentEl.appendChild(p);
+  console.error(err);
+}
+
+function renderSidebar() {
+  lessonNavEl.innerHTML = '';
+  for (const entry of manifest) {
+    const a = document.createElement('a');
+    a.href = `#/lesson/${entry.number}/learn`;
+    a.className = 'lesson-link';
+    a.dataset.lesson = String(entry.number);
+
+    const num = document.createElement('span');
+    num.className = 'll-num';
+    num.textContent = `Lesson ${entry.number}`;
+    a.appendChild(num);
+
+    const lesson = lessonByNumber.get(entry.number);
+    if (lesson) {
+      const title = document.createElement('span');
+      title.className = 'll-title';
+      title.textContent = lesson.title;
+      a.appendChild(title);
+
+      const total = lesson.exercises?.length || 0;
+      if (total > 0) {
+        if (isLessonComplete(lesson)) {
+          const check = document.createElement('span');
+          check.className = 'll-check';
+          check.textContent = '✓';
+          check.title = 'All exercises answered correctly';
+          a.appendChild(check);
+        } else {
+          const correct = lesson.exercises.filter(
+            (ex) => state.correctExercises.includes(ex.id)
+          ).length;
+          if (correct > 0) {
+            const prog = document.createElement('span');
+            prog.className = 'll-progress';
+            prog.textContent = `${correct}/${total}`;
+            prog.title = `${correct} of ${total} exercises answered correctly`;
+            a.appendChild(prog);
+          }
+        }
+      }
+    }
+
+    if (state.openedLessons.includes(entry.number)) a.classList.add('opened');
+    lessonNavEl.appendChild(a);
+  }
+  highlightActive();
+}
+
+function highlightActive() {
+  const hash = location.hash.replace(/^#\/?/, '');
+  const parts = hash.split('/');
+  const num = parts[0] === 'lesson' ? parts[1] : null;
+  for (const a of lessonNavEl.querySelectorAll('a')) {
+    a.classList.toggle('active', a.dataset.lesson === num);
+  }
+  const allEx = document.querySelector('.all-ex-link');
+  if (allEx) allEx.classList.toggle('active', parts[0] === 'all-exercises');
+}
+
+async function route() {
+  const hash = location.hash.replace(/^#\/?/, '');
+  const parts = hash.split('/');
+  closeSidebar();
+
+  if (parts[0] === 'lesson') {
+    const num = parseInt(parts[1], 10);
+    const validTabs = ['learn', 'vocabulary', 'practice', 'dialogue'];
+    const tab = validTabs.includes(parts[2]) ? parts[2] : 'learn';
+    const entry = manifest.find((m) => m.number === num);
+    if (!entry) {
+      contentEl.innerHTML = `<p class="error">Lesson ${parts[1]} not found.</p>`;
+      return;
+    }
+
+    let lesson = lessonByNumber.get(num);
+    if (!lesson) {
+      try {
+        lesson = await loadLesson(entry.file);
+        lessonByNumber.set(num, lesson);
+      } catch (e) {
+        contentEl.innerHTML = `<p class="error">Failed to load lesson ${num}.</p>`;
+        return;
+      }
+    }
+
+    markLessonOpened(num);
+    renderSidebar();
+    renderLessonView(lesson, contentEl, tab);
+    document.title = `Lesson ${num} — ${lesson.title}`;
+    window.scrollTo({ top: 0 });
+  } else if (parts[0] === 'all-exercises') {
+    const allLessons = [...lessonByNumber.values()];
+    renderAllExercisesView(allLessons, contentEl);
+    document.title = 'All exercises — Romanian';
+    highlightActive();
+  } else {
+    contentEl.innerHTML = '<p class="placeholder">Pick a lesson from the sidebar.</p>';
+  }
+}
+
+function toggleSidebar() {
+  const open = document.body.classList.toggle('sidebar-open');
+  menuToggleEl.setAttribute('aria-expanded', String(open));
+}
+
+function closeSidebar() {
+  document.body.classList.remove('sidebar-open');
+  menuToggleEl.setAttribute('aria-expanded', 'false');
+}
+
+init();

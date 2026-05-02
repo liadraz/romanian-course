@@ -1,0 +1,9 @@
+# Teacher's original lesson PDFs — private, not for public repo
+lessons-source/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/

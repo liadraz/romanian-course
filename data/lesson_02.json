@@ -1,0 +1,387 @@
+{
+  "lesson_number": 2,
+  "title": "Pronouns, Verbs (a fi, a avea), Sentence Types & Daily Vocabulary",
+  "title_ro": "Pronumele, verbele (a fi, a avea), tipuri de propoziții și vocabular cotidian",
+  "blocks": [
+    {
+      "id": "l2-b1",
+      "type": "table",
+      "title": "Personal pronouns",
+      "title_ro": "Pronumele personale",
+      "columns": ["Romanian", "English"],
+      "rows": [
+        ["Eu", "I"],
+        ["Tu", "You (singular)"],
+        ["El / Ea", "He / She"],
+        ["Noi", "We"],
+        ["Voi", "You (plural)"],
+        ["Ei / Ele", "They (masculine / feminine)"]
+      ]
+    },
+    {
+      "id": "l2-b2",
+      "type": "pronunciation_rule",
+      "title": "Pronunciation tip — 'ie' sound",
+      "description": "When a word starts with 'e', we pronounce it as 'ie' (English 'ye-' sound).",
+      "examples": [
+        { "written": "Eu", "pronounced": "Ieu" },
+        { "written": "El", "pronounced": "Iel" },
+        { "written": "Ea", "pronounced": "Iea" },
+        { "written": "Ei", "pronounced": "Iei" },
+        { "written": "Ele", "pronounced": "Iele" },
+        { "written": "Ești", "pronounced": "Iești" },
+        { "written": "Este", "pronounced": "Ieste" }
+      ]
+    },
+    {
+      "id": "l2-b3",
+      "type": "verb_conjugation",
+      "title": "A fi — to be",
+      "infinitive_ro": "a fi",
+      "infinitive_en": "to be",
+      "tense": "present",
+      "forms": [
+        { "pronoun": "Eu", "affirmative": "sunt", "negative": "nu sunt", "short": "nu-s" },
+        { "pronoun": "Tu", "affirmative": "ești", "negative": "nu ești", "short": "nu ești" },
+        { "pronoun": "El / Ea", "affirmative": "este", "negative": "nu este", "short": "nu-i" },
+        { "pronoun": "Noi", "affirmative": "suntem", "negative": "nu suntem", "short": "nu suntem" },
+        { "pronoun": "Voi", "affirmative": "sunteți", "negative": "nu sunteți", "short": "nu sunteți" },
+        { "pronoun": "Ei / Ele", "affirmative": "sunt", "negative": "nu sunt", "short": "nu-s" }
+      ]
+    },
+    {
+      "id": "l2-b4",
+      "type": "verb_conjugation",
+      "title": "A avea — to have",
+      "infinitive_ro": "a avea",
+      "infinitive_en": "to have",
+      "tense": "present",
+      "forms": [
+        { "pronoun": "Eu", "affirmative": "am", "negative": "nu am", "short": "n-am" },
+        { "pronoun": "Tu", "affirmative": "ai", "negative": "nu ai", "short": "n-ai" },
+        { "pronoun": "El / Ea", "affirmative": "are", "negative": "nu are", "short": "n-are" },
+        { "pronoun": "Noi", "affirmative": "avem", "negative": "nu avem", "short": "n-avem" },
+        { "pronoun": "Voi", "affirmative": "aveți", "negative": "nu aveți", "short": "n-aveți" },
+        { "pronoun": "Ei / Ele", "affirmative": "au", "negative": "nu au", "short": "n-au" }
+      ]
+    },
+    {
+      "id": "l2-b5",
+      "type": "grammar_concept",
+      "title": "Sentence types",
+      "title_ro": "Propoziții — afirmativ, negativ, interogativ",
+      "sections": [
+        {
+          "name": "Affirmative",
+          "name_ro": "Afirmativ",
+          "structure": "Subject + Verb + Complement",
+          "examples": [
+            { "ro": "Eu sunt student.", "en": "I am a student." },
+            { "ro": "Ea mănâncă.", "en": "She eats." },
+            { "ro": "Noi locuim în Italia.", "en": "We live in Italy." }
+          ]
+        },
+        {
+          "name": "Negative",
+          "name_ro": "Negativ",
+          "rule": "Add 'nu' before the verb",
+          "structure": "Subject + NU + Verb + Complement",
+          "examples": [
+            { "ro": "Eu nu sunt student.", "en": "I am not a student." },
+            { "ro": "El nu mănâncă.", "en": "He does not eat." },
+            { "ro": "Noi nu locuim aici.", "en": "We do not live here." }
+          ]
+        },
+        {
+          "name": "Interrogative",
+          "name_ro": "Interogativ",
+          "rule": "Most common in speech: same sentence with rising intonation",
+          "examples": [
+            { "ro": "Ești student?", "en": "Are you a student?" },
+            { "ro": "Mănânci?", "en": "Are you eating?" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l2-b6",
+      "type": "grammar_concept",
+      "title": "Formal vs informal 'you' — Tu vs Dumneavoastră",
+      "sections": [
+        {
+          "name": "Tu (informal)",
+          "used_with": ["friends", "family", "people your age", "children"],
+          "verb_form": "singular (2nd person)",
+          "examples": [
+            { "ro": "Tu ce faci?", "en": "What are you doing?" },
+            { "ro": "Cum te cheamă?", "en": "What's your name?" },
+            { "ro": "Unde locuiești?", "en": "Where do you live?" }
+          ],
+          "verb_examples": ["tu ești", "tu ai"]
+        },
+        {
+          "name": "Dumneavoastră (formal / polite)",
+          "used_with": ["strangers", "older people", "professional situations", "showing respect"],
+          "verb_form": "plural (2nd person plural)",
+          "examples": [
+            { "ro": "Dumneavoastră ce faceți?", "en": "What are you doing? (formal)" },
+            { "ro": "Cum vă cheamă?", "en": "What is your name? (formal)" },
+            { "ro": "Unde locuiți?", "en": "Where do you live? (formal)" }
+          ],
+          "verb_examples": ["dumneavoastră sunteți", "dumneavoastră aveți"]
+        }
+      ],
+      "general_rule": "Tu + verb (2nd person singular). Dumneavoastră + verb (2nd person plural)."
+    },
+    {
+      "id": "l2-b7",
+      "type": "vocab_set",
+      "title": "Polite forms of address",
+      "title_ro": "Forme politicoase de adresare",
+      "items": [
+        { "ro": "Doamna", "en": "Mrs. / Ma'am" },
+        { "ro": "Domnul", "en": "Mr. / Sir" },
+        { "ro": "Domnișoara", "en": "Miss" }
+      ],
+      "usage_examples": [
+        { "context": "Teachers", "examples": [
+          { "ro": "Doamna profesoară, pot să ies?", "en": "Mrs. teacher, may I go out?" },
+          { "ro": "Domnul profesor explică lecția.", "en": "The (male) teacher explains the lesson." }
+        ]},
+        { "context": "Doctors", "examples": [
+          { "ro": "Doamna doctor este foarte bună.", "en": "The (female) doctor is very good." },
+          { "ro": "Domnul doctor vine imediat.", "en": "The (male) doctor is coming soon." }
+        ]},
+        { "context": "Police", "examples": [
+          { "ro": "Domnule polițist, am o întrebare.", "en": "Officer, I have a question." },
+          { "ro": "Doamnă polițist, mă puteți ajuta?", "en": "Ma'am officer, can you help me?" }
+        ]},
+        { "context": "Formal / strangers", "examples": [
+          { "ro": "Doamnă, ați pierdut ceva.", "en": "Ma'am, you dropped something." }
+        ]}
+      ]
+    },
+    {
+      "id": "l2-b8",
+      "type": "vocab_set",
+      "title": "Days of the week",
+      "title_ro": "Zilele săptămânii",
+      "category": "time",
+      "note": "In Romanian, days of the week are written with lowercase letters, no capitalization.",
+      "items": [
+        { "ro": "luni", "en": "Monday" },
+        { "ro": "marți", "en": "Tuesday" },
+        { "ro": "miercuri", "en": "Wednesday" },
+        { "ro": "joi", "en": "Thursday" },
+        { "ro": "vineri", "en": "Friday" },
+        { "ro": "sâmbătă", "en": "Saturday" },
+        { "ro": "duminică", "en": "Sunday" }
+      ]
+    },
+    {
+      "id": "l2-b9",
+      "type": "vocab_set",
+      "title": "Today / yesterday / tomorrow",
+      "category": "time",
+      "items": [
+        { "ro": "astăzi / azi", "en": "today" },
+        { "ro": "ieri", "en": "yesterday" },
+        { "ro": "mâine", "en": "tomorrow" },
+        { "ro": "poimâine", "en": "the day after tomorrow" }
+      ]
+    },
+    {
+      "id": "l2-b10",
+      "type": "qa_set",
+      "title": "Asking about days",
+      "items": [
+        {
+          "question_ro": "Ce zi este astăzi?",
+          "question_en": "What day is today?",
+          "answers": [
+            { "ro": "Astăzi este ……", "en": "Today is ……" }
+          ]
+        },
+        {
+          "question_ro": "Ce zi a fost ieri?",
+          "question_en": "What day was yesterday?",
+          "answers": [
+            { "ro": "Ieri a fost ……", "en": "Yesterday was ……" }
+          ]
+        },
+        {
+          "question_ro": "Ce zi este mâine?",
+          "question_en": "What day is tomorrow?",
+          "answers": [
+            { "ro": "Mâine este ……", "en": "Tomorrow is ……" },
+            { "ro": "Mâine o să fie ……", "en": "Tomorrow will be ……" }
+          ]
+        },
+        {
+          "question_ro": "Ce zi o să fie poimâine?",
+          "question_en": "What day will it be the day after tomorrow?",
+          "answers": [
+            { "ro": "Poimâine este ……", "en": "The day after tomorrow is ……" },
+            { "ro": "Poimâine o să fie ……", "en": "The day after tomorrow will be ……" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l2-b11",
+      "type": "vocab_set",
+      "title": "Times of the day",
+      "title_ro": "Momentele zilei",
+      "category": "time",
+      "items": [
+        { "ro": "Dimineața", "en": "Morning" },
+        { "ro": "Prânzul / La prânz", "en": "Noon / Midday" },
+        { "ro": "După-amiaza", "en": "Afternoon" },
+        { "ro": "Seara", "en": "Evening" },
+        { "ro": "Noaptea", "en": "Night" }
+      ]
+    },
+    {
+      "id": "l2-b12",
+      "type": "vocab_set",
+      "title": "Meals of the day",
+      "title_ro": "Mesele zilei",
+      "category": "food",
+      "items": [
+        { "ro": "Micul dejun", "en": "Breakfast" },
+        { "ro": "Prânzul", "en": "Lunch" },
+        { "ro": "Cina", "en": "Dinner" }
+      ],
+      "usage_examples": [
+        { "ro": "Eu iau micul dejun.", "en": "I take (have) breakfast." },
+        { "ro": "Eu mănânc micul dejun.", "en": "I eat breakfast." },
+        { "ro": "Eu iau prânzul.", "en": "I take (have) lunch." },
+        { "ro": "Eu mănânc prânzul.", "en": "I eat lunch." },
+        { "ro": "Eu iau cina.", "en": "I take (have) dinner." },
+        { "ro": "Eu mănânc cina.", "en": "I eat dinner." }
+      ],
+      "note": "'O cină' = 'a dinner' (indefinite)."
+    },
+    {
+      "id": "l2-b13",
+      "type": "grammar_concept",
+      "title": "Definite article — 'the'",
+      "title_ro": "Articolul hotărât",
+      "description": "In Romanian, 'the' is attached to the END of the noun, not as a separate word.",
+      "examples": [
+        { "ro": "carte + a → cartea", "en": "book → the book" }
+      ],
+      "key_difference": "English uses a separate word ('the'). Romanian uses an attached ending."
+    }
+  ],
+  "dialogue_practice": {
+    "title": "Joi seara",
+    "title_en": "Thursday evening",
+    "context": "Ana and Mihai catch up on a Thursday evening. Pay attention to how they conjugate 'a fi' and 'a avea', use the days of the week, and form negative sentences.",
+    "speakers": ["Mihai", "Ana"],
+    "lines": [
+      { "speaker": "Mihai", "ro": "Salut, Ana! Ce mai faci?",                     "en": "Hey, Ana! How have you been?" },
+      { "speaker": "Ana",   "ro": "Bine, mulțumesc! Ce zi este astăzi?",          "en": "Good, thanks! What day is today?" },
+      { "speaker": "Mihai", "ro": "Astăzi este joi seara.",                        "en": "Today is Thursday evening." },
+      { "speaker": "Ana",   "ro": "Tu ai timp?",                                   "en": "Do you have time?" },
+      { "speaker": "Mihai", "ro": "Da, eu nu am cursuri joi. Și tu?",             "en": "Yes, I don't have classes on Thursdays. And you?" },
+      { "speaker": "Ana",   "ro": "Eu am un curs vineri dimineața.",               "en": "I have a class on Friday morning." },
+      { "speaker": "Mihai", "ro": "Ești studentă?",                                "en": "Are you a student?" },
+      { "speaker": "Ana",   "ro": "Nu, eu nu sunt studentă. Eu sunt profesoară.", "en": "No, I'm not a student. I'm a teacher." },
+      { "speaker": "Mihai", "ro": "Eu sunt student. Noi suntem ocupați!",          "en": "I'm a student. We are busy!" },
+      { "speaker": "Ana",   "ro": "Da! Ei bine, la revedere, Mihai!",             "en": "Yes! Well then, goodbye, Mihai!" },
+      { "speaker": "Mihai", "ro": "La revedere! O seară bună!",                   "en": "Goodbye! Have a good evening!" }
+    ],
+    "new_words": [
+      { "ro": "cursuri / curs",  "en": "classes / a class",     "note": "also means 'courses'" },
+      { "ro": "studentă",        "en": "female student",         "note": "student (masculine) → studentă (feminine)" },
+      { "ro": "profesoară",      "en": "female teacher",         "note": "profesor (masculine) → profesoară (feminine)" },
+      { "ro": "ocupați",         "en": "busy",                   "note": "ocupat (masc.) / ocupată (fem.) / ocupați (plural)" },
+      { "ro": "Ei bine",         "en": "Well then / Alright",    "note": "used to wrap up a conversation" }
+    ]
+  },
+
+  "exercises": [
+    {
+      "id": "l2-ex1",
+      "type": "fill_blank",
+      "prompt": "Conjugate 'a fi': Eu _____ student.",
+      "answer": "sunt"
+    },
+    {
+      "id": "l2-ex2",
+      "type": "fill_blank",
+      "prompt": "Conjugate 'a fi': Tu _____ profesor.",
+      "answer": "ești"
+    },
+    {
+      "id": "l2-ex3",
+      "type": "fill_blank",
+      "prompt": "Conjugate 'a avea': Noi _____ o casă.",
+      "answer": "avem"
+    },
+    {
+      "id": "l2-ex4",
+      "type": "fill_blank",
+      "prompt": "Conjugate 'a avea': Ei _____ o mașină.",
+      "answer": "au"
+    },
+    {
+      "id": "l2-ex5",
+      "type": "transform",
+      "prompt": "Make this sentence negative: Eu sunt obosit.",
+      "answer": "Eu nu sunt obosit.",
+      "explanation": "Add 'nu' before the verb."
+    },
+    {
+      "id": "l2-ex6",
+      "type": "transform",
+      "prompt": "Make this sentence negative: El are o carte.",
+      "answer": "El nu are o carte."
+    },
+    {
+      "id": "l2-ex7",
+      "type": "multiple_choice",
+      "prompt": "Which is the correct way to address a stranger formally?",
+      "choices": ["Tu ce faci?", "Dumneavoastră ce faceți?", "Voi ce faceți?"],
+      "answer": "Dumneavoastră ce faceți?",
+      "explanation": "Dumneavoastră is used with strangers, older people, and in professional contexts."
+    },
+    {
+      "id": "l2-ex8",
+      "type": "translate_to_ro",
+      "prompt": "Today is Monday.",
+      "answer": "Astăzi este luni.",
+      "alternative_answers": ["Azi este luni."]
+    },
+    {
+      "id": "l2-ex9",
+      "type": "translate_to_ro",
+      "prompt": "Yesterday was Friday.",
+      "answer": "Ieri a fost vineri."
+    },
+    {
+      "id": "l2-ex10",
+      "type": "match",
+      "prompt": "Match the meal to the time of day",
+      "pairs": [
+        { "left": "Micul dejun", "right": "Dimineața" },
+        { "left": "Prânzul", "right": "La prânz" },
+        { "left": "Cina", "right": "Seara" }
+      ]
+    },
+    {
+      "id": "l2-ex11",
+      "type": "fill_blank",
+      "prompt": "Add the definite article: carte → _____",
+      "answer": "cartea",
+      "explanation": "In Romanian, 'the' is attached to the end of the word."
+    },
+    {
+      "id": "l2-ex12",
+      "type": "translate_to_en",
+      "prompt": "Noi nu locuim aici.",
+      "answer": "We do not live here."
+    }
+  ]
+}

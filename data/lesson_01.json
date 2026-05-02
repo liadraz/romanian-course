@@ -1,0 +1,391 @@
+{
+  "lesson_number": 1,
+  "title": "Alphabet, Pronunciation & Greetings",
+  "title_ro": "Alfabetul, pronunția și formele de salut",
+  "blocks": [
+    {
+      "id": "l1-b1",
+      "type": "intro",
+      "title": "Romanian basics",
+      "items": [
+        { "ro": "România", "en": "Romania" },
+        { "ro": "Limba română", "en": "Romanian language" },
+        { "ro": "Românește", "en": "Romanian (adverb — 'in Romanian')" }
+      ]
+    },
+    {
+      "id": "l1-b2",
+      "type": "alphabet",
+      "title": "The Romanian alphabet",
+      "title_ro": "Alfabetul românesc",
+      "letters": ["A","Ă","Â","B","C","D","E","F","G","H","I","Î","J","K","L","M","N","O","P","Q","R","S","Ș","T","Ț","U","V","W","X","Y","Z"],
+      "note": "31 letters. Romanian uses 5 special letters with diacritics: Ă, Â, Î, Ș, Ț."
+    },
+    {
+      "id": "l1-b3",
+      "type": "pronunciation_rule",
+      "title": "When to use î vs â",
+      "rules": [
+        {
+          "letter": "î",
+          "where": "Beginning and end of words",
+          "examples": [
+            { "ro": "începe", "en": "begin" },
+            { "ro": "între", "en": "between" },
+            { "ro": "a urî", "en": "to hate" }
+          ]
+        },
+        {
+          "letter": "â",
+          "where": "Inside words",
+          "examples": [
+            { "ro": "când", "en": "when" },
+            { "ro": "mână", "en": "hand" },
+            { "ro": "român", "en": "Romanian" }
+          ]
+        }
+      ],
+      "exception": {
+        "title": "Special rule (very important)",
+        "description": "Even inside words, if the word is built from a prefix, we still use î. This is because the word comes from another word starting with î.",
+        "examples": [
+          { "ro": "neînțeles", "en": "not understood", "from": "înțeles (understood) + ne-" },
+          { "ro": "reîncepe", "en": "restart", "from": "începe (start) + re-" }
+        ]
+      }
+    },
+    {
+      "id": "l1-b4",
+      "type": "pronunciation_rule",
+      "title": "Special letter groups",
+      "title_ro": "Grupurile speciale de litere",
+      "groups": [
+        {
+          "group": "ce",
+          "sound_note": "Pronounced like English 'che' in 'cherry'",
+          "examples": [
+            { "ro": "ceai", "en": "tea" },
+            { "ro": "cer", "en": "sky" }
+          ]
+        },
+        {
+          "group": "ci",
+          "sound_note": "Pronounced like English 'chee'",
+          "examples": [
+            { "ro": "cine", "en": "who" },
+            { "ro": "cinci", "en": "five" }
+          ]
+        },
+        {
+          "group": "che",
+          "sound_note": "Pronounced like English 'ke' (hard k)",
+          "examples": [
+            { "ro": "cheie", "en": "key" },
+            { "ro": "chef", "en": "mood / desire" }
+          ]
+        },
+        {
+          "group": "chi",
+          "sound_note": "Pronounced like English 'kee' (hard k)",
+          "examples": [
+            { "ro": "chip", "en": "face / image" },
+            { "ro": "chitară", "en": "guitar" }
+          ]
+        },
+        {
+          "group": "ge",
+          "sound_note": "Pronounced like English 'je' in 'jet'",
+          "examples": [
+            { "ro": "geam", "en": "window" },
+            { "ro": "ger", "en": "frost" }
+          ]
+        },
+        {
+          "group": "gi",
+          "sound_note": "Pronounced like English 'jee'",
+          "examples": [
+            { "ro": "gimnastică", "en": "gymnastics" },
+            { "ro": "ginere", "en": "son-in-law" }
+          ]
+        },
+        {
+          "group": "ghe",
+          "sound_note": "Pronounced like English 'ge' in 'get' (hard g)",
+          "examples": [
+            { "ro": "gheară", "en": "claw" },
+            { "ro": "gheață", "en": "ice" }
+          ]
+        },
+        {
+          "group": "ghi",
+          "sound_note": "Pronounced like English 'gee' in 'geek' (hard g)",
+          "examples": [
+            { "ro": "ghid", "en": "guide" },
+            { "ro": "ghiozdan", "en": "schoolbag" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l1-b5",
+      "type": "vocab_set",
+      "title": "Informal greetings",
+      "title_ro": "Forme de salut — informale",
+      "category": "greetings",
+      "items": [
+        { "ro": "Bună", "en": "Hello", "note": "More often used with girls/women (social habit, not a strict rule)" },
+        { "ro": "Salut", "en": "Hello", "note": "More common between guys (social habit, not a strict rule)" },
+        { "ro": "Salutare", "en": "Hello / Greetings" },
+        { "ro": "Hey / Hei", "en": "Hey" },
+        { "ro": "Pa", "en": "Bye" },
+        { "ro": "Pa-pa", "en": "Bye-bye" },
+        { "ro": "Ne vedem mai târziu", "en": "See you later" }
+      ]
+    },
+    {
+      "id": "l1-b6",
+      "type": "vocab_set",
+      "title": "Formal greetings",
+      "title_ro": "Forme de salut — formale",
+      "category": "greetings",
+      "items": [
+        { "ro": "Bună dimineața", "en": "Good morning" },
+        { "ro": "Bună ziua", "en": "Good afternoon / Good day" },
+        { "ro": "Bună seara", "en": "Good evening" },
+        { "ro": "Noapte bună", "en": "Good night" },
+        { "ro": "La revedere", "en": "Goodbye" },
+        { "ro": "O zi bună!", "en": "Have a good day!" },
+        { "ro": "O seară bună!", "en": "Have a good evening!" }
+      ]
+    },
+    {
+      "id": "l1-b7",
+      "type": "qa_set",
+      "title": "Basic questions",
+      "title_ro": "Întrebări de bază",
+      "items": [
+        {
+          "question_ro": "Cum te cheamă?",
+          "question_en": "What's your name?",
+          "answers": [
+            { "ro": "Mă cheamă ……", "en": "My name is ……" },
+            { "ro": "Eu sunt ……", "en": "I am ……" },
+            { "ro": "Mă numesc ……", "en": "My name is ……" },
+            { "ro": "Numele meu este ……", "en": "My name is ……" }
+          ]
+        },
+        {
+          "question_ro": "Câți ani ai?",
+          "question_en": "How old are you?",
+          "answers": [
+            { "ro": "Eu am …… ani.", "en": "I am …… years old (1-19, use 'ani' directly)." },
+            { "ro": "Eu am …… de ani.", "en": "I am …… years old (20+, use 'de ani')." },
+            { "ro": "Eu am 38 (treizeci și opt) de ani.", "en": "I am 38 years old." }
+          ],
+          "rules": [
+            "1–19 → use 'ani' directly (e.g. cinci ani)",
+            "20 and above → use 'de ani' (e.g. douăzeci de ani)",
+            "We use the verb 'to have' (a avea) to say age, NOT 'to be'"
+          ]
+        },
+        {
+          "question_ro": "De unde ești?",
+          "question_en": "Where are you from?",
+          "answers": [
+            { "ro": "Eu sunt din ……", "en": "I am from ……" },
+            { "ro": "Eu sunt din Israel.", "en": "I am from Israel." },
+            { "ro": "Eu locuiesc în ……", "en": "I live in ……" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l1-b8",
+      "type": "phrase_highlight",
+      "title": "Nice to meet you",
+      "items": [
+        { "ro": "Îmi pare bine!", "en": "Nice to meet you!" },
+        { "ro": "Și mie!", "en": "Nice to meet you too! (lit. 'and to me')" }
+      ]
+    },
+    {
+      "id": "l1-b9",
+      "type": "comparison",
+      "title": "Three ways to ask 'How are you?'",
+      "title_ro": "Ce faci? vs Ce mai faci? vs Cum ești?",
+      "items": [
+        {
+          "phrase": "Ce faci?",
+          "meaning": "How are you? / What are you doing?",
+          "focus": "General — most common everyday greeting",
+          "answers": [
+            { "ro": "Eu sunt bine.", "en": "I am good." },
+            { "ro": "Bine.", "en": "Good." },
+            { "ro": "Foarte bine.", "en": "Very good." },
+            { "ro": "Așa și așa.", "en": "So and so." },
+            { "ro": "Nu prea bine.", "en": "Not too good." },
+            { "ro": "Nu sunt prea bine.", "en": "I am not so good." }
+          ]
+        },
+        {
+          "phrase": "Ce mai faci?",
+          "meaning": "How have you been? / What's new?",
+          "focus": "Catching up — used when you haven't seen someone for a while",
+          "answers": [
+            { "ro": "Bine, nimic nou.", "en": "Good, nothing new." },
+            { "ro": "Bine.", "en": "Good." },
+            { "ro": "Destul de bine.", "en": "Pretty good." },
+            { "ro": "Nu prea bine.", "en": "Not too good." },
+            { "ro": "Nu sunt prea bine.", "en": "I am not so good." }
+          ]
+        },
+        {
+          "phrase": "Cum ești?",
+          "meaning": "How are you?",
+          "focus": "Emotions / feelings — focus on inner state",
+          "answers": [
+            { "ro": "Eu sunt bine.", "en": "I am good." },
+            { "ro": "Bine.", "en": "Good." },
+            { "ro": "Așa și așa.", "en": "So and so." },
+            { "ro": "Nu prea bine.", "en": "Not too good." },
+            { "ro": "Eu sunt obosită / obosit.", "en": "I am tired (feminine / masculine)." },
+            { "ro": "Eu sunt fericită / fericit.", "en": "I am happy (feminine / masculine)." }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "l1-b10",
+      "type": "vocab_set",
+      "title": "Be polite",
+      "title_ro": "Fii respectuos",
+      "category": "politeness",
+      "items": [
+        { "ro": "Mulțumesc", "en": "Thank you" },
+        { "ro": "Cu plăcere", "en": "You're welcome (lit. 'with pleasure')" }
+      ]
+    },
+    {
+      "id": "l1-b11",
+      "type": "dialogue",
+      "title": "First conversation",
+      "title_ro": "Prima conversație",
+      "speakers": ["Ionuț", "Alina"],
+      "lines": [
+        { "speaker": "Ionuț", "ro": "Bună!", "en": "Hello!" },
+        { "speaker": "Alina", "ro": "Hey!", "en": "Hey!" },
+        { "speaker": "Ionuț", "ro": "Ce faci?", "en": "How are you?" },
+        { "speaker": "Alina", "ro": "Bine, tu?", "en": "Good, you?" },
+        { "speaker": "Ionuț", "ro": "Și eu sunt ok, mulțumesc! Cum te cheamă?", "en": "I'm good too, thank you! What's your name?" },
+        { "speaker": "Alina", "ro": "Mă cheamă Alina. Pe tine cum te cheamă?", "en": "My name is Alina. What's your name?" },
+        { "speaker": "Ionuț", "ro": "Eu sunt Ionuț. De unde ești?", "en": "I'm Ionuț. Where are you from?" },
+        { "speaker": "Alina", "ro": "Eu sunt din București. Dar tu?", "en": "I'm from Bucharest. And you?" },
+        { "speaker": "Ionuț", "ro": "Eu sunt din Cluj, dar locuiesc în Brașov.", "en": "I'm from Cluj, but I live in Brașov." },
+        { "speaker": "Alina", "ro": "Îmi pare bine!", "en": "Nice to meet you!" },
+        { "speaker": "Ionuț", "ro": "Și mie! Câți ani ai?", "en": "Nice to meet you too! How old are you?" },
+        { "speaker": "Alina", "ro": "Eu am 25 (douăzeci și cinci de ani). Tu?", "en": "I am 25 (twenty-five years old). You?" },
+        { "speaker": "Ionuț", "ro": "Eu am 30 (treizeci de ani).", "en": "I am 30 (thirty years old)." },
+        { "speaker": "Alina", "ro": "La revedere!", "en": "Goodbye!" },
+        { "speaker": "Ionuț", "ro": "Pa-pa!", "en": "Bye-bye!" }
+      ]
+    }
+  ],
+  "dialogue_practice": {
+    "title": "La cafea",
+    "title_en": "At the coffee shop",
+    "context": "Ana and Radu meet for the first time at a café on a Sunday afternoon. Notice the greetings, introductions, and how they say goodbye.",
+    "speakers": ["Ana", "Radu"],
+    "lines": [
+      { "speaker": "Ana",  "ro": "Bună ziua!",                           "en": "Good afternoon!" },
+      { "speaker": "Radu", "ro": "Bună ziua! Cum te cheamă?",            "en": "Good afternoon! What's your name?" },
+      { "speaker": "Ana",  "ro": "Mă cheamă Ana. Tu?",                   "en": "My name is Ana. And you?" },
+      { "speaker": "Radu", "ro": "Eu sunt Radu. Îmi pare bine, Ana!",    "en": "I'm Radu. Nice to meet you, Ana!" },
+      { "speaker": "Ana",  "ro": "Și mie! De unde ești?",                "en": "Nice to meet you too! Where are you from?" },
+      { "speaker": "Radu", "ro": "Eu sunt din Cluj. Dar tu?",            "en": "I'm from Cluj. And you?" },
+      { "speaker": "Ana",  "ro": "Eu sunt din Israel. Eu învăț românește.", "en": "I'm from Israel. I'm learning Romanian." },
+      { "speaker": "Radu", "ro": "Super! Cum ești?",                     "en": "Cool! How are you?" },
+      { "speaker": "Ana",  "ro": "Bine, mulțumesc! Și tu?",             "en": "Good, thank you! And you?" },
+      { "speaker": "Radu", "ro": "Și eu sunt bine. La revedere, Ana!",   "en": "I'm good too. Goodbye, Ana!" },
+      { "speaker": "Ana",  "ro": "La revedere! O zi bună!",              "en": "Goodbye! Have a good day!" }
+    ],
+    "new_words": [
+      { "ro": "învăț",  "en": "I am learning",  "note": "from verb 'a învăța' — to learn" },
+      { "ro": "Super!", "en": "Cool! / Great!",  "note": "informal expression of approval" }
+    ]
+  },
+
+  "exercises": [
+    {
+      "id": "l1-ex1",
+      "type": "multiple_choice",
+      "prompt": "Which letter is used at the BEGINNING of a word?",
+      "choices": ["â", "î", "ă"],
+      "answer": "î",
+      "explanation": "î is used at the beginning and end of words; â is used inside words."
+    },
+    {
+      "id": "l1-ex2",
+      "type": "multiple_choice",
+      "prompt": "How would you greet a female friend informally?",
+      "choices": ["Bună ziua", "Bună", "La revedere"],
+      "answer": "Bună",
+      "explanation": "'Bună' is informal and more often used with girls/women."
+    },
+    {
+      "id": "l1-ex3",
+      "type": "fill_blank",
+      "prompt": "Complete: Eu am 25 _____ ani.",
+      "answer": "de",
+      "explanation": "For ages 20 and above, we use 'de ani'."
+    },
+    {
+      "id": "l1-ex4",
+      "type": "fill_blank",
+      "prompt": "Complete: Eu am 5 _____.",
+      "answer": "ani",
+      "explanation": "For ages 1-19, we use 'ani' directly without 'de'."
+    },
+    {
+      "id": "l1-ex5",
+      "type": "translate_to_ro",
+      "prompt": "What's your name?",
+      "answer": "Cum te cheamă?",
+      "alternative_answers": ["Cum te numești?"]
+    },
+    {
+      "id": "l1-ex6",
+      "type": "translate_to_ro",
+      "prompt": "Nice to meet you!",
+      "answer": "Îmi pare bine!"
+    },
+    {
+      "id": "l1-ex7",
+      "type": "translate_to_en",
+      "prompt": "Eu sunt din Israel.",
+      "answer": "I am from Israel."
+    },
+    {
+      "id": "l1-ex8",
+      "type": "match",
+      "prompt": "Match the question to its focus",
+      "pairs": [
+        { "left": "Ce faci?", "right": "General — everyday greeting" },
+        { "left": "Ce mai faci?", "right": "Catching up — what's new" },
+        { "left": "Cum ești?", "right": "Emotions / feelings" }
+      ]
+    },
+    {
+      "id": "l1-ex9",
+      "type": "multiple_choice",
+      "prompt": "Which word means 'thank you'?",
+      "choices": ["Cu plăcere", "Mulțumesc", "La revedere"],
+      "answer": "Mulțumesc"
+    },
+    {
+      "id": "l1-ex10",
+      "type": "fill_blank",
+      "prompt": "Complete the dialogue:\n— Cum te cheamă?\n— Mă _____ Alina.",
+      "answer": "cheamă"
+    }
+  ]
+}
