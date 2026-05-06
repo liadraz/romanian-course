@@ -6,6 +6,7 @@ import { renderBlock } from './blocks.js';
 import { renderPracticeForLesson, renderAllExercises } from './exercises.js';
 import { speak, getRoVoice, buildNoVoiceWarning } from './audio.js';
 import { state } from './state.js';
+import { getBookProgress } from './book.js';
 
 const TAB_LABELS = {
   vocabulary: 'Vocabulary',
@@ -52,7 +53,7 @@ function checkAndWarnAudio(root) {
 
 // ---- Home page ----
 
-export function renderHomePage(lessons, manifest, root) {
+export function renderHomePage(lessons, manifest, root, bookManifestData) {
   root.innerHTML = '';
 
   // Hero
@@ -112,6 +113,38 @@ export function renderHomePage(lessons, manifest, root) {
   }
 
   root.appendChild(grid);
+
+  // Textbook section
+  if (bookManifestData?.chapters?.length) {
+    root.appendChild(el('div', 'home-section-heading', '📖 Textbook'));
+    const bookGrid = el('div', 'book-cards-grid');
+    const bookProg = getBookProgress();
+
+    for (const ch of bookManifestData.chapters) {
+      const card = el('div', 'book-home-card');
+      card.appendChild(el('div', 'book-home-card-num', `Chapter ${ch.n}`));
+      card.appendChild(el('div', 'book-home-card-title', ch.title));
+      card.appendChild(el('div', 'book-home-card-subtitle', ch.title_en));
+
+      const completed = (bookProg[String(ch.n)]?.completed_steps || []).length;
+      const total = ch.step_count;
+
+      const progressTrack = el('div', 'book-home-progress-track');
+      const progressFill = el('div', 'book-home-progress-fill');
+      progressFill.style.width = `${total ? Math.round((completed / total) * 100) : 0}%`;
+      progressTrack.appendChild(progressFill);
+      card.appendChild(progressTrack);
+      card.appendChild(el('div', 'book-home-progress-label', `${completed} / ${total} steps`));
+
+      const startBtn = el('a', 'book-home-start', 'Start chapter →');
+      startBtn.href = `#/book/${ch.n}/1`;
+      card.appendChild(startBtn);
+
+      bookGrid.appendChild(card);
+    }
+    root.appendChild(bookGrid);
+  }
+
   root.appendChild(makeBackToTopBtn());
 }
 

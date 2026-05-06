@@ -1,0 +1,928 @@
+/* Book reader styles — imported alongside styles.css */
+
+/* ---- Color tokens ---- */
+:root {
+  --book-coral: #c0392b;
+  --book-coral-soft: #fde8e2;
+  --book-coral-border: #f4a99a;
+  --book-purple: #7c3aed;
+  --book-purple-soft: #ede9fe;
+  --book-purple-border: #c4b5fd;
+  --book-amber: #d97706;
+  --book-amber-soft: #fef3c7;
+  --book-amber-border: #fcd34d;
+  --book-green-soft: #d1fae5;
+  --book-green-border: #6ee7b7;
+}
+
+/* ---- Layout overrides when book is active ---- */
+body.book-active .main {
+  padding: 0;
+}
+
+body.book-active .content {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---- Book shell ---- */
+.book-shell {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  height: calc(100vh - var(--header-h));
+  overflow: hidden;
+}
+
+/* ---- Left panel: step sidebar ---- */
+.book-left-panel {
+  background: var(--surface-2);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.book-chapter-title {
+  padding: 18px 16px 14px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.book-chapter-ro {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.book-chapter-en {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.book-step-nav {
+  padding: 8px 0 24px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.book-step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 14px;
+  text-decoration: none;
+  color: var(--text);
+  border-left: 3px solid transparent;
+  transition: background 0.12s, border-color 0.12s;
+  cursor: pointer;
+}
+
+.book-step-item:hover {
+  background: var(--surface);
+}
+
+.book-step-item.active {
+  background: var(--accent-soft);
+  border-left-color: var(--accent);
+}
+
+.book-step-num {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--border);
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.book-step-item.active .book-step-num {
+  background: var(--accent);
+  color: #fff;
+}
+
+.book-step-num.completed {
+  background: var(--good);
+  color: #fff;
+}
+
+.book-step-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.book-step-title {
+  font-size: 0.8rem;
+  line-height: 1.35;
+  display: block;
+  color: var(--text);
+}
+
+.book-step-pill {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-radius: 99px;
+}
+
+.pill-vocabulary {
+  background: var(--book-coral-soft);
+  color: var(--book-coral);
+}
+
+.pill-dialogue {
+  background: var(--book-green-soft);
+  color: var(--good);
+}
+
+.pill-grammar {
+  background: var(--book-purple-soft);
+  color: var(--book-purple);
+}
+
+.pill-verbs {
+  background: var(--book-purple-soft);
+  color: var(--book-purple);
+}
+
+.pill-exercise {
+  background: var(--book-amber-soft);
+  color: var(--book-amber);
+}
+
+/* ---- Right panel: content area ---- */
+.book-right-panel {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-breadcrumb {
+  padding: 12px 28px 0;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* ---- Right panel progress bar ---- */
+.book-progress-track {
+  height: 3px;
+  background: var(--border);
+  margin: 10px 28px 0;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.book-progress-fill {
+  height: 100%;
+  background: var(--good);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* ---- Step content area ---- */
+.book-step-content {
+  flex: 1;
+  padding: 24px 28px 16px;
+  max-width: 720px;
+}
+
+/* ---- Bottom navigation ---- */
+.book-bottom-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 28px 20px;
+  border-top: 1px solid var(--border);
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.book-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.12s, border-color 0.12s;
+  max-width: 220px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-nav-btn:hover:not(:disabled) {
+  background: var(--surface-2);
+  border-color: var(--border-strong);
+}
+
+.book-nav-btn.primary {
+  background: var(--text);
+  color: #fff;
+  border-color: var(--text);
+}
+
+.book-nav-btn.primary:hover:not(:disabled) {
+  background: #374151;
+}
+
+.book-nav-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.book-nav-counter {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+/* ---- Step kind badge ---- */
+.book-step-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 99px;
+  margin-bottom: 16px;
+}
+
+.badge-coral {
+  background: var(--book-coral-soft);
+  color: var(--book-coral);
+  border: 1px solid var(--book-coral-border);
+}
+
+.badge-green {
+  background: var(--book-green-soft);
+  color: var(--good);
+  border: 1px solid var(--book-green-border);
+}
+
+.badge-purple {
+  background: var(--book-purple-soft);
+  color: var(--book-purple);
+  border: 1px solid var(--book-purple-border);
+}
+
+.badge-amber {
+  background: var(--book-amber-soft);
+  color: var(--book-amber);
+  border: 1px solid var(--book-amber-border);
+}
+
+/* ---- Vocabulary step ---- */
+.book-step-intro {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.book-vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.book-vocab-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  box-shadow: var(--shadow);
+}
+
+.book-vocab-top {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.book-vocab-ro {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+  flex: 1;
+}
+
+.book-vocab-en {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* ---- Dialogue step ---- */
+.book-dialogue-context {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-bottom: 16px;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border-radius: var(--radius);
+  border-left: 3px solid var(--border-strong);
+}
+
+.book-speak-scene {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 4px 12px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  transition: background 0.12s;
+}
+
+.book-speak-scene:hover {
+  background: var(--surface);
+}
+
+.book-toggle-en {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  color: var(--accent);
+  background: none;
+  border: 1px solid var(--accent-border);
+  border-radius: 99px;
+  padding: 4px 12px;
+  cursor: pointer;
+  margin-bottom: 16px;
+  margin-left: 8px;
+  transition: background 0.12s;
+}
+
+.book-toggle-en:hover {
+  background: var(--accent-soft);
+}
+
+.book-dialogue-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.book-dialogue-line {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+
+.book-dialogue-line.speaker-right {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+.book-dialogue-line.speaker-left {
+  align-self: flex-start;
+  align-items: flex-start;
+}
+
+.book-speaker-label {
+  font-size: 0.7rem;
+  font-variant: small-caps;
+  color: var(--text-subtle);
+  letter-spacing: 0.04em;
+  margin-bottom: 3px;
+  padding: 0 4px;
+}
+
+.book-bubble {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: var(--shadow);
+}
+
+.book-dialogue-line.speaker-right .book-bubble {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+
+.book-bubble-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.book-bubble-ro {
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+  flex: 1;
+}
+
+.book-bubble-en {
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-top: 5px;
+  transition: opacity 0.2s;
+}
+
+.book-dialogue-lines.en-hidden .book-bubble-en {
+  display: none;
+}
+
+/* ---- Grammar step ---- */
+.book-grammar-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.book-grammar-explanation {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.book-examples-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+
+.book-examples-table tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.book-examples-table tr:last-child {
+  border-bottom: none;
+}
+
+.book-ex-ro {
+  padding: 8px 16px 8px 0;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--text);
+  width: 50%;
+}
+
+.book-ex-en {
+  padding: 8px 0;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.book-callout {
+  background: var(--book-purple-soft);
+  border: 1px solid var(--book-purple-border);
+  border-left: 4px solid var(--book-purple);
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  font-size: 0.85rem;
+  color: var(--text);
+  line-height: 1.55;
+  margin-bottom: 16px;
+}
+
+.book-extra-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  margin-bottom: 8px;
+}
+
+/* ---- Verbs step ---- */
+.book-verbs-intro {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.book-verb-block {
+  margin-bottom: 28px;
+}
+
+.book-verb-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.book-verb-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text);
+}
+
+.book-verb-meaning {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.book-verb-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.book-verb-table thead {
+  background: var(--surface-2);
+}
+
+.book-verb-table th {
+  padding: 8px 14px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+.book-verb-table td {
+  padding: 9px 14px;
+  font-size: 0.9rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.book-verb-table tr:last-child td {
+  border-bottom: none;
+}
+
+.book-verb-pronoun {
+  color: var(--text-muted);
+  width: 25%;
+}
+
+.book-verb-affirmative {
+  font-weight: 600;
+  color: var(--text);
+  width: 35%;
+}
+
+.book-verb-english {
+  color: var(--text-muted);
+}
+
+/* ---- Exercise step ---- */
+.book-ex-session {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.book-ex-mini-progress {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.book-ex-mini-fill {
+  height: 100%;
+  background: var(--book-amber);
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.book-ex-counter {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+.book-ex-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+.book-ex-type {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--book-amber);
+  margin-bottom: 10px;
+}
+
+.book-ex-prompt {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 14px;
+  line-height: 1.4;
+}
+
+.book-ex-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid var(--border-strong);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: var(--bg);
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.book-ex-input:focus {
+  border-color: var(--accent);
+}
+
+.book-ex-btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.book-ex-check {
+  padding: 8px 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.book-ex-check:hover {
+  background: #1a379b;
+}
+
+.book-ex-feedback {
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  margin-top: 10px;
+}
+
+.book-ex-feedback.correct {
+  background: #d1fae5;
+  color: #065f46;
+  border: 1px solid #6ee7b7;
+}
+
+.book-ex-feedback.wrong {
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fca5a5;
+}
+
+.book-ex-correct-ans {
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.book-ex-continue {
+  margin-top: 10px;
+  padding: 8px 20px;
+  background: var(--text);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+
+.book-ex-continue:hover {
+  background: #374151;
+}
+
+.book-ex-complete {
+  background: var(--book-green-soft);
+  border: 1px solid var(--book-green-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+}
+
+.book-ex-complete-icon {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.book-ex-complete-text {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--good);
+  margin-bottom: 16px;
+}
+
+/* ---- Home page textbook section ---- */
+.home-section-heading {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 36px 0 16px;
+}
+
+.book-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.book-home-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.book-home-card-num {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.book-home-card-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.book-home-card-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.book-home-progress-track {
+  height: 5px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.book-home-progress-fill {
+  height: 100%;
+  background: var(--good);
+  border-radius: 3px;
+}
+
+.book-home-progress-label {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.book-home-start {
+  display: inline-block;
+  margin-top: 4px;
+  padding: 8px 16px;
+  background: var(--text);
+  color: #fff;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.12s;
+  align-self: flex-start;
+}
+
+.book-home-start:hover {
+  background: #374151;
+}
+
+/* ---- Sidebar book section ---- */
+.sidebar-book-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-subtle);
+  padding: 10px 16px 4px;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 700px) {
+  .book-shell {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: auto;
+    overflow: visible;
+  }
+
+  .book-left-panel {
+    display: none;
+    position: fixed;
+    top: var(--header-h);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    overflow-y: auto;
+    background: var(--surface);
+    height: calc(100vh - var(--header-h));
+  }
+
+  .book-shell.book-contents-open .book-left-panel {
+    display: flex;
+  }
+
+  .book-right-panel {
+    overflow-y: visible;
+    min-height: 0;
+  }
+
+  .book-mobile-bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .book-mobile-step-label {
+    flex: 1;
+    font-size: 0.82rem;
+    color: var(--text-muted);
+  }
+
+  .book-contents-btn {
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    border-radius: 8px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    color: var(--text);
+  }
+
+  .book-breadcrumb {
+    display: none;
+  }
+
+  .book-step-content {
+    padding: 16px;
+  }
+
+  .book-bottom-nav {
+    padding: 12px 16px;
+  }
+
+  .book-nav-btn {
+    max-width: 140px;
+    font-size: 0.78rem;
+    padding: 7px 12px;
+  }
+
+  .book-vocab-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .book-dialogue-line {
+    max-width: 92%;
+  }
+}
+
+@media (min-width: 701px) {
+  .book-mobile-bar {
+    display: none;
+  }
+}

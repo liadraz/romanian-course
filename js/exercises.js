@@ -52,7 +52,7 @@ function checkWordFuzzy(userWord, correctWord) {
   return levenshtein(userWord, correctWord) <= tol;
 }
 
-function checkTextAnswer(userInput, exercise) {
+export function checkTextAnswer(userInput, exercise) {
   const user = normalize(userInput);
   const correct = normalize(exercise.answer);
 
@@ -69,7 +69,7 @@ function checkTextAnswer(userInput, exercise) {
   return false;
 }
 
-function checkMatchAnswer(result, exercise) {
+export function checkMatchAnswer(result, exercise) {
   return (exercise.pairs || []).every((p) => result[p.left] === p.right);
 }
 

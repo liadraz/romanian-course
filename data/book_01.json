@@ -1,0 +1,262 @@
+{
+  "chapter": 1,
+  "title": "Bună ziua",
+  "title_en": "Good day",
+  "steps": [
+    {
+      "id": 1,
+      "kind": "vocabulary",
+      "title": "Useful words & phrases",
+      "intro": "Key words for this chapter — all appear in the dialogues.",
+      "items": [
+        { "ro": "aici", "en": "here" },
+        { "ro": "da", "en": "yes" },
+        { "ro": "nu", "en": "no" },
+        { "ro": "dar", "en": "but" },
+        { "ro": "și", "en": "and" },
+        { "ro": "numai", "en": "only" },
+        { "ro": "chiar", "en": "even, right here" },
+        { "ro": "pe curând", "en": "see you soon" },
+        { "ro": "în general", "en": "in general" },
+        { "ro": "într-adevăr", "en": "indeed" },
+        { "ro": "din păcate", "en": "unfortunately" },
+        { "ro": "ce?", "en": "what?" },
+        { "ro": "de la", "en": "from" },
+        { "ro": "la", "en": "to, at" },
+        { "ro": "din", "en": "from (origin)" }
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "dialogue",
+      "title": "La hotel",
+      "title_en": "At the hotel",
+      "context": "Mike Foster, a businessman from Scotland, has just arrived in Bucharest. He sees an empty seat next to a young woman in the hotel lobby.",
+      "lines": [
+        { "speaker": "Mike", "ro": "Bună dimineața, domnișoară. E liber aici, vă rog?", "en": "Good morning, miss. Is this seat free, please?" },
+        { "speaker": "Domnișoară", "ro": "Da, poftiți. Luați loc.", "en": "Yes. Please, go ahead and sit down." },
+        { "speaker": "Mike", "ro": "Mulțumesc. Stați în hotel?", "en": "Thank you. Are you staying in the hotel?" },
+        { "speaker": "Domnișoară", "ro": "Da, stau chiar aici.", "en": "Yes, I am staying right here." },
+        { "speaker": "Mike", "ro": "Sunteți din România?", "en": "Are you from Romania?" },
+        { "speaker": "Domnișoară", "ro": "Da, sunt româncă. Sunt din Timișoara. Dar dumneavoastră?", "en": "Yes, I am Romanian. I am from Timișoara. And you?" },
+        { "speaker": "Mike", "ro": "Eu sunt din Marea Britanie, din Edinburgh. Sunt scoțian. Și cât timp stați în București?", "en": "I am from Britain, from Edinburgh. I am Scottish. And how long are you staying in Bucharest?" },
+        { "speaker": "Domnișoară", "ro": "Stau numai patru zile. Dar dumneavoastră?", "en": "I am only staying four days. And you?" },
+        { "speaker": "Mike", "ro": "Eu stau trei luni. Sunt om de afaceri. Mă numesc Mike Foster. Și dvs?", "en": "I am staying three months. I am a businessman. My name is Mike Foster. And yours?" },
+        { "speaker": "Domnișoară", "ro": "Eu sunt Rodica Mihai, sunt ziaristă la ziarul 'Azi'.", "en": "I am Rodica Mihai. I am a journalist at the newspaper 'Today'." },
+        { "speaker": "Mike", "ro": "Și este interesant ce faceți?", "en": "Is what you do interesting?" },
+        { "speaker": "Domnișoară", "ro": "În general, da. Vorbiți limba română?", "en": "In general, yes. Do you speak Romanian?" },
+        { "speaker": "Mike", "ro": "Din păcate, nu foarte bine.", "en": "Unfortunately, not very well." }
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "grammar",
+      "title": "Introducing yourself",
+      "explanation": "When asking a stranger for help, use vă rog with the appropriate form of address. Notice how Mike used this in the dialogue, and how poftiți was the natural reply.",
+      "examples": [
+        { "ro": "Vă rog, domnișoară…", "en": "Please, miss…" },
+        { "ro": "Vă rog, domnule…", "en": "Please, sir…" },
+        { "ro": "Vă rog, doamnă…", "en": "Please, madam…" },
+        { "ro": "Scuzați", "en": "Excuse me (alternative)" },
+        { "ro": "Poftiți", "en": "Please, go ahead (reply)" },
+        { "ro": "Mulțumesc", "en": "Thank you" }
+      ],
+      "callout": "In Dialogue 1, Mike said vă rog, domnișoară to ask for the seat. The young lady replied with poftiți — these two form a natural request-permission pair.",
+      "extra_examples": [
+        { "ro": "Cine? / Cine sunteți?", "en": "Who? / Who are you?" },
+        { "ro": "Ce? / Ce sunteți?", "en": "What? / What are you?" }
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "grammar",
+      "title": "Nationality",
+      "explanation": "In Romanian, nationality words change form to agree with the gender of the person. Notice the different endings for masculine and feminine.",
+      "examples": [
+        { "ro": "Sunt englez / englezoaică", "en": "I'm English (m/f)" },
+        { "ro": "Sunt român / româncă", "en": "I'm Romanian (m/f)" },
+        { "ro": "Sunt american / americancă", "en": "I'm American (m/f)" },
+        { "ro": "Sunt francez / franțuzoaică", "en": "I'm French (m/f)" },
+        { "ro": "Sunt neamț / nemțoaică", "en": "I'm German (m/f)" }
+      ],
+      "callout": "Unlike English, nationalities in Romanian are written with a small letter. Only country names get a capital: Anglia, România, Franța.",
+      "extra_examples": [
+        { "ro": "limba engleză", "en": "English (the language)" },
+        { "ro": "limba română", "en": "Romanian (the language)" },
+        { "ro": "limba franceză", "en": "French (the language)" }
+      ]
+    },
+    {
+      "id": 5,
+      "kind": "grammar",
+      "title": "Pronouns & forms of 'you'",
+      "explanation": "Romanian has four forms of 'you'. The persons of the verb are listed below.",
+      "examples": [
+        { "ro": "eu", "en": "I" },
+        { "ro": "tu", "en": "you (friend/family)" },
+        { "ro": "dumneavoastră (dvs.)", "en": "you (polite, most common)" },
+        { "ro": "dumneata (d-ta)", "en": "you (colleague/subordinate)" },
+        { "ro": "el / ea", "en": "he / she" },
+        { "ro": "noi", "en": "we" },
+        { "ro": "voi", "en": "you (plural)" },
+        { "ro": "ei / ele", "en": "they (m/f)" }
+      ],
+      "callout": "Mike and Rodica use dumneavoastră throughout — the polite form. Tu would be used only with a close friend or family member.",
+      "extra_examples": [
+        { "ro": "Ea este româncă", "en": "She is Romanian" },
+        { "ro": "Noi suntem englezi", "en": "We are English" },
+        { "ro": "Ei sunt americani", "en": "They are American" }
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "verbs",
+      "title": "The verbs a fi, a sta, a face, a locui",
+      "intro": "These four verbs appeared in the dialogue. Here are their full present tense conjugations.",
+      "tables": [
+        {
+          "verb": "a fi",
+          "meaning": "to be",
+          "rows": [
+            { "pronoun": "eu", "affirmative": "sunt", "english": "I am" },
+            { "pronoun": "tu", "affirmative": "ești", "english": "you are" },
+            { "pronoun": "el/ea", "affirmative": "este", "english": "he/she is" },
+            { "pronoun": "noi", "affirmative": "suntem", "english": "we are" },
+            { "pronoun": "voi", "affirmative": "sunteți", "english": "you are" },
+            { "pronoun": "ei/ele", "affirmative": "sunt", "english": "they are" }
+          ]
+        },
+        {
+          "verb": "a sta",
+          "meaning": "to stay, to stand, to reside",
+          "rows": [
+            { "pronoun": "eu", "affirmative": "stau", "english": "I stay" },
+            { "pronoun": "tu", "affirmative": "stai", "english": "you stay" },
+            { "pronoun": "el/ea", "affirmative": "stă", "english": "he/she stays" },
+            { "pronoun": "noi", "affirmative": "stăm", "english": "we stay" },
+            { "pronoun": "voi", "affirmative": "stați", "english": "you stay" },
+            { "pronoun": "ei/ele", "affirmative": "stau", "english": "they stay" }
+          ]
+        },
+        {
+          "verb": "a face",
+          "meaning": "to do",
+          "rows": [
+            { "pronoun": "eu", "affirmative": "fac", "english": "I do" },
+            { "pronoun": "tu", "affirmative": "faci", "english": "you do" },
+            { "pronoun": "el/ea", "affirmative": "face", "english": "he/she does" },
+            { "pronoun": "noi", "affirmative": "facem", "english": "we do" },
+            { "pronoun": "voi", "affirmative": "faceți", "english": "you do" },
+            { "pronoun": "ei/ele", "affirmative": "fac", "english": "they do" }
+          ]
+        },
+        {
+          "verb": "a locui",
+          "meaning": "to live, to reside",
+          "rows": [
+            { "pronoun": "eu", "affirmative": "locuiesc", "english": "I live" },
+            { "pronoun": "tu", "affirmative": "locuiești", "english": "you live" },
+            { "pronoun": "el/ea", "affirmative": "locuiește", "english": "he/she lives" },
+            { "pronoun": "noi", "affirmative": "locuim", "english": "we live" },
+            { "pronoun": "voi", "affirmative": "locuiți", "english": "you live" },
+            { "pronoun": "ei/ele", "affirmative": "locuiesc", "english": "they live" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "kind": "exercise",
+      "title": "Exercise 1",
+      "items": [
+        { "type": "fill_blank", "prompt": "Complete: eu ___ (a fi)", "answer": "sunt", "translation": "I am" },
+        { "type": "fill_blank", "prompt": "Complete: tu ___ (a fi)", "answer": "ești", "translation": "you are" },
+        { "type": "fill_blank", "prompt": "Complete: el/ea ___ (a fi)", "answer": "este", "translation": "he/she is" },
+        { "type": "fill_blank", "prompt": "Complete: noi ___ (a fi)", "answer": "suntem", "translation": "we are" },
+        { "type": "fill_blank", "prompt": "Complete: voi ___ (a fi)", "answer": "sunteți", "translation": "you are (pl.)" },
+        { "type": "fill_blank", "prompt": "Complete: ei/ele ___ (a fi)", "answer": "sunt", "translation": "they are" }
+      ]
+    },
+    {
+      "id": 8,
+      "kind": "dialogue",
+      "title": "În lift",
+      "title_en": "In the lift",
+      "context": "Mike and Rodica meet again in the hotel lift. Rodica asks Mike how to spell his surname.",
+      "lines": [
+        { "speaker": "Rodica", "ro": "Bună seara, ce coincidență!", "en": "Good evening, what a coincidence!" },
+        { "speaker": "Mike", "ro": "Într-adevăr. La ce etaj mergeți?", "en": "Indeed. What floor do you want?" },
+        { "speaker": "Rodica", "ro": "La doisprezece. Și dumneavoastră?", "en": "The twelfth. And you?" },
+        { "speaker": "Mike", "ro": "La nouă.", "en": "The ninth." },
+        { "speaker": "Rodica", "ro": "Scuzați-mă, dar cum se scrie numele dumneavoastră de familie?", "en": "Excuse me, but how do you spell your surname?" },
+        { "speaker": "Mike", "ro": "Foster. F - o - s - t - e - r.", "en": "Foster. F - o - s - t - e - r." },
+        { "speaker": "Rodica", "ro": "Mulțumesc. Aici e nouă.", "en": "Thank you. Here is the ninth floor." },
+        { "speaker": "Mike", "ro": "Mulțumesc, la revedere.", "en": "Thank you, goodbye." },
+        { "speaker": "Rodica", "ro": "Pe curând, Mike Foster.", "en": "See you soon, Mike Foster." }
+      ]
+    },
+    {
+      "id": 9,
+      "kind": "grammar",
+      "title": "Greetings",
+      "explanation": "In Dialogue 2 we met Bună seara. Here is the full set of Romanian greetings, from formal to informal.",
+      "examples": [
+        { "ro": "Bună dimineața", "en": "Good morning" },
+        { "ro": "Bună ziua", "en": "Good day" },
+        { "ro": "Bună seara", "en": "Good evening" },
+        { "ro": "Noapte bună", "en": "Good night" },
+        { "ro": "Bună / Salut", "en": "Hi / Greetings (informal)" },
+        { "ro": "La revedere", "en": "Goodbye" },
+        { "ro": "Pe curând", "en": "See you soon" },
+        { "ro": "Pa", "en": "Bye (very informal)" },
+        { "ro": "Ce mai faci?", "en": "How are you? (informal)" },
+        { "ro": "Ce mai faceți?", "en": "How are you? (formal)" }
+      ]
+    },
+    {
+      "id": 10,
+      "kind": "grammar",
+      "title": "Numbers 0–100",
+      "explanation": "Romanian numbers follow a regular pattern. From 20 upward, de is added before a noun. In informal speech, -sprezece is clipped to -șpe.",
+      "examples": [
+        { "ro": "zero, unu, doi, trei, patru, cinci", "en": "0, 1, 2, 3, 4, 5" },
+        { "ro": "șase, șapte, opt, nouă, zece", "en": "6, 7, 8, 9, 10" },
+        { "ro": "unsprezece … nouăsprezece", "en": "11–19 (add -sprezece)" },
+        { "ro": "douăzeci, treizeci, patruzeci", "en": "20, 30, 40" },
+        { "ro": "cincizeci, șaizeci, șaptezeci", "en": "50, 60, 70" },
+        { "ro": "optzeci, nouăzeci, o sută", "en": "80, 90, 100" },
+        { "ro": "douăzeci și unu", "en": "21 (pattern for 21–99)" },
+        { "ro": "douăzeci de ani (not cincisprezece de ani)", "en": "20+ needs 'de' before noun" }
+      ],
+      "callout": "Colloquial clipping: unsprezece → unșpe, doisprezece → doișpe, etc. You will hear this constantly in everyday speech."
+    },
+    {
+      "id": 11,
+      "kind": "grammar",
+      "title": "Negation",
+      "explanation": "To make a negative statement, place nu directly before the verb. Romanian also uses double negatives — this is correct grammar, not a mistake.",
+      "examples": [
+        { "ro": "Sunt englez.", "en": "I am English." },
+        { "ro": "Nu sunt englez.", "en": "I am not English." },
+        { "ro": "Stați la Washington?", "en": "Do you live in Washington?" },
+        { "ro": "Nu, nu stau la Washington.", "en": "No, I don't live in Washington." },
+        { "ro": "Nu am nimic.", "en": "I have nothing. (lit. I don't have nothing)" },
+        { "ro": "Nu stau niciodată la hotel.", "en": "I never stay at a hotel." },
+        { "ro": "Nimeni nu face nimic.", "en": "No one is doing anything." }
+      ],
+      "callout": "Double negatives like Nimeni nu face nimic are grammatically correct in Romanian. This is different from English, where double negatives are considered errors."
+    },
+    {
+      "id": 12,
+      "kind": "exercise",
+      "title": "Exercises 2 & 3",
+      "items": [
+        { "type": "translate_to_ro", "prompt": "What is your name? (formal)", "answer": "Cum vă numiți?", "translation": "Cum vă numiți?" },
+        { "type": "translate_to_ro", "prompt": "How do you spell your name?", "answer": "Cum se scrie numele dvs.?", "translation": "Cum se scrie numele dvs.?" },
+        { "type": "translate_to_ro", "prompt": "Are you English? (asking a man)", "answer": "Sunteți englez?", "translation": "Sunteți englez?" },
+        { "type": "translate_to_ro", "prompt": "I am not English, I am American.", "answer": "Nu sunt englez, sunt american.", "translation": "Nu sunt englez, sunt american." },
+        { "type": "translate_to_ro", "prompt": "Good evening, what a coincidence!", "answer": "Bună seara, ce coincidență!", "translation": "Bună seara, ce coincidență!" }
+      ]
+    }
+  ]
+}

@@ -18,7 +18,8 @@ exercises with progress tracking — all with no framework, no build step, and n
 romanian-project/
 ├── index.html          ← single-page shell; loads app.js
 ├── css/
-│   └── styles.css      ← all styles; CSS variables for theming
+│   ├── styles.css      ← all styles; CSS variables for theming
+│   └── book.css        ← book reader styles (two-panel shell, step kinds, mobile)
 ├── js/
 │   ├── app.js          ← hash-based routing, sidebar, lesson lifecycle
 │   ├── render.js       ← tab renderers (home, vocabulary, learn, practice, stories)
@@ -26,11 +27,15 @@ romanian-project/
 │   ├── exercises.js    ← practice engine (flashcards, text input, multiple choice, match, auto-gen)
 │   ├── audio.js        ← Web Speech API TTS, ro-RO voice detection + warning
 │   ├── data.js         ← JSON loader (fetch with cache: no-store)
-│   └── state.js        ← localStorage progress; dispatches romanian:progress events
+│   ├── state.js        ← localStorage progress; dispatches romanian:progress events
+│   ├── book.js         ← book reader shell, renderBookShell(), book progress (localStorage key: bookProgress)
+│   └── book-steps.js   ← step kind renderers: vocabulary, dialogue, grammar, verbs, exercise
 └── data/
     ├── lessons.json    ← lesson manifest (id, title, file path)
     ├── lesson_01.json  ← Alphabet, Pronunciation & Greetings
-    └── lesson_02.json  ← Pronouns, A fi, A avea, Daily Vocabulary
+    ├── lesson_02.json  ← Pronouns, A fi, A avea, Daily Vocabulary
+    ├── book.json       ← book chapter manifest ({ chapters: [{n, title, title_en, file, step_count}] })
+    └── book_01.json    ← Colloquial Romanian Chapter 1: Bună ziua (12 steps)
 ```
 
 ## Routing
@@ -44,6 +49,7 @@ Hash-based: `#/lesson/N/tab` where tab ∈ {`vocabulary`, `learn`, `practice`, `
 | `#/lesson/N/practice` | Practice tab — Flashcards / Exercises / Mix |
 | `#/lesson/N/stories` | Stories tab — new words + dialogue + prose story |
 | `#/all-exercises` | Cumulative shuffled practice from all opened lessons |
+| `#/book/N/S` | Book reader — chapter N, step S (defaults to 1) |
 
 ## Conventions
 - No build step, no bundler — files must be valid ES modules runnable via `python -m http.server`
@@ -137,14 +143,38 @@ Two pill-style sub-tabs: **Words · Sentences & Phrases**
 
 ## Home page (`#/`)
 - Hero: 🇷🇴 flag, "Limba Română" heading, subtitle, All Exercises + Flashcards buttons
-- Grid of lesson cards: lesson number, title, progress bar (correct/total exercises), 4 shortcut links
-- Sidebar stays visible; home button "🇷🇴 Limba Română" at top of sidebar navigates to `#/`
+- "My Lessons" grid: lesson number, title, progress bar (correct/total exercises), 4 shortcut links
+- "📖 Textbook" grid: one card per chapter with step progress bar and "Start chapter →" button
+- Sidebar: "🇷🇴 Limba Română" home button at top; "📖 Textbook" section with chapter links below lessons
 
 ## UI components
 - **Back to top button**: appears at the bottom of every view; scrolls smoothly to top
-- **Hide English toggle**: available on Stories tab (covers new words, dialogue, story prose)
-- **🔊 speak buttons**: on vocabulary rows, story new-word cards, dialogue bubbles
+- **Hide English toggle**: available on Stories tab and book Dialogue steps
+- **🔊 speak buttons**: on vocabulary rows, story new-word cards, dialogue bubbles, book steps
 - **No-voice warning**: shown async if `ro-RO` TTS voice is not installed
+
+## Book reader (`#/book/N/S`)
+Two-panel layout — entirely separate from lesson tabs:
+
+**Left panel (210px):** chapter title + scrollable step list. Each item shows step number (or ✓ if complete), title, and a color-coded kind pill. On mobile (≤700px) this collapses to an overlay opened via "☰ Contents".
+
+**Right panel:** breadcrumb, thin green progress bar (completed steps / total), step content, bottom nav (← Prev / X of Y / Next →). Next button is disabled on exercise steps until the session completes.
+
+**Step kinds:**
+| Kind | Badge color | Content |
+|---|---|---|
+| `vocabulary` | Coral | 2-col word card grid with 🔊 |
+| `dialogue` | Green | Scene context + chat bubbles + Hide English + 🔊 full scene |
+| `grammar` | Purple | Explanation + examples table + optional callout + optional extra examples |
+| `verbs` | Purple | Intro + one conjugation table per verb (pronoun / Romanian / English) |
+| `exercise` | Amber | Inline session: one exercise at a time, check → show answer → continue |
+
+**Book data format (`data/book_NN.json`):**
+```json
+{ "chapter": N, "title": "...", "title_en": "...", "steps": [ { "id": N, "kind": "...", "title": "...", ...kind-specific fields } ] }
+```
+
+**Progress:** stored in `localStorage` key `bookProgress` — `{ "1": { "completed_steps": [1, 3, 5] } }`. Never touch this key name. Steps complete when: Next is clicked (non-exercise), or exercise session finishes (exercise steps).
 
 ## What's built
 - [x] Phase 1: Lesson renderer — all 11 block types, Learn tab
@@ -159,6 +189,7 @@ Two pill-style sub-tabs: **Words · Sentences & Phrases**
 - [x] Phase 10: Stories tab — new words + dialogue + prose story per lesson
 - [x] Phase 11: Practice upgrade — Flashcards, fuzzy checking, Skip, auto-generated exercises
 - [x] Phase 12: Back to top button on every page
+- [x] Phase 13: Book reader — two-panel textbook reader, 5 step kinds, inline exercises, step progress
 
 ## Current phase
 Open — ready for next features (see Roadmap below)
@@ -166,8 +197,8 @@ Open — ready for next features (see Roadmap below)
 ## Roadmap / future phases
 - [ ] Google Cloud TTS Neural2 (`ro-RO-Neural2`) — consistent audio on all devices
 - [ ] Lesson 3+ — add new lessons as teacher provides material
+- [ ] Book chapters 2+ — add Colloquial Romanian chapters as needed
 - [ ] Spaced repetition — flag weak words, resurface them in practice
-- [ ] Textbook chapter integration
 - [ ] Short story generator — uses only vocabulary covered in opened lessons
 
 ## Do not touch
@@ -175,6 +206,7 @@ Open — ready for next features (see Roadmap below)
 - Existing block renderer signatures in `blocks.js` — new block types must be additive
 - `state.js` localStorage key names — changing breaks existing user progress
 - `blocks[]` array in lesson JSONs — only add new top-level keys alongside it
+- `bookProgress` localStorage key name — changing breaks book step completion history
 
 ## Key decisions
 - **No framework**: keeps the app deployable as a static folder with zero tooling; easy to understand and maintain solo
@@ -183,3 +215,5 @@ Open — ready for next features (see Roadmap below)
 - **Web Speech API first**: free, zero-config; upgrade to Neural2 later without touching UI code — `audio.js` is the only module that changes
 - **Auto-generated exercises**: supplements hand-authored exercises to keep practice count high (40+) without authoring overhead
 - **`stories` key alongside `dialogue_practice`**: keeps backward compat; `dialogue_practice` is legacy
+- **Book reader as separate route/modules**: `book.js` + `book-steps.js` + `book.css` are fully isolated from lesson code — new book chapters only require a new `book_NN.json` file and a manifest entry in `book.json`
+- **Verbs step uses new shape**: `book-steps.js` `renderVerbsStep()` handles `tables[]` directly rather than routing through `blocks.js` `renderVerbConjugation()` — the schemas differ

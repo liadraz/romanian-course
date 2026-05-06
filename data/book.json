@@ -1,0 +1,11 @@
+{
+  "chapters": [
+    {
+      "n": 1,
+      "title": "Bună ziua",
+      "title_en": "Good day",
+      "file": "data/book_01.json",
+      "step_count": 12
+    }
+  ]
+}

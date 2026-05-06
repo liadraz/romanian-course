@@ -1,8 +1,9 @@
 // App entry point: routing, sidebar, page lifecycle.
 
-import { loadManifest, loadLesson } from './data.js';
+import { loadManifest, loadLesson, loadBookManifest } from './data.js';
 import { renderLessonView, renderAllExercisesView, renderHomePage } from './render.js';
 import { state, markLessonOpened, isLessonComplete } from './state.js';
+import { renderBookShell, getBookProgress } from './book.js';
 
 const lessonNavEl = document.getElementById('lesson-nav');
 const contentEl = document.getElementById('content');
@@ -11,6 +12,7 @@ const backdropEl = document.getElementById('sidebar-backdrop');
 const menuToggleEl = document.getElementById('menu-toggle');
 
 let manifest = null;
+let bookManifest = null;
 const lessonByNumber = new Map();
 
 function el(tag, className, text) {
@@ -40,10 +42,17 @@ async function init() {
     })
   );
 
+  try {
+    bookManifest = await loadBookManifest();
+  } catch {
+    // Book not available yet — silently skip
+  }
+
   renderSidebar();
 
   window.addEventListener('hashchange', route);
   window.addEventListener('romanian:progress', renderSidebar);
+  window.addEventListener('book:progress', renderSidebar);
   menuToggleEl.addEventListener('click', toggleSidebar);
   backdropEl.addEventListener('click', closeSidebar);
 
@@ -123,6 +132,38 @@ function renderSidebar() {
     if (state.openedLessons.includes(entry.number)) a.classList.add('opened');
     lessonNavEl.appendChild(a);
   }
+
+  // Textbook section
+  if (bookManifest?.chapters?.length) {
+    const divider2 = document.createElement('hr');
+    divider2.className = 'sidebar-divider';
+    lessonNavEl.appendChild(divider2);
+
+    lessonNavEl.appendChild(el('div', 'sidebar-book-heading', '📖 Textbook'));
+
+    const prog = getBookProgress();
+    for (const ch of bookManifest.chapters) {
+      const a = document.createElement('a');
+      a.href = `#/book/${ch.n}/1`;
+      a.className = 'lesson-link book-chapter-link';
+      a.dataset.chapter = String(ch.n);
+
+      const num = el('span', 'll-num', `Chapter ${ch.n}`);
+      a.appendChild(num);
+
+      const title = el('span', 'll-title', ch.title);
+      a.appendChild(title);
+
+      const completed = (prog[String(ch.n)]?.completed_steps || []).length;
+      if (completed > 0) {
+        const progress = el('span', 'll-progress', `${completed}/${ch.step_count}`);
+        a.appendChild(progress);
+      }
+
+      lessonNavEl.appendChild(a);
+    }
+  }
+
   highlightActive();
 }
 
@@ -130,15 +171,21 @@ function highlightActive() {
   const hash = location.hash.replace(/^#\/?/, '');
   const parts = hash.split('/');
   const isHome = !hash || hash === '/' || parts[0] === '';
-  const num = parts[0] === 'lesson' ? parts[1] : null;
+  const lessonNum = parts[0] === 'lesson' ? parts[1] : null;
+  const chapterNum = parts[0] === 'book' ? parts[1] : null;
 
   // Highlight home link
   const homeLink = lessonNavEl.querySelector('.sidebar-home-link');
   if (homeLink) homeLink.classList.toggle('active', isHome);
 
-  for (const a of lessonNavEl.querySelectorAll('.lesson-link')) {
-    a.classList.toggle('active', a.dataset.lesson === num);
+  for (const a of lessonNavEl.querySelectorAll('.lesson-link:not(.book-chapter-link)')) {
+    a.classList.toggle('active', a.dataset.lesson === lessonNum);
   }
+
+  for (const a of lessonNavEl.querySelectorAll('.book-chapter-link')) {
+    a.classList.toggle('active', a.dataset.chapter === chapterNum);
+  }
+
   const allEx = document.querySelector('.all-ex-link');
   if (allEx) allEx.classList.toggle('active', parts[0] === 'all-exercises');
 }
@@ -147,11 +194,12 @@ async function route() {
   const hash = location.hash.replace(/^#\/?/, '');
   const parts = hash.split('/');
   closeSidebar();
+  document.body.classList.remove('book-active');
 
   // Home route
   if (!hash || hash === '/' || parts[0] === '') {
     const allLessons = [...lessonByNumber.values()];
-    renderHomePage(allLessons, manifest, contentEl);
+    renderHomePage(allLessons, manifest, contentEl, bookManifest);
     document.title = 'Limba Română';
     highlightActive();
     window.scrollTo({ top: 0 });
@@ -188,6 +236,14 @@ async function route() {
     const allLessons = [...lessonByNumber.values()];
     renderAllExercisesView(allLessons, contentEl);
     document.title = 'All exercises — Romanian';
+    highlightActive();
+  } else if (parts[0] === 'book') {
+    document.body.classList.add('book-active');
+    const chN = parseInt(parts[1], 10) || 1;
+    const stN = parseInt(parts[2], 10) || 1;
+    await renderBookShell(chN, stN, contentEl);
+    const chTitle = bookManifest?.chapters?.find((c) => c.n === chN)?.title || '';
+    document.title = `Chapter ${chN}${chTitle ? ' · ' + chTitle : ''} — Romanian Textbook`;
     highlightActive();
   } else {
     contentEl.innerHTML = '<p class="placeholder">Pick a lesson from the sidebar.</p>';
