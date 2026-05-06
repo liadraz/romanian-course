@@ -1,7 +1,7 @@
 // App entry point: routing, sidebar, page lifecycle.
 
 import { loadManifest, loadLesson } from './data.js';
-import { renderLessonView, renderAllExercisesView } from './render.js';
+import { renderLessonView, renderAllExercisesView, renderHomePage } from './render.js';
 import { state, markLessonOpened, isLessonComplete } from './state.js';
 
 const lessonNavEl = document.getElementById('lesson-nav');
@@ -12,6 +12,13 @@ const menuToggleEl = document.getElementById('menu-toggle');
 
 let manifest = null;
 const lessonByNumber = new Map();
+
+function el(tag, className, text) {
+  const e = document.createElement(tag);
+  if (className) e.className = className;
+  if (text != null) e.textContent = text;
+  return e;
+}
 
 async function init() {
   try {
@@ -40,8 +47,8 @@ async function init() {
   menuToggleEl.addEventListener('click', toggleSidebar);
   backdropEl.addEventListener('click', closeSidebar);
 
-  if (!location.hash || location.hash === '#') {
-    location.hash = `#/lesson/${manifest[0].number}/learn`;
+  if (!location.hash || location.hash === '#' || location.hash === '#/') {
+    location.hash = '#/';
     return; // hashchange will fire route()
   }
   await route();
@@ -61,9 +68,20 @@ function showLoadError(err) {
 
 function renderSidebar() {
   lessonNavEl.innerHTML = '';
+
+  // Home button at top
+  const homeLink = el('a', 'sidebar-home-link');
+  homeLink.href = '#/';
+  homeLink.textContent = '🇷🇴 Limba Română';
+  lessonNavEl.appendChild(homeLink);
+
+  const divider = document.createElement('hr');
+  divider.className = 'sidebar-divider';
+  lessonNavEl.appendChild(divider);
+
   for (const entry of manifest) {
     const a = document.createElement('a');
-    a.href = `#/lesson/${entry.number}/learn`;
+    a.href = `#/lesson/${entry.number}/vocabulary`;
     a.className = 'lesson-link';
     a.dataset.lesson = String(entry.number);
 
@@ -111,8 +129,14 @@ function renderSidebar() {
 function highlightActive() {
   const hash = location.hash.replace(/^#\/?/, '');
   const parts = hash.split('/');
+  const isHome = !hash || hash === '/' || parts[0] === '';
   const num = parts[0] === 'lesson' ? parts[1] : null;
-  for (const a of lessonNavEl.querySelectorAll('a')) {
+
+  // Highlight home link
+  const homeLink = lessonNavEl.querySelector('.sidebar-home-link');
+  if (homeLink) homeLink.classList.toggle('active', isHome);
+
+  for (const a of lessonNavEl.querySelectorAll('.lesson-link')) {
     a.classList.toggle('active', a.dataset.lesson === num);
   }
   const allEx = document.querySelector('.all-ex-link');
@@ -124,10 +148,20 @@ async function route() {
   const parts = hash.split('/');
   closeSidebar();
 
+  // Home route
+  if (!hash || hash === '/' || parts[0] === '') {
+    const allLessons = [...lessonByNumber.values()];
+    renderHomePage(allLessons, manifest, contentEl);
+    document.title = 'Limba Română';
+    highlightActive();
+    window.scrollTo({ top: 0 });
+    return;
+  }
+
   if (parts[0] === 'lesson') {
     const num = parseInt(parts[1], 10);
-    const validTabs = ['learn', 'vocabulary', 'practice', 'dialogue'];
-    const tab = validTabs.includes(parts[2]) ? parts[2] : 'learn';
+    const validTabs = ['vocabulary', 'learn', 'practice', 'stories'];
+    const tab = validTabs.includes(parts[2]) ? parts[2] : 'vocabulary';
     const entry = manifest.find((m) => m.number === num);
     if (!entry) {
       contentEl.innerHTML = `<p class="error">Lesson ${parts[1]} not found.</p>`;

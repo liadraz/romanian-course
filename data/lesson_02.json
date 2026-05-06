@@ -274,6 +274,37 @@
       "key_difference": "English uses a separate word ('the'). Romanian uses an attached ending."
     }
   ],
+  "stories": {
+    "title": "Joi seara",
+    "title_en": "Thursday evening",
+    "speakers": ["Mihai", "Ana"],
+    "new_words": [
+      { "ro": "eu", "en": "I" },
+      { "ro": "tu", "en": "you" },
+      { "ro": "el", "en": "he" },
+      { "ro": "ea", "en": "she" },
+      { "ro": "noi", "en": "we" },
+      { "ro": "sunt", "en": "I am / they are" },
+      { "ro": "ești", "en": "you are" },
+      { "ro": "am", "en": "I have" }
+    ],
+    "dialogue": [
+      { "speaker": "Mihai", "ro": "Salut, Ana! Ce mai faci?",                     "en": "Hey, Ana! How have you been?" },
+      { "speaker": "Ana",   "ro": "Bine, mulțumesc! Ce zi este astăzi?",          "en": "Good, thanks! What day is today?" },
+      { "speaker": "Mihai", "ro": "Astăzi este joi seara.",                        "en": "Today is Thursday evening." },
+      { "speaker": "Ana",   "ro": "Tu ai timp?",                                   "en": "Do you have time?" },
+      { "speaker": "Mihai", "ro": "Da, eu nu am cursuri joi. Și tu?",             "en": "Yes, I don't have classes on Thursdays. And you?" },
+      { "speaker": "Ana",   "ro": "Eu am un curs vineri dimineața.",               "en": "I have a class on Friday morning." },
+      { "speaker": "Mihai", "ro": "Ești studentă?",                                "en": "Are you a student?" },
+      { "speaker": "Ana",   "ro": "Nu, eu nu sunt studentă. Eu sunt profesoară.", "en": "No, I'm not a student. I'm a teacher." },
+      { "speaker": "Mihai", "ro": "Eu sunt student. Noi suntem ocupați!",          "en": "I'm a student. We are busy!" },
+      { "speaker": "Ana",   "ro": "Da! Ei bine, la revedere, Mihai!",             "en": "Yes! Well then, goodbye, Mihai!" },
+      { "speaker": "Mihai", "ro": "La revedere! O seară bună!",                   "en": "Goodbye! Have a good evening!" }
+    ],
+    "story": "Ana și Mihai sunt prieteni buni. Joi seara, ei se întâlnesc în parc. Mihai spune: «Eu sunt student și am cursuri în fiecare zi.» Ana răspunde: «Eu nu sunt studentă. Eu sunt profesoară și am un curs vineri dimineața.» Ei vorbesc despre zilele săptămânii. Mihai spune că joi este ziua lui preferată. La final, Ana zice: «La revedere! O seară bună!» Mihai răspunde cu același lucru.",
+    "story_en": "Ana and Mihai are good friends. On Thursday evening, they meet in the park. Mihai says: 'I am a student and I have classes every day.' Ana replies: 'I am not a student. I am a teacher and I have a class on Friday morning.' They talk about the days of the week. Mihai says that Thursday is his favourite day. At the end, Ana says: 'Goodbye! Have a good evening!' Mihai replies the same."
+  },
+
   "dialogue_practice": {
     "title": "Joi seara",
     "title_en": "Thursday evening",

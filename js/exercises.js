@@ -8,6 +8,7 @@
 //                  multiple_choice, match
 //
 // Checking: trim + lowercase + strip trailing punctuation; diacritics required.
+// Fuzzy: Levenshtein distance tolerance = floor(word.length / 5) per word.
 // Wrong answer → show correct answer + explanation + Retry | Next →
 // After last exercise → completion screen
 
@@ -22,24 +23,112 @@ function el(tag, className, text) {
   return e;
 }
 
+// ---- Levenshtein distance ----
+
+function levenshtein(a, b) {
+  const m = a.length, n = b.length;
+  // dp[i][j] = edit distance between a[0..i-1] and b[0..j-1]
+  const dp = Array.from({ length: m + 1 }, (_, i) =>
+    Array.from({ length: n + 1 }, (_, j) => (i === 0 ? j : j === 0 ? i : 0))
+  );
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      dp[i][j] = a[i - 1] === b[j - 1]
+        ? dp[i - 1][j - 1]
+        : 1 + Math.min(dp[i - 1][j], dp[i][j - 1], dp[i - 1][j - 1]);
+    }
+  }
+  return dp[m][n];
+}
+
 // ---- Answer checking ----
 
 function normalize(str) {
   return String(str).trim().toLowerCase().replace(/[.,!?…]+$/, '').trim();
 }
 
+function checkWordFuzzy(userWord, correctWord) {
+  const tol = Math.floor(correctWord.length / 5); // min 0
+  return levenshtein(userWord, correctWord) <= tol;
+}
+
 function checkTextAnswer(userInput, exercise) {
   const user = normalize(userInput);
-  if (user === normalize(exercise.answer)) return true;
-  return (exercise.alternative_answers || []).some((a) => normalize(a) === user);
+  const correct = normalize(exercise.answer);
+
+  if (user === correct) return true;
+  if ((exercise.alternative_answers || []).some((a) => normalize(a) === user)) return true;
+
+  // Word-by-word fuzzy matching (same word count required)
+  const uw = user.split(/\s+/);
+  const cw = correct.split(/\s+/);
+  if (uw.length === cw.length) {
+    if (uw.every((w, i) => checkWordFuzzy(w, cw[i]))) return true;
+  }
+
+  return false;
 }
 
 function checkMatchAnswer(result, exercise) {
   return (exercise.pairs || []).every((p) => result[p.left] === p.right);
 }
 
+// ---- Auto-exercise generation from vocab_set blocks ----
+
+export function generateAutoExercises(lesson) {
+  const exercises = [];
+  for (const block of lesson.blocks || []) {
+    if (block.type !== 'vocab_set') continue;
+    let i = 0;
+    for (const item of block.items || []) {
+      const baseId = `l${lesson.lesson_number}-auto-${block.id}-`;
+      exercises.push({
+        id: `${baseId}ro-${i}`,
+        type: 'translate_to_ro',
+        prompt: `Translate to Romanian: "${item.en}"`,
+        answer: item.ro,
+        _translation: item.en,
+        _isAuto: true,
+      });
+      exercises.push({
+        id: `${baseId}en-${i}`,
+        type: 'translate_to_en',
+        prompt: `What does "${item.ro}" mean in English?`,
+        answer: item.en,
+        _translation: item.ro,
+        _isAuto: true,
+      });
+      i++;
+    }
+  }
+  return exercises;
+}
+
+// ---- Collect flashcard items from vocab_set blocks ----
+
+function collectFlashcards(lesson) {
+  const cards = [];
+  for (const block of lesson.blocks || []) {
+    if (block.type !== 'vocab_set') continue;
+    for (const item of block.items || []) {
+      cards.push({ ro: item.ro, en: item.en });
+    }
+  }
+  return cards;
+}
+
+// ---- Fisher-Yates shuffle ----
+
+function shuffle(arr) {
+  const a = [...arr];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 // ---- Input builders ----
-// Each returns { wrap: HTMLElement, focus: fn }
 
 function buildTextInput(exercise, onSubmit) {
   const wrap = el('div', 'ex-input-wrap');
@@ -88,7 +177,7 @@ function buildMultipleChoice(exercise, onSubmit) {
 function buildMatchExercise(exercise, onSubmit) {
   const pairs = exercise.pairs || [];
   const lefts = pairs.map((p) => p.left);
-  const rights = [...pairs.map((p) => p.right)].sort(() => Math.random() - 0.5);
+  const rights = shuffle(pairs.map((p) => p.right));
 
   const wrap = el('div', 'ex-match');
   const leftCol = el('div', 'ex-match-col');
@@ -151,26 +240,94 @@ function humanType(type) {
   }[type] || type);
 }
 
+// ---- Flashcard renderer ----
+
+function renderFlashcards(cards, root) {
+  if (!cards.length) {
+    root.appendChild(el('p', 'placeholder', 'No vocabulary words found for flashcards.'));
+    return;
+  }
+
+  let current = 0;
+
+  function show() {
+    root.innerHTML = '';
+
+    // Counter
+    const counter = el('div', 'flashcard-counter', `${current + 1} / ${cards.length}`);
+    root.appendChild(counter);
+
+    // Card
+    const scene = el('div', 'flashcard-scene');
+    scene.title = 'Click to flip';
+    const inner = el('div', 'flashcard-inner');
+
+    const front = el('div', 'flashcard-face flashcard-front');
+    front.appendChild(el('div', 'flashcard-hint', 'Romanian'));
+    front.appendChild(el('div', 'flashcard-ro', cards[current].ro));
+
+    const back = el('div', 'flashcard-face flashcard-back');
+    back.appendChild(el('div', 'flashcard-hint', 'English'));
+    back.appendChild(el('div', 'flashcard-en', cards[current].en));
+
+    inner.appendChild(front);
+    inner.appendChild(back);
+    scene.appendChild(inner);
+    scene.addEventListener('click', () => scene.classList.toggle('flipped'));
+    root.appendChild(scene);
+
+    // Nav buttons
+    const nav = el('div', 'flashcard-nav');
+
+    const prevBtn = el('button', 'ex-btn ex-btn-secondary', '← Prev');
+    prevBtn.type = 'button';
+    prevBtn.disabled = current === 0;
+    prevBtn.addEventListener('click', () => { current--; show(); });
+    nav.appendChild(prevBtn);
+
+    if (current < cards.length - 1) {
+      const nextBtn = el('button', 'ex-btn ex-btn-primary', 'Next →');
+      nextBtn.type = 'button';
+      nextBtn.addEventListener('click', () => { current++; show(); });
+      nav.appendChild(nextBtn);
+    } else {
+      const doneBtn = el('button', 'ex-btn ex-btn-primary', 'Start over');
+      doneBtn.type = 'button';
+      doneBtn.addEventListener('click', () => { current = 0; show(); });
+      nav.appendChild(doneBtn);
+    }
+
+    root.appendChild(nav);
+  }
+
+  show();
+}
+
 // ---- Shared session engine ----
-// exercises: array of exercise objects to work through in order
-// root: DOM element to render into
-// onComplete(correctCount, total): called when user clicks Finish on the last exercise
 
 function renderSession(exercises, root, onComplete) {
+  // Work on a mutable copy so skip can append
+  const queue = [...exercises];
   let current = 0;
+  let skipped = 0;
 
   function renderExercise() {
     root.innerHTML = '';
-    const ex = exercises[current];
-    const total = exercises.length;
+    const ex = queue[current];
+    const total = queue.length;
 
-    // Progress
+    // Progress bar
     const track = el('div', 'ex-progress');
     const bar = el('div', 'ex-progress-bar');
     bar.style.width = `${(current / total) * 100}%`;
     track.appendChild(bar);
     root.appendChild(track);
-    root.appendChild(el('div', 'ex-progress-label', `${current} / ${total}`));
+    const label = el('div', 'ex-progress-label',
+      skipped > 0
+        ? `${current} / ${total}  ·  ${skipped} skipped`
+        : `${current} / ${total}`
+    );
+    root.appendChild(label);
 
     // Card
     const card = el('div', 'ex-card');
@@ -185,13 +342,36 @@ function renderSession(exercises, root, onComplete) {
     feedbackArea.hidden = true;
     card.appendChild(feedbackArea);
 
+    // Skip button (shown before answer)
+    const skipBtn = el('button', 'ex-btn ex-btn-ghost', 'Skip for now');
+    skipBtn.type = 'button';
+    skipBtn.addEventListener('click', () => {
+      // Append current exercise to end of queue and advance
+      queue.push(queue[current]);
+      skipped++;
+      current++;
+      if (current >= queue.length - 1) {
+        // All remaining are skips — just advance
+      }
+      renderExercise();
+    });
+    const skipRow = el('div', 'ex-skip-row');
+    skipRow.appendChild(skipBtn);
+    card.appendChild(skipRow);
+
     const onSubmit = (userAnswer) => {
+      // Hide skip button once answered
+      skipRow.remove();
+
       const correct = ex.type === 'match'
         ? checkMatchAnswer(userAnswer, ex)
         : checkTextAnswer(userAnswer, ex);
 
-      markExerciseAttempted(ex.id);
-      if (correct) markExerciseCorrect(ex.id);
+      // Only track progress for hand-authored exercises (not auto-generated)
+      if (!ex._isAuto) {
+        markExerciseAttempted(ex.id);
+        if (correct) markExerciseCorrect(ex.id);
+      }
 
       feedbackArea.hidden = false;
       feedbackArea.innerHTML = '';
@@ -201,17 +381,29 @@ function renderSession(exercises, root, onComplete) {
         feedbackArea.appendChild(el('div', 'ex-feedback-msg', '✓ Correct!'));
       } else {
         feedbackArea.appendChild(el('div', 'ex-feedback-msg', '✗ Not quite.'));
+      }
+
+      // Always show correct answer + translation
+      if (ex.type === 'match') {
+        const ansRow = el('div', 'ex-correct-answer');
+        ansRow.appendChild(el('span', 'ex-ans-label', 'Correct pairs: '));
+        const pairsStr = (ex.pairs || []).map((p) => `${p.left} → ${p.right}`).join('  ·  ');
+        ansRow.appendChild(el('span', 'ex-ans-value', pairsStr));
+        feedbackArea.appendChild(ansRow);
+      } else {
         const ansRow = el('div', 'ex-correct-answer');
         ansRow.appendChild(el('span', 'ex-ans-label', 'Correct answer: '));
-        if (ex.type === 'match') {
-          const pairsStr = (ex.pairs || []).map((p) => `${p.left} → ${p.right}`).join('  ·  ');
-          ansRow.appendChild(el('span', 'ex-ans-value', pairsStr));
-        } else {
-          ansRow.appendChild(el('span', 'ex-ans-value', ex.answer));
-        }
+        ansRow.appendChild(el('span', 'ex-ans-value', ex.answer));
         feedbackArea.appendChild(ansRow);
-        if (ex.explanation) feedbackArea.appendChild(el('div', 'ex-explanation', ex.explanation));
+        if (ex._translation) {
+          const transRow = el('div', 'ex-correct-answer');
+          transRow.appendChild(el('span', 'ex-ans-label', 'Translation: '));
+          transRow.appendChild(el('span', 'ex-ans-value ex-ans-translation', ex._translation));
+          feedbackArea.appendChild(transRow);
+        }
       }
+
+      if (ex.explanation) feedbackArea.appendChild(el('div', 'ex-explanation', ex.explanation));
 
       const btnRow = el('div', 'ex-btn-row');
       if (!correct) {
@@ -221,16 +413,18 @@ function renderSession(exercises, root, onComplete) {
         btnRow.appendChild(retryBtn);
       }
 
-      const isLast = current === exercises.length - 1;
+      const isLast = current === queue.length - 1;
       const nextBtn = el('button', 'ex-btn ex-btn-primary', isLast ? 'Finish' : 'Next →');
       nextBtn.type = 'button';
       nextBtn.addEventListener('click', () => {
         current++;
-        if (current >= exercises.length) {
-          const correctCount = exercises.filter((e) =>
-            state.correctExercises.includes(e.id)
+        if (current >= queue.length) {
+          // Count correct only for hand-authored exercises
+          const correctCount = exercises.filter(
+            (e) => !e._isAuto && state.correctExercises.includes(e.id)
           ).length;
-          onComplete(correctCount, exercises.length);
+          const handTotal = exercises.filter((e) => !e._isAuto).length;
+          onComplete(correctCount, handTotal || queue.length);
         } else {
           renderExercise();
         }
@@ -252,48 +446,96 @@ function renderSession(exercises, root, onComplete) {
   renderExercise();
 }
 
+// ---- Completion screen ----
+
+function renderCompletion(root, correctCount, total, onRestart, onBack) {
+  root.innerHTML = '';
+  const allCorrect = correctCount === total;
+  const card = el('div', 'ex-complete-card');
+  root.appendChild(card);
+  card.appendChild(el('div', 'ex-complete-icon', allCorrect ? '🎉' : '✓'));
+  card.appendChild(el('h3', 'ex-complete-title', allCorrect ? 'All correct!' : 'Practice complete'));
+  card.appendChild(el('p', 'ex-complete-score', `${correctCount} / ${total} answered correctly`));
+  if (!allCorrect && total > 0) {
+    card.appendChild(el('p', 'ex-complete-hint', 'Keep practising — try again to get everything right!'));
+  }
+  const btnRow = el('div', 'ex-btn-row');
+  const againBtn = el('button', 'ex-btn ex-btn-secondary', 'Start over');
+  againBtn.type = 'button';
+  againBtn.addEventListener('click', onRestart);
+  btnRow.appendChild(againBtn);
+  if (onBack) {
+    const backBtn = el('button', 'ex-btn ex-btn-primary', '← Back to lesson');
+    backBtn.type = 'button';
+    backBtn.addEventListener('click', onBack);
+    btnRow.appendChild(backBtn);
+  }
+  card.appendChild(btnRow);
+}
+
 // ---- Public exports ----
 
 export function renderPracticeForLesson(lesson, root) {
-  const exercises = lesson.exercises || [];
-  if (!exercises.length) {
-    root.appendChild(el('p', 'placeholder', 'No exercises yet for this lesson.'));
-    return;
+  const handExercises = lesson.exercises || [];
+  const autoExercises = generateAutoExercises(lesson);
+  const flashcards = collectFlashcards(lesson);
+  const allExercises = [...handExercises, ...autoExercises];
+  const mixPool = shuffle(allExercises);
+
+  // Sub-mode buttons
+  const modes = el('div', 'practice-modes');
+  const modeNames = ['Flashcards', 'Exercises', 'Mix'];
+  let activeMode = 'Exercises';
+
+  const sessionRoot = el('div', 'practice-session');
+
+  function setMode(name) {
+    activeMode = name;
+    modes.querySelectorAll('.practice-mode-btn').forEach((b) => {
+      b.classList.toggle('active', b.dataset.mode === name);
+    });
+    startSession();
   }
 
-  const runSession = () => {
-    renderSession(exercises, root, (correctCount, total) => {
-      // Completion screen
-      root.innerHTML = '';
-      const allCorrect = correctCount === total;
-      const card = el('div', 'ex-complete-card');
-      root.appendChild(card);
-      card.appendChild(el('div', 'ex-complete-icon', allCorrect ? '🎉' : '✓'));
-      card.appendChild(el('h3', 'ex-complete-title', allCorrect ? 'All correct!' : 'Practice complete'));
-      card.appendChild(el('p', 'ex-complete-score', `${correctCount} / ${total} answered correctly`));
-      if (!allCorrect) {
-        card.appendChild(el('p', 'ex-complete-hint', 'Keep practising — try again to get everything right!'));
-      }
-      const btnRow = el('div', 'ex-btn-row');
-      const againBtn = el('button', 'ex-btn ex-btn-secondary', 'Start over');
-      againBtn.type = 'button';
-      againBtn.addEventListener('click', runSession);
-      btnRow.appendChild(againBtn);
-      const learnBtn = el('button', 'ex-btn ex-btn-primary', '← Back to lesson');
-      learnBtn.type = 'button';
-      learnBtn.addEventListener('click', () => {
-        location.hash = location.hash.replace('/practice', '/learn');
-      });
-      btnRow.appendChild(learnBtn);
-      card.appendChild(btnRow);
-    });
-  };
+  for (const name of modeNames) {
+    const btn = el('button', 'practice-mode-btn' + (name === activeMode ? ' active' : ''), name);
+    btn.type = 'button';
+    btn.dataset.mode = name;
+    btn.addEventListener('click', () => setMode(name));
+    modes.appendChild(btn);
+  }
 
-  runSession();
+  root.appendChild(modes);
+  root.appendChild(sessionRoot);
+
+  function startSession() {
+    sessionRoot.innerHTML = '';
+
+    if (activeMode === 'Flashcards') {
+      renderFlashcards(flashcards, sessionRoot);
+      return;
+    }
+
+    const pool = activeMode === 'Mix' ? shuffle(mixPool) : [...handExercises, ...autoExercises];
+
+    if (!pool.length) {
+      sessionRoot.appendChild(el('p', 'placeholder', 'No exercises yet for this lesson.'));
+      return;
+    }
+
+    renderSession(pool, sessionRoot, (correctCount, total) => {
+      renderCompletion(
+        sessionRoot, correctCount, total,
+        startSession,
+        () => { location.hash = location.hash.replace('/practice', '/learn'); }
+      );
+    });
+  }
+
+  startSession();
 }
 
 export function renderAllExercises(allLessons, root) {
-  // Collect exercises from all available lessons
   const pool = [];
   for (const lesson of allLessons) {
     for (const ex of lesson.exercises || []) pool.push(ex);
@@ -304,12 +546,7 @@ export function renderAllExercises(allLessons, root) {
     return;
   }
 
-  // Fisher-Yates shuffle
-  const exercises = [...pool];
-  for (let i = exercises.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [exercises[i], exercises[j]] = [exercises[j], exercises[i]];
-  }
+  const exercises = shuffle(pool);
 
   const runSession = () => {
     renderSession(exercises, root, (correctCount, total) => {

@@ -290,6 +290,37 @@
       ]
     }
   ],
+  "stories": {
+    "title": "La cafea",
+    "title_en": "At the coffee shop",
+    "speakers": ["Ana", "Radu"],
+    "new_words": [
+      { "ro": "bună", "en": "hello (informal)" },
+      { "ro": "salut", "en": "hi" },
+      { "ro": "da", "en": "yes" },
+      { "ro": "nu", "en": "no" },
+      { "ro": "bine", "en": "good / fine" },
+      { "ro": "mulțumesc", "en": "thank you" },
+      { "ro": "pa", "en": "bye" },
+      { "ro": "cafea", "en": "coffee" }
+    ],
+    "dialogue": [
+      { "speaker": "Ana",  "ro": "Bună ziua!",                              "en": "Good afternoon!" },
+      { "speaker": "Radu", "ro": "Bună ziua! Cum te cheamă?",               "en": "Good afternoon! What's your name?" },
+      { "speaker": "Ana",  "ro": "Mă cheamă Ana. Tu?",                      "en": "My name is Ana. And you?" },
+      { "speaker": "Radu", "ro": "Eu sunt Radu. Îmi pare bine, Ana!",       "en": "I'm Radu. Nice to meet you, Ana!" },
+      { "speaker": "Ana",  "ro": "Și mie! De unde ești?",                   "en": "Nice to meet you too! Where are you from?" },
+      { "speaker": "Radu", "ro": "Eu sunt din Cluj. Dar tu?",               "en": "I'm from Cluj. And you?" },
+      { "speaker": "Ana",  "ro": "Eu sunt din Israel. Eu învăț românește.", "en": "I'm from Israel. I'm learning Romanian." },
+      { "speaker": "Radu", "ro": "Super! Cum ești?",                        "en": "Cool! How are you?" },
+      { "speaker": "Ana",  "ro": "Bine, mulțumesc! Și tu?",                "en": "Good, thank you! And you?" },
+      { "speaker": "Radu", "ro": "Și eu sunt bine. La revedere, Ana!",      "en": "I'm good too. Goodbye, Ana!" },
+      { "speaker": "Ana",  "ro": "La revedere! O zi bună!",                 "en": "Goodbye! Have a good day!" }
+    ],
+    "story": "Ana este din Israel. Ea învață românește în fiecare zi. Astăzi, Ana merge la cafea cu Radu, un prieten din Cluj. Ei se întâlnesc și se salută cu «Bună ziua!». Ana spune: «Mă cheamă Ana. Îmi pare bine!» Radu răspunde fericit: «Și mie!» Ei vorbesc despre orașe și despre viață. La final, ei pleacă cu «La revedere» și «O zi bună!».",
+    "story_en": "Ana is from Israel. She learns Romanian every day. Today, Ana goes for coffee with Radu, a friend from Cluj. They meet and greet with 'Good afternoon!'. Ana says: 'My name is Ana. Nice to meet you!' Radu replies happily: 'Nice to meet you too!' They talk about cities and life. At the end, they part with 'Goodbye' and 'Have a good day!'."
+  },
+
   "dialogue_practice": {
     "title": "La cafea",
     "title_en": "At the coffee shop",
