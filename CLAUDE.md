@@ -35,7 +35,7 @@ romanian-project/
     ├── lesson_01.json  ← Alphabet, Pronunciation & Greetings
     ├── lesson_02.json  ← Pronouns, A fi, A avea, Daily Vocabulary
     ├── book.json       ← book chapter manifest ({ chapters: [{n, title, title_en, file, step_count}] })
-    └── book_01.json    ← Colloquial Romanian Chapter 1: Bună ziua (12 steps)
+    └── book_01.json    ← Colloquial Romanian Chapter 1: Bună ziua (16 steps)
 ```
 
 ## Routing
@@ -55,7 +55,7 @@ Hash-based: `#/lesson/N/tab` where tab ∈ {`vocabulary`, `learn`, `practice`, `
 - No build step, no bundler — files must be valid ES modules runnable via `python -m http.server`
 - Default tab when opening a lesson: `vocabulary` (not `learn`)
 - All lesson links in sidebar and home cards point to `#/lesson/N/vocabulary`
-- Lenient answer checking: trim + lowercase + strip trailing `[.,!?…]+`; diacritics ARE required
+- Answer checking: trim + lowercase + normalize Romanian diacritics (î→i, ă/â→a, ș→s, ț→t) + strip all non-letter non-space characters; diacritics are **not** required
 - Fuzzy answer checking: Levenshtein distance, tolerance = `floor(word.length / 5)` per word (min 0)
 - Progress stored in `localStorage` key `romanian-app-state-v1` with shape:
   `{ openedLessons: [], attemptedExercises: [], correctExercises: [] }`
@@ -150,7 +150,7 @@ Two pill-style sub-tabs: **Words · Sentences & Phrases**
 ## UI components
 - **Back to top button**: appears at the bottom of every view; scrolls smoothly to top
 - **Hide English toggle**: available on Stories tab and book Dialogue steps
-- **🔊 speak buttons**: on vocabulary rows, story new-word cards, dialogue bubbles, book steps
+- **🔊 speak buttons**: on vocabulary rows, story new-word cards, dialogue bubbles, book grammar example tables, book verb conjugation rows
 - **No-voice warning**: shown async if `ro-RO` TTS voice is not installed
 
 ## Book reader (`#/book/N/S`)
@@ -158,23 +158,34 @@ Two-panel layout — entirely separate from lesson tabs:
 
 **Left panel (210px):** chapter title + scrollable step list. Each item shows step number (or ✓ if complete), title, and a color-coded kind pill. On mobile (≤700px) this collapses to an overlay opened via "☰ Contents".
 
-**Right panel:** breadcrumb, thin green progress bar (completed steps / total), step content, bottom nav (← Prev / X of Y / Next →). Next button is disabled on exercise steps until the session completes.
+**Right panel:** breadcrumb, thin green progress bar (completed steps / total), step content, bottom nav (`← Back` / X of Y / `Next →`). Next button is always enabled — exercise steps still mark complete via the session's onComplete callback but navigation is never blocked.
 
 **Step kinds:**
 | Kind | Badge color | Content |
 |---|---|---|
 | `vocabulary` | Coral | 2-col word card grid with 🔊 |
-| `dialogue` | Green | Scene context + chat bubbles + Hide English + 🔊 full scene |
-| `grammar` | Purple | Explanation + examples table + optional callout + optional extra examples |
-| `verbs` | Purple | Intro + one conjugation table per verb (pronoun / Romanian / English) |
-| `exercise` | Amber | Inline session: one exercise at a time, check → show answer → continue |
+| `dialogue` | Green | Scene context + chat bubbles + Hide English + 🔊 per line + 🔊 full scene |
+| `grammar` | Purple | Explanation + examples table (🔊 per row) + optional callout + optional extra examples |
+| `verbs` | Purple | Intro + one conjugation table per verb (pronoun / Romanian 🔊 / English) |
+| `exercise` | Amber | Inline session: one item at a time; types: `translate_to_ro`, `translate_to_en`, `fill_blank`, `transform`, `multiple_choice`, `open` |
+
+**Exercise `open` type** — for personal-practice questions with no single correct answer:
+```json
+{ "type": "open", "prompt": "Cum vă numiți, vă rog?", "hint": "Answer with your own name" }
+```
+Renders the Romanian question, a hint, a free-form textarea, and "I answered" button. No checking occurs.
+
+**Exercise step `note` field** — optional amber callout shown above the session:
+```json
+{ "kind": "exercise", "note": "These are also open practice questions...", "items": [...] }
+```
 
 **Book data format (`data/book_NN.json`):**
 ```json
 { "chapter": N, "title": "...", "title_en": "...", "steps": [ { "id": N, "kind": "...", "title": "...", ...kind-specific fields } ] }
 ```
 
-**Progress:** stored in `localStorage` key `bookProgress` — `{ "1": { "completed_steps": [1, 3, 5] } }`. Never touch this key name. Steps complete when: Next is clicked (non-exercise), or exercise session finishes (exercise steps).
+**Progress:** stored in `localStorage` key `bookProgress` — `{ "1": { "completed_steps": [1, 3, 5] } }`. Never touch this key name. Steps complete when: Next is clicked (non-exercise steps), or the exercise session's onComplete fires (exercise steps). Navigation is never blocked — Next is always clickable.
 
 ## What's built
 - [x] Phase 1: Lesson renderer — all 11 block types, Learn tab
@@ -190,6 +201,7 @@ Two-panel layout — entirely separate from lesson tabs:
 - [x] Phase 11: Practice upgrade — Flashcards, fuzzy checking, Skip, auto-generated exercises
 - [x] Phase 12: Back to top button on every page
 - [x] Phase 13: Book reader — two-panel textbook reader, 5 step kinds, inline exercises, step progress
+- [x] Phase 14: Book reader UX polish — audio on grammar/verb tables, Back/Next nav labels, free navigation, loose diacritic answer checking
 
 ## Current phase
 Open — ready for next features (see Roadmap below)
@@ -211,7 +223,7 @@ Open — ready for next features (see Roadmap below)
 ## Key decisions
 - **No framework**: keeps the app deployable as a static folder with zero tooling; easy to understand and maintain solo
 - **JSON lesson format**: structured data (not markdown) allows reliable extraction for vocabulary tab, exercises, and future features
-- **Fuzzy checking with diacritics required**: diacritics are the hard part of Romanian; we enforce them but tolerate minor typos in long words
+- **Fuzzy checking with diacritics optional**: diacritics are normalized before comparison (î=i, ă/â=a, ș=s, ț=t) and symbols are stripped — only letters and spaces are compared; Levenshtein fuzzy matching tolerates minor typos in long words
 - **Web Speech API first**: free, zero-config; upgrade to Neural2 later without touching UI code — `audio.js` is the only module that changes
 - **Auto-generated exercises**: supplements hand-authored exercises to keep practice count high (40+) without authoring overhead
 - **`stories` key alongside `dialogue_practice`**: keeps backward compat; `dialogue_practice` is legacy
