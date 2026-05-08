@@ -237,12 +237,18 @@
       "id": 11,
       "kind": "exercise",
       "title": "Exercise 2",
+      "note": "These questions are also open practice — try answering them with your own personal details. There are no wrong answers!",
       "items": [
         { "type": "translate_to_ro", "prompt": "What is your name, please?", "answer": "Cum vă numiți, vă rog?", "translation": "Cum vă numiți, vă rog?" },
         { "type": "translate_to_ro", "prompt": "How do you spell your name?", "answer": "Cum se scrie numele dvs.?", "translation": "Cum se scrie numele dvs.?" },
         { "type": "translate_to_ro", "prompt": "Are you English?", "answer": "Sunteți englez?", "translation": "Sunteți englez?" },
         { "type": "translate_to_ro", "prompt": "Where do you live in England?", "answer": "Unde stați în Anglia?", "translation": "Unde stați în Anglia?" },
-        { "type": "translate_to_ro", "prompt": "Where are you staying in Romania?", "answer": "Unde stați în România?", "translation": "Unde stați în România?" }
+        { "type": "translate_to_ro", "prompt": "Where are you staying in Romania?", "answer": "Unde stați în România?", "translation": "Unde stați în România?" },
+        { "type": "open", "prompt": "Cum vă numiți, vă rog?", "hint": "Answer with your own name" },
+        { "type": "open", "prompt": "Cum se scrie numele dvs.?", "hint": "Spell out your surname letter by letter" },
+        { "type": "open", "prompt": "Sunteți englez / englezoaică?", "hint": "Answer for your own nationality" },
+        { "type": "open", "prompt": "Unde stați în Anglia / țara dvs.?", "hint": "Name your city or country" },
+        { "type": "open", "prompt": "Unde stați în România?", "hint": "Answer with a Romanian city if you know one" }
       ]
     },
     {

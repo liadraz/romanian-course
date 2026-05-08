@@ -876,6 +876,53 @@ body.book-active .content {
   padding: 10px 16px 4px;
 }
 
+/* ---- Exercise note callout ---- */
+
+.book-ex-note {
+  background: var(--book-amber-soft);
+  border-left: 3px solid var(--book-amber);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 0.88rem;
+  color: #7c5a00;
+  margin-bottom: 16px;
+}
+
+/* ---- Open practice item ---- */
+
+.book-open-hint {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-style: italic;
+  margin: 4px 0 10px;
+}
+
+.book-open-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  resize: vertical;
+  background: var(--card-bg);
+  color: var(--fg);
+}
+
+.book-open-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 20px;
+  background: var(--book-amber);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+.book-open-btn:hover { filter: brightness(1.1); }
+
 /* ---- Mobile ---- */
 @media (max-width: 700px) {
   .book-shell {

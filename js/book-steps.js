@@ -199,6 +199,10 @@ export function renderExerciseStep(step, root, onComplete) {
   const badge = el('div', 'book-step-badge badge-amber', 'Practice');
   body.appendChild(badge);
 
+  if (step.note) {
+    body.appendChild(el('div', 'book-ex-note', step.note));
+  }
+
   const session = el('div', 'book-ex-session');
   body.appendChild(session);
   root.appendChild(body);
@@ -235,6 +239,7 @@ export function renderExerciseStep(step, root, onComplete) {
       translate_to_en: 'Translate to English',
       transform: 'Transform',
       multiple_choice: 'Choose the correct answer',
+      open: 'Open practice — answer with your own details',
     };
     card.appendChild(el('div', 'book-ex-type', typeLabelMap[item.type] || item.type));
     card.appendChild(el('p', 'book-ex-prompt', item.prompt));
@@ -247,11 +252,13 @@ export function renderExerciseStep(step, root, onComplete) {
       if (submitted) return;
       submitted = true;
 
-      const feedback = el('div', `book-ex-feedback ${correct ? 'correct' : 'wrong'}`);
-      feedback.appendChild(el('div', '', correct ? '✓ Correct!' : '✗ Not quite.'));
-      feedback.appendChild(el('div', 'book-ex-correct-ans', `Answer: ${item.answer}`));
-      if (item.translation && item.translation !== item.answer) {
-        feedback.appendChild(el('div', '', item.translation));
+      const feedback = el('div', `book-ex-feedback ${item.type === 'open' ? 'correct' : (correct ? 'correct' : 'wrong')}`);
+      if (item.type !== 'open') {
+        feedback.appendChild(el('div', '', correct ? '✓ Correct!' : '✗ Not quite.'));
+        feedback.appendChild(el('div', 'book-ex-correct-ans', `Answer: ${item.answer}`));
+        if (item.translation && item.translation !== item.answer) {
+          feedback.appendChild(el('div', '', item.translation));
+        }
       }
 
       const continueBtn = el('button', 'book-ex-continue', currentIdx + 1 < items.length ? 'Continue' : 'Finish');
@@ -281,6 +288,20 @@ export function renderExerciseStep(step, root, onComplete) {
         choicesEl.appendChild(btn);
       }
       card.appendChild(choicesEl);
+    } else if (item.type === 'open') {
+      // Open practice — no checking, user answers with their own details
+      if (item.hint) {
+        card.appendChild(el('p', 'book-open-hint', item.hint));
+      }
+      const textarea = document.createElement('textarea');
+      textarea.className = 'book-open-textarea';
+      textarea.placeholder = 'Your answer…';
+      textarea.rows = 2;
+      card.appendChild(textarea);
+
+      const answeredBtn = el('button', 'book-open-btn', 'I answered');
+      answeredBtn.addEventListener('click', () => showFeedback(true));
+      card.appendChild(answeredBtn);
     } else {
       // Text input
       const input = el('input', 'book-ex-input');
