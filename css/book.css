@@ -728,6 +728,44 @@ body.book-active .content {
   background: #374151;
 }
 
+/* Multiple choice */
+.book-ex-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.book-ex-choice {
+  text-align: left;
+  padding: 10px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+
+.book-ex-choice:hover:not(:disabled) {
+  background: var(--accent-soft);
+  border-color: var(--accent-border);
+}
+
+.book-ex-choice.choice-correct {
+  background: #d1fae5;
+  border-color: #6ee7b7;
+  color: #065f46;
+  font-weight: 600;
+}
+
+.book-ex-choice.choice-wrong {
+  background: #fee2e2;
+  border-color: #fca5a5;
+  color: #991b1b;
+}
+
 .book-ex-complete {
   background: var(--book-green-soft);
   border: 1px solid var(--book-green-border);

@@ -234,41 +234,22 @@ export function renderExerciseStep(step, root, onComplete) {
       translate_to_ro: 'Translate to Romanian',
       translate_to_en: 'Translate to English',
       transform: 'Transform',
+      multiple_choice: 'Choose the correct answer',
     };
     card.appendChild(el('div', 'book-ex-type', typeLabelMap[item.type] || item.type));
     card.appendChild(el('p', 'book-ex-prompt', item.prompt));
-
-    const input = el('input', 'book-ex-input');
-    input.type = 'text';
-    input.placeholder = 'Your answer…';
-    input.autocomplete = 'off';
-    input.autocorrect = 'off';
-    input.autocapitalize = 'off';
-    input.spellcheck = false;
-    card.appendChild(input);
-
-    const btnRow = el('div', 'book-ex-btn-row');
-    const checkBtn = el('button', 'book-ex-check', 'Check');
-    btnRow.appendChild(checkBtn);
-    card.appendChild(btnRow);
 
     session.appendChild(card);
 
     let submitted = false;
 
-    function submit() {
+    function showFeedback(correct) {
       if (submitted) return;
       submitted = true;
-      input.disabled = true;
-      checkBtn.disabled = true;
 
-      const correct = checkTextAnswer(input.value, item);
       const feedback = el('div', `book-ex-feedback ${correct ? 'correct' : 'wrong'}`);
       feedback.appendChild(el('div', '', correct ? '✓ Correct!' : '✗ Not quite.'));
-
-      const answerLine = el('div', 'book-ex-correct-ans', `Answer: ${item.answer}`);
-      feedback.appendChild(answerLine);
-
+      feedback.appendChild(el('div', 'book-ex-correct-ans', `Answer: ${item.answer}`));
       if (item.translation && item.translation !== item.answer) {
         feedback.appendChild(el('div', '', item.translation));
       }
@@ -282,12 +263,51 @@ export function renderExerciseStep(step, root, onComplete) {
       card.appendChild(feedback);
     }
 
-    checkBtn.addEventListener('click', submit);
-    input.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') submit();
-    });
+    if (item.type === 'multiple_choice') {
+      // Render as clickable choice buttons
+      const choicesEl = el('div', 'book-ex-choices');
+      for (const choice of (item.choices || [])) {
+        const btn = el('button', 'book-ex-choice', choice);
+        btn.addEventListener('click', () => {
+          if (submitted) return;
+          // Disable all choice buttons
+          for (const b of choicesEl.querySelectorAll('.book-ex-choice')) {
+            b.disabled = true;
+            if (b.textContent === item.answer) b.classList.add('choice-correct');
+            else if (b === btn && b.textContent !== item.answer) b.classList.add('choice-wrong');
+          }
+          showFeedback(choice === item.answer);
+        });
+        choicesEl.appendChild(btn);
+      }
+      card.appendChild(choicesEl);
+    } else {
+      // Text input
+      const input = el('input', 'book-ex-input');
+      input.type = 'text';
+      input.placeholder = 'Your answer…';
+      input.autocomplete = 'off';
+      input.autocorrect = 'off';
+      input.autocapitalize = 'off';
+      input.spellcheck = false;
+      card.appendChild(input);
 
-    setTimeout(() => input.focus(), 50);
+      const btnRow = el('div', 'book-ex-btn-row');
+      const checkBtn = el('button', 'book-ex-check', 'Check');
+      btnRow.appendChild(checkBtn);
+      card.appendChild(btnRow);
+
+      function submit() {
+        if (submitted) return;
+        input.disabled = true;
+        checkBtn.disabled = true;
+        showFeedback(checkTextAnswer(input.value, item));
+      }
+
+      checkBtn.addEventListener('click', submit);
+      input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+      setTimeout(() => input.focus(), 50);
+    }
   }
 
   function renderComplete() {
