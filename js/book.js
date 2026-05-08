@@ -168,7 +168,7 @@ function renderStepContent(chapter, chapterN, step, allSteps, stepContent, right
 
   const prevBtn = el('button', 'book-nav-btn');
   if (prevStep) {
-    prevBtn.textContent = `← ${prevStep.title}`;
+    prevBtn.textContent = '← Back';
     prevBtn.addEventListener('click', () => {
       if (step.kind !== 'exercise') setStepComplete(chapterN, step.id);
       location.hash = `#/book/${chapterN}/${prevStep.id}`;
@@ -182,17 +182,13 @@ function renderStepContent(chapter, chapterN, step, allSteps, stepContent, right
 
   const nextBtn = el('button', 'book-nav-btn primary book-nav-next');
   const nextDest = nextStep ? `#/book/${chapterN}/${nextStep.id}` : `#/`;
-  nextBtn.textContent = nextStep ? `${nextStep.title} →` : 'Finished!';
+  nextBtn.textContent = nextStep ? 'Next →' : 'Finished!';
 
-  if (step.kind === 'exercise') {
-    // Disabled until exercise session completes
-    nextBtn.disabled = true;
-  } else {
-    nextBtn.addEventListener('click', () => {
-      setStepComplete(chapterN, step.id);
-      location.hash = nextDest;
-    });
-  }
+  // Next is always enabled — exercise steps also mark complete via onComplete callback
+  nextBtn.addEventListener('click', () => {
+    if (step.kind !== 'exercise') setStepComplete(chapterN, step.id);
+    location.hash = nextDest;
+  });
   nav.appendChild(nextBtn);
 
   // Render step body
@@ -212,15 +208,10 @@ function renderStepContent(chapter, chapterN, step, allSteps, stepContent, right
     case 'exercise':
       renderExerciseStep(step, stepContent, (stepId) => {
         setStepComplete(chapterN, stepId);
-        // Update progress bar
+        // Update progress bar after exercise session completes
         const completedCount = (getBookProgress()[String(chapterN)]?.completed_steps || []).length;
         const fill = rightPanel.querySelector('.book-progress-fill');
         if (fill) fill.style.width = `${(completedCount / allSteps.length) * 100}%`;
-        // Enable and wire up next button
-        nextBtn.disabled = false;
-        nextBtn.addEventListener('click', () => {
-          location.hash = nextDest;
-        });
       });
       break;
     default:

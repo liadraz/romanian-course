@@ -138,7 +138,9 @@ function buildExamplesTable(examples) {
   const tbody = document.createElement('tbody');
   for (const ex of examples) {
     const tr = document.createElement('tr');
-    const tdRo = el('td', 'book-ex-ro', ex.ro);
+    const tdRo = el('td', 'book-ex-ro');
+    tdRo.appendChild(el('span', '', ex.ro));
+    tdRo.appendChild(makeSpeakBtn(ex.ro));
     const tdEn = el('td', 'book-ex-en', ex.en);
     tr.appendChild(tdRo);
     tr.appendChild(tdEn);
@@ -180,7 +182,10 @@ export function renderVerbsStep(step, root) {
     for (const row of table.rows || []) {
       const tr = document.createElement('tr');
       tr.appendChild(el('td', 'book-verb-pronoun', row.pronoun));
-      tr.appendChild(el('td', 'book-verb-affirmative', row.affirmative));
+      const tdAff = el('td', 'book-verb-affirmative');
+      tdAff.appendChild(el('span', '', row.affirmative));
+      tdAff.appendChild(makeSpeakBtn(row.affirmative));
+      tr.appendChild(tdAff);
       tr.appendChild(el('td', 'book-verb-english', row.english));
       tbody.appendChild(tr);
     }

@@ -43,8 +43,22 @@ function levenshtein(a, b) {
 
 // ---- Answer checking ----
 
+function normalizeDiacritics(str) {
+  // Treat Romanian diacritics as equivalent to their base Latin letters so
+  // typing "a" where "ă" or "â" is expected (and "i" for "î", "s" for "ș",
+  // "t" for "ț") is not counted as wrong.
+  return str
+    .replace(/[îÎ]/g, 'i')
+    .replace(/[ăĂâÂ]/g, 'a')
+    .replace(/[șŞşȘ]/g, 's')
+    .replace(/[țŢţȚ]/g, 't');
+}
+
 function normalize(str) {
-  return String(str).trim().toLowerCase().replace(/[.,!?…]+$/, '').trim();
+  return normalizeDiacritics(String(str).trim().toLowerCase())
+    .replace(/[^a-z\s]/g, '')   // strip symbols, punctuation, digits — keep only letters + spaces
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function checkWordFuzzy(userWord, correctWord) {
