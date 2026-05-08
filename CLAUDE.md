@@ -48,7 +48,6 @@ Hash-based: `#/lesson/N/tab` where tab ∈ {`vocabulary`, `learn`, `practice`, `
 | `#/lesson/N/learn` | Learn tab — all content blocks |
 | `#/lesson/N/practice` | Practice tab — Flashcards / Exercises / Mix |
 | `#/lesson/N/stories` | Stories tab — new words + dialogue + prose story |
-| `#/all-exercises` | Cumulative shuffled practice from all opened lessons |
 | `#/book/N/S` | Book reader — chapter N, step S (defaults to 1) |
 
 ## Conventions
@@ -142,13 +141,14 @@ Two pill-style sub-tabs: **Words · Sentences & Phrases**
 - Row layout: Romanian · 🔊 · English — single line, no wrap, on all screen sizes
 
 ## Home page (`#/`)
-- Hero: 🇷🇴 flag, "Limba Română" heading, subtitle, All Exercises + Flashcards buttons
-- "My Lessons" grid: lesson number, title, progress bar (correct/total exercises), 4 shortcut links
+- Hero: Romanian flag SVG (inline, blue/yellow/red tricolor), "Limba Română" heading, subtitle — no action buttons
+- "Private Lessons" grid: lesson number, title, progress bar (correct/total exercises), 4 shortcut links
 - "📖 Textbook" grid: one card per chapter with step progress bar and "Start chapter →" button
-- Sidebar: "🇷🇴 Limba Română" home button at top; "📖 Textbook" section with chapter links below lessons
+- Sidebar: Romanian flag SVG + "Limba Română" home button at top; "📖 Textbook" section with chapter links below lessons
+- Flag is an inline SVG (not emoji) for cross-platform rendering; hero uses `.ro-flag-svg`, sidebar uses `.ro-flag-sm`
 
 ## UI components
-- **Back to top button**: appears at the bottom of every view; scrolls smoothly to top
+- **Back to top button**: appears at the bottom of every view; shows `↑` arrow only (no text); scrolls smoothly to top
 - **Hide English toggle**: available on Stories tab and book Dialogue steps
 - **🔊 speak buttons**: on vocabulary rows, story new-word cards, dialogue bubbles, book grammar example tables, book verb conjugation rows
 - **No-voice warning**: shown async if `ro-RO` TTS voice is not installed
@@ -202,6 +202,7 @@ Renders the Romanian question, a hint, a free-form textarea, and "I answered" bu
 - [x] Phase 12: Back to top button on every page
 - [x] Phase 13: Book reader — two-panel textbook reader, 5 step kinds, inline exercises, step progress
 - [x] Phase 14: Book reader UX polish — audio on grammar/verb tables, Back/Next nav labels, free navigation, loose diacritic answer checking
+- [x] Phase 15: Home page redesign — SVG flag, removed action buttons, "Private Lessons" section, removed All Exercises page
 
 ## Current phase
 Open — ready for next features (see Roadmap below)

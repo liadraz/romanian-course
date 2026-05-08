@@ -549,39 +549,3 @@ export function renderPracticeForLesson(lesson, root) {
   startSession();
 }
 
-export function renderAllExercises(allLessons, root) {
-  const pool = [];
-  for (const lesson of allLessons) {
-    for (const ex of lesson.exercises || []) pool.push(ex);
-  }
-
-  if (!pool.length) {
-    root.appendChild(el('p', 'placeholder', 'No exercises found.'));
-    return;
-  }
-
-  const exercises = shuffle(pool);
-
-  const runSession = () => {
-    renderSession(exercises, root, (correctCount, total) => {
-      root.innerHTML = '';
-      const allCorrect = correctCount === total;
-      const card = el('div', 'ex-complete-card');
-      root.appendChild(card);
-      card.appendChild(el('div', 'ex-complete-icon', allCorrect ? '🎉' : '✓'));
-      card.appendChild(el('h3', 'ex-complete-title', allCorrect ? 'All correct!' : 'Round complete'));
-      card.appendChild(el('p', 'ex-complete-score', `${correctCount} / ${total} answered correctly`));
-      if (!allCorrect) {
-        card.appendChild(el('p', 'ex-complete-hint', 'Keep practising to get a perfect score!'));
-      }
-      const btnRow = el('div', 'ex-btn-row');
-      const shuffleBtn = el('button', 'ex-btn ex-btn-primary', 'Shuffle again');
-      shuffleBtn.type = 'button';
-      shuffleBtn.addEventListener('click', () => renderAllExercises(allLessons, root));
-      btnRow.appendChild(shuffleBtn);
-      card.appendChild(btnRow);
-    });
-  };
-
-  runSession();
-}

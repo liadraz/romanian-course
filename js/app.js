@@ -1,7 +1,7 @@
 // App entry point: routing, sidebar, page lifecycle.
 
 import { loadManifest, loadLesson, loadBookManifest } from './data.js';
-import { renderLessonView, renderAllExercisesView, renderHomePage } from './render.js';
+import { renderLessonView, renderHomePage } from './render.js';
 import { state, markLessonOpened, isLessonComplete } from './state.js';
 import { renderBookShell, getBookProgress } from './book.js';
 
@@ -56,10 +56,7 @@ async function init() {
   menuToggleEl.addEventListener('click', toggleSidebar);
   backdropEl.addEventListener('click', closeSidebar);
 
-  if (!location.hash || location.hash === '#' || location.hash === '#/') {
-    location.hash = '#/';
-    return; // hashchange will fire route()
-  }
+  location.hash = '#/';
   await route();
 }
 
@@ -81,7 +78,7 @@ function renderSidebar() {
   // Home button at top
   const homeLink = el('a', 'sidebar-home-link');
   homeLink.href = '#/';
-  homeLink.textContent = '🇷🇴 Limba Română';
+  homeLink.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="ro-flag-svg ro-flag-sm"><rect width="1" height="2" fill="#002B7F"/><rect x="1" width="1" height="2" fill="#FCD116"/><rect x="2" width="1" height="2" fill="#CE1126"/></svg> Limba Română';
   lessonNavEl.appendChild(homeLink);
 
   const divider = document.createElement('hr');
@@ -186,8 +183,6 @@ function highlightActive() {
     a.classList.toggle('active', a.dataset.chapter === chapterNum);
   }
 
-  const allEx = document.querySelector('.all-ex-link');
-  if (allEx) allEx.classList.toggle('active', parts[0] === 'all-exercises');
 }
 
 async function route() {
@@ -232,11 +227,6 @@ async function route() {
     renderLessonView(lesson, contentEl, tab);
     document.title = `Lesson ${num} — ${lesson.title}`;
     window.scrollTo({ top: 0 });
-  } else if (parts[0] === 'all-exercises') {
-    const allLessons = [...lessonByNumber.values()];
-    renderAllExercisesView(allLessons, contentEl);
-    document.title = 'All exercises — Romanian';
-    highlightActive();
   } else if (parts[0] === 'book') {
     document.body.classList.add('book-active');
     const chN = parseInt(parts[1], 10) || 1;
