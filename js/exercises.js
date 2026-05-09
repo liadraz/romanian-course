@@ -527,7 +527,9 @@ function renderHomework(homework, root) {
     else if (item.type === 'open') renderHwOpen(item, section);
     else if (item.type === 'match') renderHwMatch(item, section);
     else if (item.type === 'reading_mc') renderHwReadingMc(item, section);
+    else if (item.type === 'reading_open') renderHwReadingOpen(item, section);
     else if (item.type === 'multiple_choice') renderHwMultipleChoice(item, section);
+    else if (item.type === 'fill_blank_set') renderHwFillBlankSet(item, section);
     else if (item.type === 'reference') renderHwReference(item, section);
 
     container.appendChild(section);
@@ -567,12 +569,124 @@ function renderHwPronunciation(item, root) {
 }
 
 function renderHwOpen(item, root) {
-  if (item.hint) {
-    root.appendChild(el('p', 'hw-open-hint', item.hint));
+  if (item.hint) root.appendChild(el('p', 'hw-open-hint', item.hint));
+  if (item.hint_en) root.appendChild(el('p', 'hw-open-hint-en hw-en', item.hint_en));
+
+  if (item.questions?.length) {
+    const list = el('div', 'hw-open-q-list');
+    for (const q of item.questions) {
+      const qEl = el('div', 'hw-open-q-item');
+      qEl.appendChild(el('p', 'hw-mc-prompt', q.prompt));
+      if (q.prompt_en) qEl.appendChild(el('p', 'hw-open-q-en hw-en', q.prompt_en));
+      const ta = document.createElement('textarea');
+      ta.className = 'hw-open-textarea';
+      ta.placeholder = 'Răspunsul tău...';
+      ta.rows = 2;
+      qEl.appendChild(ta);
+      list.appendChild(qEl);
+    }
+    root.appendChild(list);
   }
-  if (item.hint_en) {
-    root.appendChild(el('p', 'hw-open-hint-en hw-en', item.hint_en));
+}
+
+function renderHwFillBlankSet(item, root) {
+  for (const q of item.items) {
+    const itemEl = el('div', 'hw-fb-item');
+    const parts = q.sentence.split('{BLANK}');
+    const answers = q.answers || (q.answer ? [q.answer] : []);
+    const inputs = [];
+
+    const sentenceEl = document.createElement('p');
+    sentenceEl.className = 'hw-fb-sentence';
+    for (let i = 0; i < parts.length; i++) {
+      sentenceEl.appendChild(document.createTextNode(parts[i]));
+      if (i < parts.length - 1) {
+        const inp = document.createElement('input');
+        inp.type = 'text';
+        inp.className = 'hw-fb-input';
+        inp.placeholder = '___';
+        inp.size = 12;
+        inputs.push(inp);
+        sentenceEl.appendChild(inp);
+      }
+    }
+    itemEl.appendChild(sentenceEl);
+
+    const checkBtn = el('button', 'hw-fb-check', 'Verifică');
+    checkBtn.type = 'button';
+    const feedbackEl = el('span', 'hw-fb-feedback', '');
+
+    checkBtn.addEventListener('click', () => {
+      if (checkBtn.disabled) return;
+      let allCorrect = true;
+      const corrections = [];
+      for (let i = 0; i < inputs.length; i++) {
+        const userVal = inputs[i].value.trim();
+        const expected = answers[i] || '';
+        const alts = answers.length === 1 ? (q.alternative_answers || []) : [];
+        const ok = [expected, ...alts].some(a => normalize(userVal) === normalize(a));
+        inputs[i].classList.toggle('hw-fb-correct', ok);
+        inputs[i].classList.toggle('hw-fb-wrong', !ok);
+        if (!ok) { allCorrect = false; corrections.push(expected); }
+      }
+      if (allCorrect) {
+        feedbackEl.textContent = '✓';
+        feedbackEl.className = 'hw-fb-feedback hw-fb-ok';
+        checkBtn.disabled = true;
+      } else {
+        feedbackEl.textContent = '✗ → ' + corrections.join(', ');
+        feedbackEl.className = 'hw-fb-feedback hw-fb-err';
+      }
+    });
+
+    const actionRow = el('div', 'hw-fb-action');
+    actionRow.appendChild(checkBtn);
+    actionRow.appendChild(feedbackEl);
+    itemEl.appendChild(actionRow);
+    root.appendChild(itemEl);
   }
+}
+
+function renderHwReadingOpen(item, root) {
+  for (const dlg of item.dialogues) {
+    const dlgWrap = el('div', 'hw-dialogue');
+    dlgWrap.appendChild(el('p', 'hw-dialogue-label', `Dialogul ${dlg.label}`));
+    for (const line of dlg.lines) {
+      const lineEl = el('div', 'hw-dialogue-line');
+      lineEl.appendChild(el('span', 'hw-dialogue-speaker', line.speaker + ':'));
+      lineEl.appendChild(el('span', 'hw-dialogue-text', ' ' + line.text));
+      dlgWrap.appendChild(lineEl);
+    }
+    root.appendChild(dlgWrap);
+  }
+
+  const qWrap = el('div', 'hw-open-q-list');
+  for (const q of item.questions) {
+    const qEl = el('div', 'hw-open-q-item');
+    qEl.appendChild(el('p', 'hw-mc-prompt', q.prompt));
+    if (q.prompt_en) qEl.appendChild(el('p', 'hw-open-q-en hw-en', q.prompt_en));
+
+    const ta = document.createElement('textarea');
+    ta.className = 'hw-open-textarea';
+    ta.placeholder = 'Răspunsul tău...';
+    ta.rows = 2;
+    qEl.appendChild(ta);
+
+    if (q.expected) {
+      const revealBtn = el('button', 'hw-open-reveal-btn', 'Arată răspunsul');
+      revealBtn.type = 'button';
+      const answerEl = el('div', 'hw-open-answer');
+      revealBtn.addEventListener('click', () => {
+        answerEl.appendChild(el('span', 'hw-open-answer-ro', '✓ ' + q.expected));
+        if (q.expected_en) answerEl.appendChild(el('span', 'hw-open-answer-en hw-en', q.expected_en));
+        revealBtn.disabled = true;
+      });
+      qEl.appendChild(revealBtn);
+      qEl.appendChild(answerEl);
+    }
+    qWrap.appendChild(qEl);
+  }
+  root.appendChild(qWrap);
 }
 
 function renderHwMatch(item, root) {
