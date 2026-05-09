@@ -899,6 +899,13 @@ body.book-active .content {
   margin-bottom: 16px;
 }
 
+.book-exercise-image {
+  max-width: 100%;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: block;
+}
+
 /* ---- Open practice item ---- */
 
 .book-open-hint {

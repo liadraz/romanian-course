@@ -3,7 +3,7 @@
 // Also exports renderHomePage for the #/ route.
 
 import { renderBlock } from './blocks.js';
-import { renderPracticeForLesson, renderAllExercises } from './exercises.js';
+import { renderPracticeForLesson } from './exercises.js';
 import { speak, getRoVoice, buildNoVoiceWarning } from './audio.js';
 import { state } from './state.js';
 import { getBookProgress } from './book.js';
@@ -23,7 +23,7 @@ function el(tag, className, text) {
 }
 
 function makeBackToTopBtn() {
-  const btn = el('button', 'back-to-top-btn', '↑ Back to top');
+  const btn = el('button', 'back-to-top-btn', '↑');
   btn.type = 'button';
   btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   return btn;
@@ -58,26 +58,18 @@ export function renderHomePage(lessons, manifest, root, bookManifestData) {
 
   // Hero
   const hero = el('div', 'home-hero');
-  hero.appendChild(el('div', 'home-flag', '🇷🇴'));
+  const flagDiv = el('div', 'home-flag');
+  flagDiv.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 3 2" class="ro-flag-svg"><rect width="1" height="2" fill="#002B7F"/><rect x="1" width="1" height="2" fill="#FCD116"/><rect x="2" width="1" height="2" fill="#CE1126"/></svg>';
+  hero.appendChild(flagDiv);
   const heading = el('h1', 'home-heading', 'Limba Română');
   hero.appendChild(heading);
   hero.appendChild(el('p', 'home-subtitle', 'Learn Romanian — one lesson at a time'));
 
-  const actions = el('div', 'home-actions');
-  const allExBtn = el('a', 'home-btn home-btn-primary', 'All Exercises');
-  allExBtn.href = '#/all-exercises';
-  const flashBtn = el('a', 'home-btn home-btn-secondary', 'Flashcards');
-  // Points to first lesson's practice tab in flashcard mode
-  flashBtn.href = lessons.length ? `#/lesson/${lessons[0].lesson_number}/practice` : '#/all-exercises';
-  flashBtn.dataset.mode = 'flashcards';
-  actions.appendChild(allExBtn);
-  actions.appendChild(flashBtn);
-  hero.appendChild(actions);
   root.appendChild(hero);
 
   if (!lessons.length) return;
 
-  root.appendChild(el('div', 'home-lessons-heading', 'Lessons'));
+  root.appendChild(el('div', 'home-lessons-heading', 'Private Lessons'));
 
   const grid = el('div', 'home-cards-grid');
 
@@ -392,36 +384,3 @@ function renderStoriesTab(lesson, root) {
   }
 }
 
-// ---- All exercises view ----
-
-export function renderAllExercisesView(allLessons, root) {
-  root.innerHTML = '';
-
-  const header = document.createElement('header');
-  header.className = 'lesson-header';
-
-  const num = document.createElement('div');
-  num.className = 'lesson-num';
-  num.textContent = 'Cumulative practice';
-  header.appendChild(num);
-
-  const title = document.createElement('h2');
-  title.className = 'lesson-title-en';
-  title.textContent = 'All exercises';
-  header.appendChild(title);
-
-  const sub = document.createElement('div');
-  sub.className = 'lesson-title-ro';
-  sub.textContent = 'Pulled from every lesson you have opened — shuffled every round.';
-  header.appendChild(sub);
-
-  root.appendChild(header);
-
-  const body = document.createElement('div');
-  body.className = 'lesson-body';
-  body.style.marginTop = '24px';
-  root.appendChild(body);
-
-  renderAllExercises(allLessons, body);
-  body.appendChild(makeBackToTopBtn());
-}

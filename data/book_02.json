@@ -1,0 +1,373 @@
+{
+  "chapter": 2,
+  "title": "Bun venit în România",
+  "title_en": "Welcome to Romania",
+  "steps": [
+    {
+      "id": 1,
+      "kind": "vocabulary",
+      "title": "Useful words and phrases",
+      "intro": "In this unit you will learn: the verb 'to have' · how to say more about yourself · articles (a, an, some, the) · asking directions · days of the week · expressing a wish.",
+      "items": [
+        { "ro": "apoi", "en": "then" },
+        { "ro": "bineînțeles", "en": "naturally" },
+        { "ro": "cât costă?", "en": "how much does it cost?" },
+        { "ro": "cumva", "en": "by any chance" },
+        { "ro": "de aici", "en": "from here" },
+        { "ro": "deja", "en": "already" },
+        { "ro": "doar", "en": "only" },
+        { "ro": "drept înainte", "en": "straight ahead" },
+        { "ro": "după aceea", "en": "after that" },
+        { "ro": "e mai bine", "en": "it is better" },
+        { "ro": "înapoi", "en": "back, backwards" },
+        { "ro": "în față", "en": "in front of" },
+        { "ro": "în jos", "en": "down(wards)" },
+        { "ro": "la dreapta", "en": "to the right" },
+        { "ro": "la stânga", "en": "to the left" },
+        { "ro": "mai bine", "en": "rather, better" },
+        { "ro": "mai întâi", "en": "first of all" },
+        { "ro": "niște", "en": "some" },
+        { "ro": "pentru", "en": "for" },
+        { "ro": "unde?", "en": "where?" }
+      ]
+    },
+    {
+      "id": 2,
+      "kind": "dialogue",
+      "title": "Dialogue 1 — Bun venit în România",
+      "title_en": "Welcome to Romania",
+      "context": "Jane Scott, an English accountant, arrives at Otopeni Airport in Bucharest and is going through passport and visa formalities at Passport Control.",
+      "lines": [
+        { "speaker": "Ofițerul", "ro": "Bună ziua, aveți pașaport britanic și aveți deja viză?", "en": "Good day. Do you have a British passport, and have you already got a visa?" },
+        { "speaker": "Jane", "ro": "Bună ziua. Nu, nu am viză. De unde să iau viză?", "en": "Good day. No, I don't have a visa. Where can I get one?" },
+        { "speaker": "Ofițerul", "ro": "Chiar de aici.", "en": "Right here." },
+        { "speaker": "Jane", "ro": "Și cât costă viza?", "en": "And how much does a visa cost?" },
+        { "speaker": "Ofițerul", "ro": "Patruzeci de dolari americani, sau treizeci și trei de lire sterline.", "en": "Forty US dollars or thirty-three pounds sterling." },
+        { "speaker": "Ofițerul", "ro": "Poftiți. Cu ce scop veniți în România?", "en": "(After paying) Here you are. What is the purpose of your visit to Romania?" },
+        { "speaker": "Jane", "ro": "Sunt contabilă. Lucrez la o firmă britanică din București.", "en": "I am an accountant. I work for a British firm in Bucharest." },
+        { "speaker": "Ofițerul", "ro": "Mulțumesc. Acum puteți să mergeți la ghișeul de 'Control Pașapoarte' și apoi la banda rulantă pentru bagaje.", "en": "Thank you. You can now go to the Passport Control desk, and then to the baggage reclaim conveyor." }
+      ]
+    },
+    {
+      "id": 3,
+      "kind": "verbs",
+      "title": "The verb a avea (to have)",
+      "intro": "In the dialogue Jane was asked 'Aveți deja viză?' and she replied 'Nu am viză'. Here are all the forms of a avea, 'to have'.",
+      "tables": [
+        {
+          "verb": "a avea",
+          "meaning": "to have",
+          "rows": [
+            { "pronoun": "eu", "affirmative": "am", "english": "I have" },
+            { "pronoun": "tu", "affirmative": "ai", "english": "you have" },
+            { "pronoun": "el / ea", "affirmative": "are", "english": "he/she/it has" },
+            { "pronoun": "noi", "affirmative": "avem", "english": "we have" },
+            { "pronoun": "voi", "affirmative": "aveți", "english": "you have" },
+            { "pronoun": "ei / ele", "affirmative": "au", "english": "they have" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "kind": "grammar",
+      "title": "Saying more about yourself",
+      "explanation": "In the dialogue Jane said she was an accountant: Sunt contabilă. Note that the feminine form of occupations ends in -ă. Here are more occupations (masculine / feminine). You can also say where you work using lucrez la / în / pentru. To give your marital status use the appropriate form.",
+      "examples": [
+        { "ro": "Sunt secretar / secretară", "en": "I'm a secretary (or PA)" },
+        { "ro": "Sunt dactilograf / dactilografă", "en": "I'm a typist" },
+        { "ro": "Sunt inginer / ingineră", "en": "I'm an engineer" },
+        { "ro": "Sunt infirmier / infirmieră", "en": "I'm a nurse" },
+        { "ro": "Sunt profesor / profesoară", "en": "I'm a teacher" },
+        { "ro": "Sunt vânzător / vânzătoare", "en": "I'm a shop assistant" },
+        { "ro": "Sunt chelner / chelneriță", "en": "I'm a waiter / waitress" },
+        { "ro": "Sunt doctor / doctoriță", "en": "I'm a doctor" },
+        { "ro": "Sunt funcționar / funcționară", "en": "I'm a civil servant" },
+        { "ro": "Sunt bugetar / bugetară", "en": "I'm a public-sector worker" },
+        { "ro": "Lucrez la o bancă", "en": "I work at a bank" },
+        { "ro": "Lucrez într-o bancă", "en": "I work in a bank" },
+        { "ro": "Lucrez pentru o bancă", "en": "I work for a bank" },
+        { "ro": "Lucrez într-o fabrică", "en": "I work in a factory" },
+        { "ro": "Lucrez într-un birou", "en": "I work in an office" },
+        { "ro": "Sunt divorțat / divorțată", "en": "I'm divorced" },
+        { "ro": "Sunt văduv / văduvă", "en": "I'm a widower / widow" },
+        { "ro": "Sunt căsătorit / căsătorită", "en": "I'm married" },
+        { "ro": "Sunt însurat", "en": "I'm married (of men only)" },
+        { "ro": "Sunt măritată", "en": "I'm married (of women only)" }
+      ],
+      "callout": "To ask about someone's job or workplace: Cu ce vă ocupați? (What is your job? — lit. What do you busy yourself with?), Unde lucrați? (Where do you work?), Sunteți profesor / profesoară? (Are you a teacher?)"
+    },
+    {
+      "id": 5,
+      "kind": "exercise",
+      "title": "Exercise 1 — Un or o?",
+      "note": "Look at the dialogues and work out the gender of each noun. Choose the correct indefinite article: un (masculine/neuter) or o (feminine).",
+      "items": [
+        {
+          "type": "multiple_choice",
+          "prompt": "What is the correct article for 'dolar' (dollar)?",
+          "choices": ["un dolar", "o dolar"],
+          "answer": "un dolar",
+          "translation": "a dollar — masculine"
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "What is the correct article for 'firmă' (firm)?",
+          "choices": ["un firmă", "o firmă"],
+          "answer": "o firmă",
+          "translation": "a firm — feminine"
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "What is the correct article for 'coadă' (queue)?",
+          "choices": ["un coadă", "o coadă"],
+          "answer": "o coadă",
+          "translation": "a queue — feminine"
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "What is the correct article for 'pașaport' (passport)?",
+          "choices": ["un pașaport", "o pașaport"],
+          "answer": "un pașaport",
+          "translation": "a passport — neuter"
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "What is the correct article for 'chitanță' (receipt)?",
+          "choices": ["un chitanță", "o chitanță"],
+          "answer": "o chitanță",
+          "translation": "a receipt — feminine"
+        },
+        {
+          "type": "multiple_choice",
+          "prompt": "What is the correct article for 'birou' (office/desk)?",
+          "choices": ["un birou", "o birou"],
+          "answer": "un birou",
+          "translation": "an office — neuter"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "kind": "dialogue",
+      "title": "Dialogue 2 — La aeroport",
+      "title_en": "At the airport",
+      "context": "Jane wants to change some money after her arrival. She asks a customs official for directions.",
+      "lines": [
+        { "speaker": "Jane", "ro": "Vreau să schimb niște bani. Nu am nici un dolar, dar am lire sterline. Unde este casa de schimb valutar?", "en": "I want to change some money. I haven't got a single dollar but I have pounds sterling. Where is the foreign currency exchange office?" },
+        { "speaker": "Vameșul", "ro": "Mergeți înapoi și la stânga. Stați la coadă și luați o chitanță de schimb.", "en": "Go back and turn left. You queue up and you get a receipt for the exchange." },
+        { "speaker": "Jane", "ro": "Și un birou de informații pentru turiști?", "en": "And a Tourist Information Office?" },
+        { "speaker": "Vameșul", "ro": "Trebuie să mergeți la dreapta, după aceea la stânga, și apoi drept înainte și în jos, pe scări.", "en": "You must turn right, then left, and then go straight ahead and down the stairs." },
+        { "speaker": "Jane", "ro": "Mulțumesc.", "en": "Thank you." },
+        { "speaker": "Vameșul", "ro": "Pentru puțin.", "en": "Think nothing of it. (lit. For little.)" }
+      ]
+    },
+    {
+      "id": 7,
+      "kind": "grammar",
+      "title": "Indefinite article and plurals",
+      "explanation": "Romanian has two forms for 'a' / 'an': o for feminine nouns and un for masculine and neuter nouns. Romanian nouns come in three genders — masculine, feminine, and neuter. A useful tip: feminine nouns often end in -ă. Remember that o and un also mean 'one' — so o bancă means both 'a bank' and 'one bank'. To say 'some' before a plural noun, use niște.",
+      "examples": [
+        { "ro": "o viză", "en": "a visa (feminine)" },
+        { "ro": "o bancă", "en": "a bank (feminine)" },
+        { "ro": "un englez", "en": "an Englishman (masculine)" },
+        { "ro": "un american", "en": "an American (masculine)" },
+        { "ro": "un birou", "en": "an office (neuter)" },
+        { "ro": "nișe americani", "en": "some Americans" },
+        { "ro": "niște românce", "en": "some Romanian women" },
+        { "ro": "niște dolari", "en": "some dollars" }
+      ],
+      "callout": "A useful tip for identifying feminine nouns: they often end in -ă. Neuter nouns behave like masculine nouns in the singular (un birou) but like feminine nouns in the plural (birouri)."
+    },
+    {
+      "id": 8,
+      "kind": "grammar",
+      "title": "Asking directions and the definite article",
+      "explanation": "To ask how to get somewhere use Cum ajung la...? (How do I get to...?). Romanian expresses 'the' by attaching an ending to the noun itself — unlike English where 'the' comes before the noun. The ending varies by gender: -ul for masculine/neuter, -a for feminine. After prepositions like la (at/to) or în (in), the definite article is only used if the noun is followed by a name or an adjective.",
+      "examples": [
+        { "ro": "Cum ajung la gară?", "en": "How do I get to the station?" },
+        { "ro": "Cum ajung la aeroport?", "en": "How do I get to the airport?" },
+        { "ro": "Cum ajung la hotel?", "en": "How do I get to the hotel?" },
+        { "ro": "Cum ajung la spital?", "en": "How do I get to the hospital?" },
+        { "ro": "Cum ajung la poștă?", "en": "How do I get to the post office?" },
+        { "ro": "o poștă → poșta", "en": "a post office → the post office" },
+        { "ro": "un hotel → hotelul", "en": "a hotel → the hotel" },
+        { "ro": "un american → americanul", "en": "an American → the American" },
+        { "ro": "la hotel", "en": "at the hotel (no article after preposition)" },
+        { "ro": "la hotelul Sofitel", "en": "at the Sofitel hotel (article used because a name follows)" },
+        { "ro": "la poșta centrală", "en": "at the main post office (article used because adjective follows)" }
+      ]
+    },
+    {
+      "id": 9,
+      "kind": "exercise",
+      "title": "Exercises 2 & 3 — Plurals and 'the' forms",
+      "note": "First give the plural form of each noun, then give the definite 'the' form.",
+      "items": [
+        { "type": "fill_blank", "prompt": "plural of pașaport →", "answer": "pașapoarte", "translation": "passports" },
+        { "type": "fill_blank", "prompt": "plural of dolar →", "answer": "dolari", "translation": "dollars" },
+        { "type": "fill_blank", "prompt": "plural of liră →", "answer": "lire", "translation": "pounds (sterling)" },
+        { "type": "fill_blank", "prompt": "plural of bagaj →", "answer": "bagaje", "translation": "luggage / bags" },
+        { "type": "fill_blank", "prompt": "plural of ban →", "answer": "bani", "translation": "money / coins" },
+        { "type": "fill_blank", "prompt": "plural of informație →", "answer": "informații", "translation": "information (pieces)" },
+        { "type": "fill_blank", "prompt": "plural of scară →", "answer": "scări", "translation": "stairs" },
+        { "type": "fill_blank", "prompt": "plural of turist →", "answer": "turiști", "translation": "tourists" },
+        { "type": "fill_blank", "prompt": "'the' form of un pașaport →", "answer": "pașaportul", "translation": "the passport" },
+        { "type": "fill_blank", "prompt": "'the' form of un dolar →", "answer": "dolarul", "translation": "the dollar" },
+        { "type": "fill_blank", "prompt": "'the' form of o liră →", "answer": "lira", "translation": "the pound" },
+        { "type": "fill_blank", "prompt": "'the' form of un bagaj →", "answer": "bagajul", "translation": "the bag / luggage" },
+        { "type": "fill_blank", "prompt": "'the' form of o scară →", "answer": "scara", "translation": "the staircase" },
+        { "type": "fill_blank", "prompt": "'the' form of un turist →", "answer": "turistul", "translation": "the tourist" }
+      ]
+    },
+    {
+      "id": 10,
+      "kind": "dialogue",
+      "title": "Dialogue 3 — La informații",
+      "title_en": "At the information office",
+      "context": "Jane is at the Information Office at the Gara de Nord railway station in Bucharest and is seeking directions to the Hilton hotel.",
+      "lines": [
+        { "speaker": "Funcționarul", "ro": "Ce doriți, vă rog?", "en": "How can I help you?" },
+        { "speaker": "Jane", "ro": "Vreau să ajung în centru la hotelul Hilton. Cât e de departe și cum pot să ajung acolo?", "en": "I want to go into the centre of town, to the Hilton hotel. How far is it and how can I get there?" },
+        { "speaker": "Funcționarul", "ro": "Puteți să luați un autobuz, dar mai bine un taxi de afară, de lângă intrare.", "en": "You can take a bus, but it's better to take a taxi from outside, by the entrance." },
+        { "speaker": "Jane", "ro": "Și cam cât costă o călătorie cu taxiul?", "en": "And how much is a journey by taxi?" },
+        { "speaker": "Funcționarul", "ro": "Depinde de distanță.", "en": "It depends on the distance." },
+        { "speaker": "Jane", "ro": "Trebuie să ajung și în Piața Română.", "en": "I have to get to Piața Română as well." },
+        { "speaker": "Funcționarul", "ro": "Unde anume în Piața Română?", "en": "Whereabouts in Piața Română?" },
+        { "speaker": "Jane", "ro": "La British Council, la bibliotecă.", "en": "To the British Council, to the library." },
+        { "speaker": "Funcționarul", "ro": "Azi este închis. E sâmbătă.", "en": "It's closed today. It's Saturday." },
+        { "speaker": "Jane", "ro": "Și când e deschisă biblioteca?", "en": "And when is the library open?" },
+        { "speaker": "Funcționarul", "ro": "Luni.", "en": "Monday." }
+      ]
+    },
+    {
+      "id": 11,
+      "kind": "grammar",
+      "title": "Days of the week",
+      "explanation": "The days of the week in Romanian are all feminine. Note that unlike in English they are written with a small initial letter (not capitalized).",
+      "examples": [
+        { "ro": "luni", "en": "Monday" },
+        { "ro": "marți", "en": "Tuesday" },
+        { "ro": "miercuri", "en": "Wednesday" },
+        { "ro": "joi", "en": "Thursday" },
+        { "ro": "vineri", "en": "Friday" },
+        { "ro": "sâmbătă", "en": "Saturday" },
+        { "ro": "duminică", "en": "Sunday" }
+      ],
+      "callout": "All days of the week are feminine in Romanian and are not capitalized — unlike in English. To say 'on Monday' use luni (no preposition needed): Luni este deschis. (It is open on Monday.)"
+    },
+    {
+      "id": 12,
+      "kind": "grammar",
+      "title": "Expressing a wish — vreau să, pot să, trebuie să",
+      "explanation": "A wish, desire, ability, or necessity is expressed by linking the verb of wishing to the dependent verb with să. Note the special subjunctive forms in the third person (el/ea and ei/ele). Trebuie (must / have to) does not change its form — it is always trebuie followed by să.",
+      "examples": [
+        { "ro": "vreau să fac / vrei să faci / vrea să facă", "en": "I want to do / you want to do / he-she wants to do" },
+        { "ro": "vrem să facem / vreți să faceți / vor să facă", "en": "we want to do / you want to do / they want to do" },
+        { "ro": "pot să ajung / poți să ajungi / poate să ajungă", "en": "I can get / you can get / he-she can get" },
+        { "ro": "putem să ajungem / puteți să ajungeți / pot să ajungă", "en": "we can get / you can get / they can get" },
+        { "ro": "pot să stau / poți să stai / poate să stea", "en": "I can stay / you can stay / he-she can stay" },
+        { "ro": "vreau să locuiesc / vrei să locuiești / vrea să locuiască", "en": "I want to live / you want to live / he-she wants to live" },
+        { "ro": "trebuie să fac un duș", "en": "I must take a shower" },
+        { "ro": "trebuie să faci un duș", "en": "you must take a shower" },
+        { "ro": "trebuie să facă un duș", "en": "he / she / they must take a shower" },
+        { "ro": "trebuie să facem un duș", "en": "we must take a shower" }
+      ],
+      "callout": "Trebuie doesn't change — it is always trebuie să + verb, for all persons: Trebuie să fac (I must), trebuie să faci (you must), trebuie să facă (he/she/they must), trebuie să facem (we must), trebuie să faceți (you must, plural)."
+    },
+    {
+      "id": 13,
+      "kind": "exercise",
+      "title": "Exercise 4 — Verb forms",
+      "note": "Use the required form of each verb in brackets. Remember to link with să.",
+      "items": [
+        { "type": "fill_blank", "prompt": "Vreau ___ (a merge) la hotelul Sofitel.", "answer": "să merg", "translation": "I want to go to the Sofitel hotel." },
+        { "type": "fill_blank", "prompt": "Cum pot ___ (a ajunge) la Consiliul Britanic?", "answer": "să ajung", "translation": "How can I get to the British Council?" },
+        { "type": "fill_blank", "prompt": "Unde pot ___ (a schimba) bani?", "answer": "să schimb", "translation": "Where can I change money?" },
+        { "type": "fill_blank", "prompt": "Când pot ___ (a vizita) orașul?", "answer": "să vizitez", "translation": "When can I visit the city?" },
+        { "type": "fill_blank", "prompt": "Cât ___ (a costa) un taxi până la aeroport?", "answer": "costă", "translation": "How much does a taxi to the airport cost?" }
+      ]
+    },
+    {
+      "id": 14,
+      "kind": "dialogue",
+      "title": "Dialogue 4 — Taxiurile",
+      "title_en": "Calling for a taxi",
+      "context": "Rodica and Mike ring for a taxi to take them to their hotel.",
+      "lines": [
+        { "speaker": "Rodica", "ro": "Alo, taxiurile?", "en": "Hello, is that the taxi service?" },
+        { "speaker": "Taxiurile", "ro": "Da, vă rog, spuneți.", "en": "Yes, please give me your instructions." },
+        { "speaker": "Rodica", "ro": "Puteți, vă rog, să trimiteți un taxi pe bulevardul Lascăr Catargiu la numărul 24?", "en": "Can you please send a taxi to 24 Bulevard Lascăr Catargiu?" },
+        { "speaker": "Taxiurile", "ro": "Sigur. Vine în 10 minute. Este o casă sau un bloc?", "en": "Of course. It'll be there in ten minutes. Is it a house or a block of flats?" },
+        { "speaker": "Rodica", "ro": "E un bloc cu 6 etaje.", "en": "It's a six-storey block." },
+        { "speaker": "Taxiurile", "ro": "Puteți să coborâți și să așteptați afară?", "en": "Can you go down and wait outside?" },
+        { "speaker": "Rodica", "ro": "Da, așteptăm în față blocului. Taxiul are numărul 3451.", "en": "Yes, we'll wait in front of the block. The taxi is number 3451." },
+        { "speaker": "Șoferul", "ro": "Dumneavoastră vreți un taxi?", "en": "Is it you who wants a taxi?" },
+        { "speaker": "Rodica", "ro": "Da, noi.", "en": "Yes, it's us." },
+        { "speaker": "Șoferul", "ro": "Și unde vreți să mergeți?", "en": "And where do you want to go?" },
+        { "speaker": "Rodica", "ro": "Vrem să mergem la hotelul Sofitel. Știți cumva cât costă?", "en": "We want to go to the Sofitel hotel. Do you know by any chance how much that will cost?" },
+        { "speaker": "Șoferul", "ro": "Nu știu exact, depinde de circulație. Oricum ajungem imediat, e aproape.", "en": "I don't know exactly, it depends on the traffic. Anyhow, we'll get there quickly; it's close by." },
+        { "speaker": "Rodica", "ro": "Cât vă datorăm?", "en": "How much do we owe you?" },
+        { "speaker": "Șoferul", "ro": "53.000 de lei.", "en": "53,000 lei." },
+        { "speaker": "Rodica", "ro": "Avem doar o bancnotă de 100.000.", "en": "We've only got a 100,000 lei note." },
+        { "speaker": "Șoferul", "ro": "Nu aveți bani exacți? Îmi pare rău, nu am de loc bani mărunți pentru rest.", "en": "Haven't you got the exact money? I'm sorry, I haven't got any small change." },
+        { "speaker": "Rodica", "ro": "Stați puțin să căutăm.", "en": "Wait a minute while we look." }
+      ]
+    },
+    {
+      "id": 15,
+      "kind": "grammar",
+      "title": "Getting your bearings and ordinal numbers",
+      "explanation": "When asking about distance or giving directions you will need these phrases. Ordinal numbers (first, second, third…) have masculine and feminine forms in Romanian. They are used when describing which street to take.",
+      "examples": [
+        { "ro": "Aeroportul este departe?", "en": "Is the airport far?" },
+        { "ro": "Da, este la 20 de kilometri de București.", "en": "Yes, it's 20 kilometres from Bucharest." },
+        { "ro": "Cât de aproape este Gara de Nord?", "en": "How close is the North station?" },
+        { "ro": "Este foarte aproape de aici.", "en": "It is very close to here." },
+        { "ro": "primul (m.) / prima (f.)", "en": "first" },
+        { "ro": "al doilea (m.) / a doua (f.)", "en": "second" },
+        { "ro": "al treilea (m.) / a treia (f.)", "en": "third" },
+        { "ro": "al patrulea (m.) / a patra (f.)", "en": "fourth" },
+        { "ro": "al cincilea (m.) / a cincea (f.)", "en": "fifth" },
+        { "ro": "Hotelul Hilton este pe prima stradă, pe colț.", "en": "The Hilton hotel is on the first street, on the corner." },
+        { "ro": "Restaurantul Cina este pe a doua stradă, la stânga.", "en": "The Cina restaurant is on the second street on the left." },
+        { "ro": "Mergeți drept înainte și luați a treia stradă la dreapta.", "en": "Go straight ahead and take the third street on the right." }
+      ]
+    },
+    {
+      "id": 16,
+      "kind": "exercise",
+      "title": "Exercise 5 — Where are they on the map?",
+      "note": "Use the map below to describe the location of each place in relation to the post office. Follow the example: 'Biserica este pe a doua stradă la dreapta.'",
+      "image": "img/book_02_exercise5_map.png",
+      "image_alt": "Street map showing post office, Intercontinental hotel, National Theatre, Patria cinema, Cina restaurant, and Central Library",
+      "items": [
+        {
+          "type": "open",
+          "prompt": "Unde este hotelul Intercontinental față de poștă?",
+          "hint": "Use 'pe prima / a doua / a treia stradă la dreapta / la stânga' or 'drept înainte'"
+        },
+        {
+          "type": "open",
+          "prompt": "Unde este Teatrul Național față de poștă?",
+          "hint": "Teatrul Național este imediat după hotelul Intercontinental, pe stânga."
+        },
+        {
+          "type": "open",
+          "prompt": "Unde este cinematograful Patria față de poștă?",
+          "hint": "Cinematograful Patria este drept înainte, pe stânga."
+        },
+        {
+          "type": "open",
+          "prompt": "Unde este restaurantul Cina față de poștă?",
+          "hint": "Use 'pe a doua stradă la dreapta / la stânga'"
+        },
+        {
+          "type": "open",
+          "prompt": "Unde este Biblioteca Centrală față de poștă?",
+          "hint": "Use the ordinal number for the street position you see on the map"
+        }
+      ]
+    }
+  ]
+}

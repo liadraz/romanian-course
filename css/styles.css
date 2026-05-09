@@ -1286,7 +1286,9 @@ button { font: inherit; }
   text-align: center;
   padding: 48px 24px 36px;
 }
-.home-flag { font-size: 56px; margin-bottom: 8px; line-height: 1; }
+.home-flag { margin-bottom: 8px; line-height: 1; }
+.ro-flag-svg { display: inline-block; width: 84px; height: 56px; border-radius: 4px; }
+.ro-flag-sm { width: 20px; height: 14px; border-radius: 2px; vertical-align: middle; margin-right: 4px; }
 .home-heading {
   font-size: 40px;
   font-weight: 800;
