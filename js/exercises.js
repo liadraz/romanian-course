@@ -757,11 +757,10 @@ export function renderPracticeForLesson(lesson, root) {
   const autoExercises = generateAutoExercises(lesson);
   const flashcards = collectFlashcards(lesson);
   const allExercises = [...handExercises, ...autoExercises];
-  const mixPool = shuffle(allExercises);
 
   // Sub-mode buttons
   const modes = el('div', 'practice-modes');
-  const modeNames = ['Flashcards', 'Exercises', 'Mix', 'Homework'];
+  const modeNames = ['Flashcards', 'Exercises', 'Homework'];
   let activeMode = 'Exercises';
 
   const sessionRoot = el('div', 'practice-session');
@@ -802,7 +801,7 @@ export function renderPracticeForLesson(lesson, root) {
       return;
     }
 
-    const pool = activeMode === 'Mix' ? shuffle(mixPool) : [...handExercises, ...autoExercises];
+    const pool = [...handExercises, ...autoExercises];
 
     if (!pool.length) {
       sessionRoot.appendChild(el('p', 'placeholder', 'No exercises yet for this lesson.'));
