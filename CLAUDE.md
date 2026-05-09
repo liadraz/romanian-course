@@ -146,9 +146,11 @@ Driven by a `homework` array in the lesson JSON (top-level key alongside `exerci
 | Type | Description |
 |---|---|
 | `pronunciation` | Reading-aloud sections — letter/group labels + word chips with 🔊 buttons |
-| `open` | Oral practice prompt — instruction + hint text, no checking |
+| `open` | Oral practice prompt — optional hint text + optional `questions[]` with textareas (no checking) |
 | `match` | Two-column interactive match — click A item then B item; correct = green, wrong = flash red |
 | `reading_mc` | Dialogue(s) displayed above inline multiple-choice comprehension questions |
+| `reading_open` | Dialogue(s) displayed above open comprehension questions with textareas + optional "Arată răspunsul" reveal |
+| `fill_blank_set` | Sentence(s) with `{BLANK}` placeholders — inline input fields with "Verifică" per item; supports single `answer`/`alternative_answers` or multi-blank `answers[]` |
 | `multiple_choice` | Emoji-hinted word-form selection — image hint + 3 choices; wrong reveals correct |
 | `reference` | Informational table (e.g. countries/nationalities/languages) |
 
@@ -165,11 +167,15 @@ Driven by a `homework` array in the lesson JSON (top-level key alongside `exerci
 
 **`pronunciation`** additional fields: `sections[]` → each has `label`, optional `label_en`, `words[]` → `{ "ro": "...", "en": "..." }`
 
-**`open`** additional fields: `hint` (Romanian), `hint_en`
+**`open`** additional fields: `hint` (Romanian), `hint_en`, optional `questions[]` → `{ id, prompt, prompt_en }`
 
 **`match`** additional fields: `id`, `pairs[]` → `{ "left": "...", "right": "..." }`
 
 **`reading_mc`** additional fields: `id`, `dialogues[]` → `{ label, lines[]: { speaker, text } }`, `questions[]` → `{ id, prompt, choices[], answer }`
+
+**`reading_open`** additional fields: `id`, `dialogues[]` → same as reading_mc, `questions[]` → `{ id, prompt, prompt_en, expected, expected_en }`
+
+**`fill_blank_set`** additional fields: `items[]` → `{ id, sentence (with {BLANK} markers), answer (single), alternative_answers[] }` or `answers[]` (multi-blank)
 
 **`multiple_choice`** additional fields: `id`, `items[]` → `{ id, hint (emoji), hint_en, choices[], answer }`
 
@@ -177,6 +183,7 @@ Driven by a `homework` array in the lesson JSON (top-level key alongside `exerci
 
 ### Homework source materials
 - Lesson 1 homework: `G:\My Drive\Romanian Course\LESSON_1_exercises_IA_1.pdf` (17 pages, image-based)
+- Lesson 2 homework: `G:\My Drive\Romanian Course\LESSON_2_exercises_IA_2.pdf` (image-based)
 - Extract pages as images with PyMuPDF: `page.get_pixmap(dpi=150).save(path)`
 
 ## Vocabulary tab sub-tabs
@@ -250,7 +257,7 @@ Renders the Romanian question, a hint, a free-form textarea, and "I answered" bu
 - [x] Phase 14: Book reader UX polish — audio on grammar/verb tables, Back/Next nav labels, free navigation, loose diacritic answer checking
 - [x] Phase 15: Book Chapter 2 — "Bun venit în România" (16 steps); map image extracted from PDF; image field support in exercise steps
 - [x] Phase 16: Home page redesign — SVG flag, removed action buttons, "Private Lessons" section, removed All Exercises page
-- [x] Phase 17: Homework tab — 4th practice mode; renders teacher PDF as interactive scrollable page; pronunciation/match/reading_mc/multiple_choice/reference item types; Show/Hide English toggle
+- [x] Phase 17: Homework tab — 4th practice mode; renders teacher PDF as interactive scrollable page; pronunciation/match/reading_mc/multiple_choice/reference item types; Show/Hide English toggle; Lesson 1 & 2 homework data; fill_blank_set and reading_open types added for Lesson 2
 
 ## Current phase
 Open — ready for next features (see Roadmap below)

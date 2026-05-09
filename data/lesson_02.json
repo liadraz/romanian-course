@@ -414,5 +414,207 @@
       "prompt": "Noi nu locuim aici.",
       "answer": "We do not live here."
     }
+  ],
+  "homework": [
+    {
+      "type": "fill_blank_set",
+      "id": "hw2-ex5a",
+      "title": "Exercițiul 5a",
+      "title_en": "Exercise 5a",
+      "instruction": "5. Completați cu pronumele potrivit:",
+      "instruction_en": "5. Fill in the correct pronoun:",
+      "items": [
+        { "id": "hw2-ex5a-1", "sentence": "— {BLANK}, ești româncă?", "answer": "Tu", "alternative_answers": ["tu"] },
+        { "id": "hw2-ex5a-2", "sentence": "— {BLANK}, este belgiancă?", "answer": "Ea", "alternative_answers": ["ea"] },
+        { "id": "hw2-ex5a-3", "sentence": "— {BLANK}, ești american?", "answer": "Eu", "alternative_answers": ["eu"] },
+        { "id": "hw2-ex5a-4", "sentence": "— {BLANK}, suntem italieni?", "answer": "Noi", "alternative_answers": ["noi"] },
+        { "id": "hw2-ex5a-5", "sentence": "— {BLANK}, este danez?", "answer": "El", "alternative_answers": ["el"] },
+        { "id": "hw2-ex5a-6", "sentence": "— {BLANK}, sunteți spanioli?", "answer": "Voi", "alternative_answers": ["voi"] },
+        { "id": "hw2-ex5a-7", "sentence": "— {BLANK}, ești olandeză?", "answer": "Eu", "alternative_answers": ["eu"] },
+        { "id": "hw2-ex5a-8", "sentence": "— {BLANK}, sunteți polonezi?", "answer": "Voi", "alternative_answers": ["voi"] },
+        { "id": "hw2-ex5a-9", "sentence": "— {BLANK}, sunt americance?", "answer": "Ele", "alternative_answers": ["ele"] },
+        { "id": "hw2-ex5a-10", "sentence": "— {BLANK}, sunt turci?", "answer": "Ei", "alternative_answers": ["ei"] }
+      ]
+    },
+    {
+      "type": "fill_blank_set",
+      "id": "hw2-ex5b",
+      "title": "Exercițiul 5b",
+      "title_en": "Exercise 5b",
+      "instruction": "Completați cu forma corectă a verbului a fi:",
+      "instruction_en": "Fill in with the correct form of the verb 'to be':",
+      "items": [
+        { "id": "hw2-ex5b-1", "sentence": "— Voi {BLANK} englezoaice?", "answer": "sunteți" },
+        { "id": "hw2-ex5b-2", "sentence": "— Nu, noi {BLANK} englezoaice.", "answer": "suntem", "alternative_answers": ["nu suntem"] },
+        { "id": "hw2-ex5b-3", "sentence": "— Eu {BLANK} portugheză.", "answer": "sunt" },
+        { "id": "hw2-ex5b-4", "sentence": "— Ele {BLANK} australience?", "answer": "sunt" },
+        { "id": "hw2-ex5b-5", "sentence": "— Tu {BLANK} maghiar?", "answer": "ești" },
+        { "id": "hw2-ex5b-6", "sentence": "— El {BLANK} elvețian.", "answer": "este" },
+        { "id": "hw2-ex5b-7", "sentence": "— Ei {BLANK} japonezi.", "answer": "sunt" },
+        { "id": "hw2-ex5b-8", "sentence": "— Voi {BLANK} braziliene.", "answer": "sunteți" },
+        { "id": "hw2-ex5b-9", "sentence": "— Ea {BLANK} mexicancă.", "answer": "este" },
+        { "id": "hw2-ex5b-10", "sentence": "— El {BLANK} grec.", "answer": "este" },
+        { "id": "hw2-ex5b-11", "sentence": "— Noi {BLANK} argentinieni.", "answer": "suntem" },
+        { "id": "hw2-ex5b-12", "sentence": "— Ele {BLANK} norvegiece.", "answer": "sunt" }
+      ]
+    },
+    {
+      "type": "fill_blank_set",
+      "id": "hw2-ex5c",
+      "title": "Exercițiul 5c",
+      "title_en": "Exercise 5c",
+      "instruction": "Completați cu verbul a fi sau a avea la forma corectă:",
+      "instruction_en": "Fill in with the verb 'to be' or 'to have' in the correct form:",
+      "items": [
+        { "id": "hw2-ex5c-a", "sentence": "a. Eu {BLANK} român și {BLANK} un prieten american.", "answers": ["sunt", "am"] },
+        { "id": "hw2-ex5c-b", "sentence": "b. Tu {BLANK} student și {BLANK} un profesor bun.", "answers": ["ești", "ai"] },
+        { "id": "hw2-ex5c-c", "sentence": "c. El {BLANK} profesor și {BLANK} mulți studenți.", "answers": ["este", "are"] },
+        { "id": "hw2-ex5c-d", "sentence": "d. Noi {BLANK} colegi și {BLANK} cursuri dificile.", "answers": ["suntem", "avem"] },
+        { "id": "hw2-ex5c-e", "sentence": "e. Voi {BLANK} români și {BLANK} familie mare.", "answers": ["sunteți", "aveți"] },
+        { "id": "hw2-ex5c-f", "sentence": "f. Ei {BLANK} studenți și {BLANK} examene mâine.", "answers": ["sunt", "au"] },
+        { "id": "hw2-ex5c-g", "sentence": "g. Ea {BLANK} doctoriță și {BLANK} mulți pacienți.", "answers": ["este", "are"] },
+        { "id": "hw2-ex5c-h", "sentence": "h. Ele {BLANK} colege și {BLANK} același birou.", "answers": ["sunt", "au"] }
+      ]
+    },
+    {
+      "type": "fill_blank_set",
+      "id": "hw2-ex6",
+      "title": "Exercițiul 6",
+      "title_en": "Exercise 6",
+      "instruction": "6. Completați cu expresia potrivită cu a avea:",
+      "instruction_en": "6. Fill in with the correct expression using 'to have':",
+      "items": [
+        { "id": "hw2-ex6-1", "sentence": "a. Nu pot ieși acum — {BLANK} de făcut.", "answer": "am treabă", "alternative_answers": ["am treaba"] },
+        { "id": "hw2-ex6-2", "sentence": "b. Felicitări! {BLANK} la examen.", "answer": "Ai noroc", "alternative_answers": ["ai noroc"] },
+        { "id": "hw2-ex6-3", "sentence": "c. Nu vreau să gătesc — nu {BLANK} astăzi.", "answer": "am chef", "alternative_answers": ["am cheful"] },
+        { "id": "hw2-ex6-4", "sentence": "d. Ea nu poate veni — nu {BLANK} liber.", "answer": "are timp", "alternative_answers": ["are timp liber"] },
+        { "id": "hw2-ex6-5", "sentence": "e. Noi {BLANK} de odihnă după călătorie.", "answer": "avem nevoie" },
+        { "id": "hw2-ex6-6", "sentence": "f. Te rog, {BLANK}! Ajung în cinci minute.", "answer": "ai răbdare", "alternative_answers": ["aveți răbdare"] }
+      ]
+    },
+    {
+      "type": "open",
+      "id": "hw2-ex7",
+      "title": "Exercițiul 7",
+      "title_en": "Exercise 7",
+      "instruction": "7. Răspundeți la întrebări:",
+      "instruction_en": "7. Answer the questions:",
+      "hint": "Răspundeți personal, cu propoziții complete.",
+      "hint_en": "Answer personally with complete sentences.",
+      "questions": [
+        { "id": "hw2-ex7-a", "prompt": "a. Cum vă numiți?", "prompt_en": "a. What is your name?" },
+        { "id": "hw2-ex7-b", "prompt": "b. De unde sunteți?", "prompt_en": "b. Where are you from?" },
+        { "id": "hw2-ex7-c", "prompt": "c. Ce naționalitate aveți?", "prompt_en": "c. What nationality do you have?" },
+        { "id": "hw2-ex7-d", "prompt": "d. Ce limbă vorbiți acasă?", "prompt_en": "d. What language do you speak at home?" },
+        { "id": "hw2-ex7-e", "prompt": "e. Aveți frați sau surori?", "prompt_en": "e. Do you have brothers or sisters?" },
+        { "id": "hw2-ex7-f", "prompt": "f. Aveți timp liber în weekend?", "prompt_en": "f. Do you have free time on weekends?" },
+        { "id": "hw2-ex7-g", "prompt": "g. Aveți chef de o cafea acum?", "prompt_en": "g. Do you feel like having a coffee now?" },
+        { "id": "hw2-ex7-h", "prompt": "h. Aveți nevoie de ajutor cu temele?", "prompt_en": "h. Do you need help with homework?" }
+      ]
+    },
+    {
+      "type": "reading_open",
+      "id": "hw2-ex8",
+      "title": "Exercițiul 8",
+      "title_en": "Exercise 8",
+      "instruction": "8. Citiți dialogurile și răspundeți la întrebări:",
+      "instruction_en": "8. Read the dialogues and answer the questions:",
+      "dialogues": [
+        {
+          "label": "A",
+          "lines": [
+            { "speaker": "Dl. Georgescu", "text": "Bună ziua! Mă numesc Gheorghe Georgescu. Sunt profesor." },
+            { "speaker": "Martin", "text": "Bună ziua! Eu mă numesc Martin Krause. Sunt student." },
+            { "speaker": "Dl. Georgescu", "text": "De unde ești, Martin?" },
+            { "speaker": "Martin", "text": "Sunt din Germania. Sunt german. Și dumneavoastră?" },
+            { "speaker": "Dl. Georgescu", "text": "Eu sunt din București. Sunt român." }
+          ]
+        },
+        {
+          "label": "B",
+          "lines": [
+            { "speaker": "Secretara", "text": "Bună dimineața! Sunteți doamna Ionescu?" },
+            { "speaker": "Maria", "text": "Nu, nu sunt doamna Ionescu. Mă numesc Maria Georgescu." },
+            { "speaker": "Secretara", "text": "Scuze! Sunteți din România?" },
+            { "speaker": "Maria", "text": "Da, sunt din Iași. Sunt româncă." }
+          ]
+        },
+        {
+          "label": "C",
+          "lines": [
+            { "speaker": "Andreea", "text": "Salut! Eu sunt Andreea. Tu cum te numești?" },
+            { "speaker": "Johanes", "text": "Mă numesc Johanes. Sunt din Olanda. Sunt olandez." },
+            { "speaker": "Andreea", "text": "Ești student?" },
+            { "speaker": "Johanes", "text": "Da, sunt student la Universitatea din București." },
+            { "speaker": "Andreea", "text": "Ce limbă mai vorbești?" },
+            { "speaker": "Johanes", "text": "Vorbesc engleză și puțin română." }
+          ]
+        }
+      ],
+      "questions": [
+        { "id": "hw2-ex8-1", "prompt": "a. Cum se numește profesorul?", "prompt_en": "a. What is the professor's name?", "expected": "Dl. Georgescu / Gheorghe Georgescu", "expected_en": "Mr. Georgescu / Gheorghe Georgescu" },
+        { "id": "hw2-ex8-2", "prompt": "b. Ce este Martin?", "prompt_en": "b. What is Martin?", "expected": "Martin este student.", "expected_en": "Martin is a student." },
+        { "id": "hw2-ex8-3", "prompt": "c. De unde este Martin?", "prompt_en": "c. Where is Martin from?", "expected": "Martin este din Germania.", "expected_en": "Martin is from Germany." },
+        { "id": "hw2-ex8-4", "prompt": "d. De unde este dl. Georgescu?", "prompt_en": "d. Where is Mr. Georgescu from?", "expected": "Dl. Georgescu este din București.", "expected_en": "Mr. Georgescu is from Bucharest." },
+        { "id": "hw2-ex8-5", "prompt": "e. Cum se numește femeia din dialogul B?", "prompt_en": "e. What is the woman's name in dialogue B?", "expected": "Maria Georgescu", "expected_en": "Maria Georgescu" },
+        { "id": "hw2-ex8-6", "prompt": "f. De unde este Maria?", "prompt_en": "f. Where is Maria from?", "expected": "Maria este din Iași.", "expected_en": "Maria is from Iași." },
+        { "id": "hw2-ex8-7", "prompt": "g. Ce naționalitate are Johanes?", "prompt_en": "g. What nationality is Johanes?", "expected": "Johanes este olandez.", "expected_en": "Johanes is Dutch." },
+        { "id": "hw2-ex8-8", "prompt": "h. Ce limbă mai vorbește Johanes?", "prompt_en": "h. What other language does Johanes speak?", "expected": "Johanes vorbește engleză și puțin română.", "expected_en": "Johanes speaks English and a little Romanian." }
+      ]
+    },
+    {
+      "type": "reference",
+      "id": "hw2-ref1",
+      "title": "Expresii cu a avea",
+      "title_en": "Expressions with 'to have'",
+      "instruction": "Studiați expresiile utile cu verbul a avea:",
+      "instruction_en": "Study the useful expressions with the verb 'to have':",
+      "columns": ["Expresie", "Exemplu"],
+      "columns_en": ["Expression", "Example"],
+      "rows": [
+        ["a avea treabă — to be busy", "Am treabă azi."],
+        ["a avea noroc — to be lucky", "Ai noroc!"],
+        ["a avea chef — to feel like", "Nu am chef."],
+        ["a avea timp — to have time", "Nu are timp."],
+        ["a avea nevoie — to need", "Avem nevoie de ajutor."],
+        ["a avea răbdare — to be patient", "Ai răbdare!"],
+        ["a avea dreptate — to be right", "Aveți dreptate."],
+        ["a avea grijă — to be careful", "Ai grijă!"]
+      ]
+    },
+    {
+      "type": "reference",
+      "id": "hw2-ref2",
+      "title": "Momentele zilei",
+      "title_en": "Parts of the Day",
+      "instruction": "Momentele zilei și saluturile corespunzătoare:",
+      "instruction_en": "Parts of the day and corresponding greetings:",
+      "columns": ["Momentul zilei", "Salut"],
+      "columns_en": ["Part of day", "Greeting"],
+      "rows": [
+        ["dimineața (morning)", "Bună dimineața!"],
+        ["la prânz (noon)", "Bună ziua!"],
+        ["după-amiaza (afternoon)", "Bună ziua!"],
+        ["seara (evening)", "Bună seara!"],
+        ["noaptea (night)", "Noapte bună!"]
+      ]
+    },
+    {
+      "type": "reference",
+      "id": "hw2-ref3",
+      "title": "Adverbe de timp",
+      "title_en": "Time Adverbs",
+      "instruction": "Adverbele de timp pentru zile:",
+      "instruction_en": "Time adverbs for days:",
+      "columns": ["Român", "Engleză"],
+      "columns_en": ["Romanian", "English"],
+      "rows": [
+        ["alaltăieri", "the day before yesterday"],
+        ["ieri", "yesterday"],
+        ["azi / astăzi", "today"],
+        ["mâine", "tomorrow"],
+        ["poimâine", "the day after tomorrow"]
+      ]
+    }
   ]
 }
