@@ -157,7 +157,7 @@ Driven by a `homework` array in the lesson JSON (top-level key alongside `exerci
 ### Homework item JSON schema
 ```json
 {
-  "type": "pronunciation | open | match | reading_mc | multiple_choice | reference",
+  "type": "pronunciation | open | match | reading_mc | reading_open | fill_blank_set | multiple_choice | reference",
   "title": "Romanian title",
   "title_en": "English title",
   "instruction": "Romanian instruction (as written in PDF)",
