@@ -418,5 +418,271 @@
       "prompt": "Complete the dialogue:\n— Cum te cheamă?\n— Mă _____ Alina.",
       "answer": "cheamă"
     }
+  ],
+  "homework": [
+    {
+      "type": "pronunciation",
+      "title": "Alfabetul Românesc — Citire",
+      "title_en": "Romanian Alphabet — Reading Practice",
+      "instruction": "Citiți literele și cuvintele cu atenție:",
+      "instruction_en": "Read the letters and words carefully:",
+      "sections": [
+        { "label": "A a", "words": [{"ro": "avion", "en": "plane"}, {"ro": "carte", "en": "book"}, {"ro": "cafea", "en": "coffee"}] },
+        { "label": "Ă ă", "words": [{"ro": "casă", "en": "house"}, {"ro": "cămilă", "en": "camel"}, {"ro": "inimă", "en": "heart"}] },
+        { "label": "Â â", "words": [{"ro": "România", "en": "Romania"}, {"ro": "lămâi", "en": "lemons"}, {"ro": "mână", "en": "hand"}] },
+        { "label": "B b", "words": [{"ro": "băiat", "en": "boy"}, {"ro": "bibliotecă", "en": "library"}, {"ro": "cub", "en": "cube"}] },
+        { "label": "C c", "words": [{"ro": "câine", "en": "dog"}, {"ro": "bancă", "en": "bench"}, {"ro": "porc", "en": "pig"}] },
+        { "label": "D d", "words": [{"ro": "doctor", "en": "doctor"}, {"ro": "cadă", "en": "bathtub"}, {"ro": "pod", "en": "bridge"}] },
+        { "label": "E e", "words": [{"ro": "elefant", "en": "elephant"}, {"ro": "elev", "en": "pupil"}, {"ro": "munte", "en": "mountain"}] },
+        { "label": "F f", "words": [{"ro": "fată", "en": "girl"}, {"ro": "telefon", "en": "phone"}, {"ro": "pantof", "en": "shoe"}] },
+        { "label": "G g", "words": [{"ro": "gard", "en": "fence"}, {"ro": "lingură", "en": "spoon"}, {"ro": "covrig", "en": "pretzel"}] },
+        { "label": "H h", "words": [{"ro": "hartă", "en": "map"}, {"ro": "pahar", "en": "glass"}, {"ro": "șah", "en": "chess"}] },
+        { "label": "I i", "words": [{"ro": "inel", "en": "ring"}, {"ro": "cuier", "en": "coat rack"}, {"ro": "bani", "en": "money"}] },
+        { "label": "Î î", "words": [{"ro": "înotător", "en": "swimmer"}, {"ro": "a coborî", "en": "to go down"}] },
+        { "label": "J j", "words": [{"ro": "joc", "en": "game"}, {"ro": "prăjitură", "en": "cake"}, {"ro": "garaj", "en": "garage"}] },
+        { "label": "K k", "words": [{"ro": "kilogram", "en": "kilogram"}, {"ro": "kiwi", "en": "kiwi"}, {"ro": "kaki", "en": "khaki"}] },
+        { "label": "L l", "words": [{"ro": "lup", "en": "wolf"}, {"ro": "floare", "en": "flower"}, {"ro": "cal", "en": "horse"}] },
+        { "label": "M m", "words": [{"ro": "mașină", "en": "car"}, {"ro": "romb", "en": "diamond"}, {"ro": "pom", "en": "tree"}] },
+        { "label": "N n", "words": [{"ro": "nor", "en": "cloud"}, {"ro": "mâncare", "en": "food"}, {"ro": "scaun", "en": "chair"}] },
+        { "label": "O o", "words": [{"ro": "ouă", "en": "eggs"}, {"ro": "covor", "en": "carpet"}, {"ro": "cocoș", "en": "rooster"}] },
+        { "label": "P p", "words": [{"ro": "pisică", "en": "cat"}, {"ro": "supă", "en": "soup"}, {"ro": "dulap", "en": "wardrobe"}] },
+        { "label": "Q q", "words": [{"ro": "quintă", "en": "quint"}, {"ro": "aquapark", "en": "water park"}] },
+        { "label": "R r", "words": [{"ro": "roată", "en": "wheel"}, {"ro": "creion", "en": "pencil"}, {"ro": "măr", "en": "apple"}] },
+        { "label": "S s", "words": [{"ro": "soare", "en": "sun"}, {"ro": "păsări", "en": "birds"}, {"ro": "nas", "en": "nose"}] },
+        { "label": "Ș ș", "words": [{"ro": "șarpe", "en": "snake"}, {"ro": "ușă", "en": "door"}, {"ro": "coș", "en": "basket"}] },
+        { "label": "T t", "words": [{"ro": "trandafir", "en": "rose"}, {"ro": "fluture", "en": "butterfly"}, {"ro": "tort", "en": "cake"}] },
+        { "label": "Ț ț", "words": [{"ro": "țânțar", "en": "mosquito"}, {"ro": "cuțit", "en": "knife"}, {"ro": "prinț", "en": "prince"}] },
+        { "label": "U u", "words": [{"ro": "urs", "en": "bear"}, {"ro": "gură", "en": "mouth"}, {"ro": "tablou", "en": "painting"}] },
+        { "label": "V v", "words": [{"ro": "vapor", "en": "ship"}, {"ro": "tavă", "en": "tray"}, {"ro": "morcov", "en": "carrot"}] },
+        { "label": "W w", "words": [{"ro": "Washington", "en": "Washington"}, {"ro": "kiwi", "en": "kiwi"}] },
+        { "label": "X x", "words": [{"ro": "xerox", "en": "photocopier"}, {"ro": "taxi", "en": "taxi"}, {"ro": "pix", "en": "pen"}] },
+        { "label": "Y y", "words": [{"ro": "Yemen", "en": "Yemen"}, {"ro": "New York", "en": "New York"}, {"ro": "newyorkez", "en": "New Yorker"}] },
+        { "label": "Z z", "words": [{"ro": "ziar", "en": "newspaper"}, {"ro": "frunză", "en": "leaf"}, {"ro": "autobuz", "en": "bus"}] }
+      ]
+    },
+    {
+      "type": "pronunciation",
+      "title": "Diftongi și Triftongi",
+      "title_en": "Diphthongs and Triphthongs",
+      "instruction": "Citiți cuvintele cu atenție:",
+      "instruction_en": "Read the words carefully:",
+      "sections": [
+        {
+          "label": "Diftongi: oa, ea, ie, ia, ui, au, eu, ei",
+          "label_en": "Diphthongs: oa, ea, ie, ia, ui, au, eu, ei",
+          "words": [
+            {"ro": "soare", "en": "sun"},
+            {"ro": "stea", "en": "star"},
+            {"ro": "iepure", "en": "rabbit"},
+            {"ro": "plantă", "en": "plant"},
+            {"ro": "pui", "en": "chick"},
+            {"ro": "haină", "en": "coat"},
+            {"ro": "leu", "en": "lion / leu"},
+            {"ro": "trei", "en": "three"}
+          ]
+        },
+        {
+          "label": "Triftongi: eoa, oai, ioa, eau",
+          "label_en": "Triphthongs: eoa, oai, ioa, eau",
+          "words": [
+            {"ro": "pleoapă", "en": "eyelid"},
+            {"ro": "lupoaică", "en": "she-wolf"},
+            {"ro": "lăcrămioare", "en": "lily of the valley"},
+            {"ro": "beau", "en": "I drink"}
+          ]
+        }
+      ]
+    },
+    {
+      "type": "pronunciation",
+      "title": "Combinații Speciale",
+      "title_en": "Special Letter Combinations",
+      "instruction": "CE CI GE GI CHE CHI GHE GHI — Citiți cu atenție:",
+      "instruction_en": "CE CI GE GI CHE CHI GHE GHI — Read carefully:",
+      "sections": [
+        { "label": "ce", "words": [{"ro": "ceapă", "en": "onion"}, {"ro": "trecere", "en": "crossing"}, {"ro": "zece", "en": "ten"}] },
+        { "label": "ci", "words": [{"ro": "cireșe", "en": "cherries"}, {"ro": "bicicletă", "en": "bicycle"}, {"ro": "arici", "en": "hedgehog"}] },
+        { "label": "ge", "words": [{"ro": "geantă", "en": "bag"}, {"ro": "săgeată", "en": "arrow"}, {"ro": "minge", "en": "ball"}] },
+        { "label": "gi", "words": [{"ro": "girafă", "en": "giraffe"}, {"ro": "pagină", "en": "page"}, {"ro": "a fugi", "en": "to run"}] },
+        { "label": "che", "words": [{"ro": "chelner", "en": "waiter"}, {"ro": "ochelari", "en": "glasses"}, {"ro": "ureche", "en": "ear"}] },
+        { "label": "chi", "words": [{"ro": "chimist", "en": "chemist"}, {"ro": "rochie", "en": "dress"}, {"ro": "ochi", "en": "eye"}] },
+        { "label": "ghe", "words": [{"ro": "ghete", "en": "boots"}, {"ro": "înghețată", "en": "ice cream"}, {"ro": "Gheorghe", "en": "George (name)"}] },
+        { "label": "ghi", "words": [{"ro": "ghiozdan", "en": "schoolbag"}, {"ro": "unghie", "en": "fingernail"}, {"ro": "triunghi", "en": "triangle"}] }
+      ]
+    },
+    {
+      "type": "open",
+      "title": "Forme de Salut",
+      "title_en": "Greetings Practice",
+      "instruction": "CE ÎȚI AMINTEȘTI? CE FACI? DE UNDE EȘTI? CÂȚI ANI AI? UNDE LOCUIEȘTI?",
+      "instruction_en": "WHAT DO YOU REMEMBER? HOW ARE YOU? WHERE ARE YOU FROM? HOW OLD ARE YOU? WHERE DO YOU LIVE?",
+      "hint": "Răspundeți oral la aceste întrebări.",
+      "hint_en": "Answer these questions out loud."
+    },
+    {
+      "type": "match",
+      "id": "hw1-ex13",
+      "title": "Exercițiul 13",
+      "title_en": "Exercise 13",
+      "instruction": "13. Faceți corespondența dintre coloana A și coloana B:",
+      "instruction_en": "13. Match column A with column B:",
+      "pairs": [
+        { "left": "Mulțumesc!", "right": "Cu plăcere!" },
+        { "left": "Ce faci?", "right": "Foarte bine. Mulțumesc!" },
+        { "left": "Bună, George!", "right": "Salut, Mihai!" },
+        { "left": "Sărut mâna, doamna Popescu!", "right": "Mulțumesc!" },
+        { "left": "Scuze pentru deranj!", "right": "Nu face nimic!" },
+        { "left": "Vă rog, intrați în casă!", "right": "Mulțumesc pentru invitație!" },
+        { "left": "Bine ai venit!", "right": "Bine te-am găsit!" },
+        { "left": "Bună dimineața!", "right": "Bună dimineața!" },
+        { "left": "O zi bună în continuare!", "right": "Mulțumesc, la fel!" },
+        { "left": "Poftim!", "right": "Bună ziua, Ioana!" }
+      ]
+    },
+    {
+      "type": "reading_mc",
+      "id": "hw1-ex3",
+      "title": "Exercițiul 3",
+      "title_en": "Exercise 3",
+      "instruction": "3. Citiți dialogurile și alegeți răspunsul corect:",
+      "instruction_en": "3. Read the dialogues and choose the correct answer:",
+      "dialogues": [
+        {
+          "label": "A",
+          "lines": [
+            { "speaker": "Profesoară", "text": "Bună ziua!" },
+            { "speaker": "Ahmed", "text": "Bună ziua, doamnă!" },
+            { "speaker": "Profesoară", "text": "Eu sunt Laura Marinescu. Sunt profesoară de limba română." },
+            { "speaker": "Ahmed", "text": "Eu sunt Ahmed. Sunt student." },
+            { "speaker": "Profesoară", "text": "Unde?" },
+            { "speaker": "Ahmed", "text": "La Universitatea \"Ovidius\" din Constanța." },
+            { "speaker": "Profesoară", "text": "De unde ești?" },
+            { "speaker": "Ahmed", "text": "Sunt din Turcia. Sunt turc." },
+            { "speaker": "Profesoară", "text": "Bine ai venit în România!" },
+            { "speaker": "Ahmed", "text": "Bine v-am găsit!" }
+          ]
+        },
+        {
+          "label": "B",
+          "lines": [
+            { "speaker": "Maria", "text": "Bună! Eu sunt Maria." },
+            { "speaker": "Sara", "text": "Bună, Maria!" },
+            { "speaker": "Maria", "text": "Cine sunteți voi?" },
+            { "speaker": "Sara", "text": "Noi suntem Sara și Viktor." },
+            { "speaker": "Maria", "text": "Sunteți studenți străini?" },
+            { "speaker": "Viktor", "text": "Da. Eu sunt student Erasmus, la Facultatea de Stomatologie și Sara este masterandă la Facultatea de Farmacie." },
+            { "speaker": "Maria", "text": "Îmi pare bine de cunoștință! De unde sunteți?" },
+            { "speaker": "Sara", "text": "Eu sunt din Maroc, iar Viktor este din Albania." }
+          ]
+        },
+        {
+          "label": "C",
+          "lines": [
+            { "speaker": "Olivier", "text": "Bună ziua, doamna profesoară!" },
+            { "speaker": "Profesoară", "text": "Bună, Olivier! În ce grupă ești?" },
+            { "speaker": "Olivier", "text": "Sunt în grupa de dimineață." },
+            { "speaker": "Profesoară", "text": "De unde ești tu?" },
+            { "speaker": "Olivier", "text": "Eu sunt din Africa." },
+            { "speaker": "Profesoară", "text": "Din ce țară din Africa?" },
+            { "speaker": "Olivier", "text": "Sunt din Camerun." },
+            { "speaker": "Profesoară", "text": "Ne vedem mai târziu, în clasă!" },
+            { "speaker": "Olivier", "text": "Pe curând!" }
+          ]
+        }
+      ],
+      "questions": [
+        {
+          "id": "hw1-ex3-a",
+          "prompt": "a. Laura Marinescu este:",
+          "choices": ["profesoară de limba engleză", "student", "profesoară de limba română"],
+          "answer": "profesoară de limba română"
+        },
+        {
+          "id": "hw1-ex3-b",
+          "prompt": "b. Ahmed este student:",
+          "choices": ["în Turcia", "din Turcia", "din România"],
+          "answer": "din Turcia"
+        },
+        {
+          "id": "hw1-ex3-c",
+          "prompt": "c. Sara și Viktor sunt:",
+          "choices": ["studenți străini", "din Maroc", "farmaciști"],
+          "answer": "studenți străini"
+        },
+        {
+          "id": "hw1-ex3-d",
+          "prompt": "d. Sara este:",
+          "choices": ["marocancă", "albaneză", "medic"],
+          "answer": "marocancă"
+        },
+        {
+          "id": "hw1-ex3-e",
+          "prompt": "e. Viktor este student Erasmus:",
+          "choices": ["albanez", "din Maroc", "român"],
+          "answer": "albanez"
+        },
+        {
+          "id": "hw1-ex3-f",
+          "prompt": "f. Olivier este:",
+          "choices": ["profesor", "african", "român"],
+          "answer": "african"
+        }
+      ]
+    },
+    {
+      "type": "multiple_choice",
+      "id": "hw1-ex6",
+      "title": "Exercițiul 6",
+      "title_en": "Exercise 6",
+      "instruction": "6. Alegeți forma corectă a cuvântului pentru obiectele din imagine:",
+      "instruction_en": "6. Choose the correct form of the word for the objects in the image:",
+      "items": [
+        { "id": "hw1-ex6-1", "hint": "🧅", "hint_en": "onion", "choices": ["ciapă", "ceapă", "ceoară"], "answer": "ceapă" },
+        { "id": "hw1-ex6-2", "hint": "🦒", "hint_en": "giraffe", "choices": ["girafă", "gerafă", "gherafă"], "answer": "girafă" },
+        { "id": "hw1-ex6-3", "hint": "⚽", "hint_en": "ball", "choices": ["mingie", "minge", "minghe"], "answer": "minge" },
+        { "id": "hw1-ex6-4", "hint": "👗", "hint_en": "dress", "choices": ["rochie", "roche", "rochiea"], "answer": "rochie" },
+        { "id": "hw1-ex6-5", "hint": "🍦", "hint_en": "ice cream", "choices": ["înghețată", "înghiețată", "îngeţată"], "answer": "înghețată" },
+        { "id": "hw1-ex6-6", "hint": "💅", "hint_en": "fingernail", "choices": ["unghe", "unghie", "ungie"], "answer": "unghie" },
+        { "id": "hw1-ex6-7", "hint": "👂", "hint_en": "ear", "choices": ["urechie", "ureche", "urece"], "answer": "ureche" }
+      ]
+    },
+    {
+      "type": "reference",
+      "title": "Introducere Personală",
+      "title_en": "Personal Introduction",
+      "instruction": "EU VORBESC POLONEZĂ ȘI ENGLEZĂ ȘI PUȚINĂ ROMÂNĂ.",
+      "instruction_en": "I SPEAK POLISH AND ENGLISH AND A LITTLE ROMANIAN.",
+      "note": "Studiați tabelul țărilor, naționalităților și limbilor:",
+      "note_en": "Study the table of countries, nationalities and languages:",
+      "columns": ["Țara", "Naționalitate", "Limba"],
+      "columns_en": ["Country", "Nationality", "Language"],
+      "rows": [
+        ["Albania", "albanez, albaneză", "albaneză"],
+        ["America (SUA)", "american, americancă", "engleză"],
+        ["Anglia", "englez, englezoaică", "engleză"],
+        ["Bulgaria", "bulgar, bulgăroaică", "bulgară"],
+        ["Cehia", "ceh, cehă", "cehă"],
+        ["Egipt", "egiptean, egipteancă", "arabă"],
+        ["Franța", "francez, franțuzoaică", "franceză"],
+        ["Germania", "neamț, nemțoaică", "germană"],
+        ["Grecia", "grec, grecoaică", "greacă"],
+        ["India", "indian, indiancă", "hindi"],
+        ["Iordania", "iordanian, iordaniancă", "arabă"],
+        ["Irak", "irakian, irakiancă", "arabă"],
+        ["Macedonia", "macedonean, macedoneancă", "macedoneană"],
+        ["Maroc", "marocan, marocancă", "franceză, arabă"],
+        ["Norvegia", "norvegian, norvegiancă", "norvegiană"],
+        ["Olanda", "olandez, olandeză", "olandeză"],
+        ["Polonia", "polonez, poloneză", "poloneză"],
+        ["Portugalia", "portughez, portugheză", "portugheză"],
+        ["România", "român, română", "română"],
+        ["Rusia", "rus, rusoaică", "rusă"],
+        ["Serbia", "sârb, sârbă", "sârbă"],
+        ["Tunisia", "tunisian, tunisiancă", "arabă"],
+        ["Turcia", "turc, turcoaică", "turcă"],
+        ["Ucraina", "ucrainean, ucraineancă", "ucraineană"],
+        ["Ungaria", "ungur, unguroaică", "maghiară"]
+      ]
+    }
   ]
 }

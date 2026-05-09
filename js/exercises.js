@@ -13,6 +13,7 @@
 // After last exercise → completion screen
 
 import { markExerciseAttempted, markExerciseCorrect, state } from './state.js';
+import { speak } from './audio.js';
 
 // ---- DOM helper ----
 
@@ -487,6 +488,268 @@ function renderCompletion(root, correctCount, total, onRestart, onBack) {
   card.appendChild(btnRow);
 }
 
+// ---- Homework renderer ----
+
+function renderHomework(homework, root) {
+  const container = el('div', 'hw-container');
+
+  // English toggle
+  const toggleBtn = el('button', 'hw-toggle', '🇬🇧 Show English');
+  toggleBtn.type = 'button';
+  let enVisible = false;
+  toggleBtn.addEventListener('click', () => {
+    enVisible = !enVisible;
+    container.classList.toggle('hw-show-en', enVisible);
+    toggleBtn.textContent = enVisible ? '🇬🇧 Hide English' : '🇬🇧 Show English';
+  });
+  container.appendChild(toggleBtn);
+
+  for (const item of homework) {
+    const section = el('div', 'hw-section');
+
+    // Section header
+    if (item.title) {
+      const hdr = el('div', 'hw-section-header');
+      hdr.appendChild(el('span', 'hw-section-title', item.title));
+      if (item.title_en) hdr.appendChild(el('span', 'hw-section-title-en hw-en', item.title_en));
+      section.appendChild(hdr);
+    }
+
+    // Instruction
+    if (item.instruction) {
+      section.appendChild(el('p', 'hw-instruction', item.instruction));
+    }
+    if (item.instruction_en) {
+      section.appendChild(el('p', 'hw-instruction-en hw-en', item.instruction_en));
+    }
+
+    if (item.type === 'pronunciation') renderHwPronunciation(item, section);
+    else if (item.type === 'open') renderHwOpen(item, section);
+    else if (item.type === 'match') renderHwMatch(item, section);
+    else if (item.type === 'reading_mc') renderHwReadingMc(item, section);
+    else if (item.type === 'multiple_choice') renderHwMultipleChoice(item, section);
+    else if (item.type === 'reference') renderHwReference(item, section);
+
+    container.appendChild(section);
+  }
+
+  root.appendChild(container);
+}
+
+function renderHwPronunciation(item, root) {
+  for (const sec of item.sections) {
+    const group = el('div', 'hw-pron-group');
+
+    const labelRow = el('div', 'hw-pron-label-row');
+    labelRow.appendChild(el('span', 'hw-pron-label', sec.label));
+    if (sec.label_en) labelRow.appendChild(el('span', 'hw-pron-label-en hw-en', sec.label_en));
+    group.appendChild(labelRow);
+
+    const words = el('div', 'hw-pron-words');
+    for (const w of sec.words) {
+      const chip = el('span', 'hw-word');
+      chip.appendChild(el('span', '', w.ro));
+      if (w.en) chip.appendChild(el('span', 'hw-word-en hw-en', w.en));
+
+      const speakBtn = document.createElement('button');
+      speakBtn.className = 'speak-btn hw-speak';
+      speakBtn.type = 'button';
+      speakBtn.title = 'Pronounce';
+      speakBtn.textContent = '🔊';
+      speakBtn.addEventListener('click', () => speak(w.ro));
+      chip.appendChild(speakBtn);
+
+      words.appendChild(chip);
+    }
+    group.appendChild(words);
+    root.appendChild(group);
+  }
+}
+
+function renderHwOpen(item, root) {
+  if (item.hint) {
+    root.appendChild(el('p', 'hw-open-hint', item.hint));
+  }
+  if (item.hint_en) {
+    root.appendChild(el('p', 'hw-open-hint-en hw-en', item.hint_en));
+  }
+}
+
+function renderHwMatch(item, root) {
+  const colA = item.pairs.map((p) => p.left);
+  const colB = shuffle(item.pairs.map((p) => p.right));
+
+  const cols = el('div', 'hw-match-cols');
+
+  const colAEl = el('div', 'hw-match-col');
+  const colBEl = el('div', 'hw-match-col');
+
+  let selectedA = null;
+  let selectedABtn = null;
+  let matchedCount = 0;
+  const total = item.pairs.length;
+
+  const statusEl = el('p', 'hw-match-status', '');
+
+  function tryMatch(bText, bBtn) {
+    if (!selectedA) return;
+    const correct = item.pairs.find((p) => p.left === selectedA && p.right === bText);
+    if (correct) {
+      selectedABtn.classList.add('matched');
+      bBtn.classList.add('matched');
+      selectedABtn.disabled = true;
+      bBtn.disabled = true;
+      matchedCount++;
+      if (matchedCount === total) {
+        statusEl.textContent = '✓ Toate perechile sunt corecte!';
+        statusEl.className = 'hw-match-status hw-match-done';
+      }
+    } else {
+      selectedABtn.classList.add('wrong');
+      bBtn.classList.add('wrong');
+      setTimeout(() => {
+        selectedABtn.classList.remove('wrong', 'selected');
+        bBtn.classList.remove('wrong');
+      }, 600);
+    }
+    selectedA = null;
+    selectedABtn = null;
+  }
+
+  for (const text of colA) {
+    const btn = el('button', 'hw-match-btn', text);
+    btn.type = 'button';
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      if (selectedABtn) selectedABtn.classList.remove('selected');
+      selectedA = text;
+      selectedABtn = btn;
+      btn.classList.add('selected');
+    });
+    colAEl.appendChild(btn);
+  }
+
+  for (const text of colB) {
+    const btn = el('button', 'hw-match-btn hw-match-btn-b', text);
+    btn.type = 'button';
+    btn.addEventListener('click', () => {
+      if (btn.disabled) return;
+      tryMatch(text, btn);
+    });
+    colBEl.appendChild(btn);
+  }
+
+  cols.appendChild(colAEl);
+  cols.appendChild(colBEl);
+  root.appendChild(cols);
+  root.appendChild(statusEl);
+}
+
+function renderHwReadingMc(item, root) {
+  // Dialogues
+  for (const dlg of item.dialogues) {
+    const dlgWrap = el('div', 'hw-dialogue');
+    dlgWrap.appendChild(el('p', 'hw-dialogue-label', `Dialogul ${dlg.label}`));
+    for (const line of dlg.lines) {
+      const lineEl = el('div', 'hw-dialogue-line');
+      lineEl.appendChild(el('span', 'hw-dialogue-speaker', line.speaker + ':'));
+      lineEl.appendChild(el('span', 'hw-dialogue-text', ' ' + line.text));
+      dlgWrap.appendChild(lineEl);
+    }
+    root.appendChild(dlgWrap);
+  }
+
+  // Questions
+  const qWrap = el('div', 'hw-mc-questions');
+  for (const q of item.questions) {
+    const qEl = el('div', 'hw-mc-item');
+    qEl.appendChild(el('p', 'hw-mc-prompt', q.prompt));
+    const choicesEl = el('div', 'hw-mc-choices');
+    for (const choice of q.choices) {
+      const btn = el('button', 'hw-mc-btn', choice);
+      btn.type = 'button';
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        const correct = choice === q.answer;
+        btn.classList.add(correct ? 'correct' : 'wrong');
+        choicesEl.querySelectorAll('.hw-mc-btn').forEach((b) => {
+          b.disabled = true;
+          if (b.textContent === q.answer) b.classList.add('correct');
+        });
+      });
+      choicesEl.appendChild(btn);
+    }
+    qEl.appendChild(choicesEl);
+    qWrap.appendChild(qEl);
+  }
+  root.appendChild(qWrap);
+}
+
+function renderHwMultipleChoice(item, root) {
+  const grid = el('div', 'hw-mc-grid');
+  for (const q of item.items) {
+    const qEl = el('div', 'hw-mc-item');
+
+    const hintRow = el('div', 'hw-mc-hint-row');
+    hintRow.appendChild(el('span', 'hw-mc-emoji', q.hint));
+    if (q.hint_en) hintRow.appendChild(el('span', 'hw-mc-hint-en hw-en', q.hint_en));
+    qEl.appendChild(hintRow);
+
+    const choicesEl = el('div', 'hw-mc-choices');
+    for (const choice of q.choices) {
+      const btn = el('button', 'hw-mc-btn', choice);
+      btn.type = 'button';
+      btn.addEventListener('click', () => {
+        if (btn.disabled) return;
+        const correct = choice === q.answer;
+        btn.classList.add(correct ? 'correct' : 'wrong');
+        choicesEl.querySelectorAll('.hw-mc-btn').forEach((b) => {
+          b.disabled = true;
+          if (b.textContent === q.answer) b.classList.add('correct');
+        });
+      });
+      choicesEl.appendChild(btn);
+    }
+    qEl.appendChild(choicesEl);
+    grid.appendChild(qEl);
+  }
+  root.appendChild(grid);
+}
+
+function renderHwReference(item, root) {
+  if (item.note) root.appendChild(el('p', 'hw-ref-note', item.note));
+  if (item.note_en) root.appendChild(el('p', 'hw-ref-note hw-en', item.note_en));
+
+  const table = document.createElement('table');
+  table.className = 'hw-ref-table';
+
+  const thead = document.createElement('thead');
+  const hrow = document.createElement('tr');
+  for (let i = 0; i < item.columns.length; i++) {
+    const th = document.createElement('th');
+    th.appendChild(el('span', '', item.columns[i]));
+    if (item.columns_en?.[i]) {
+      th.appendChild(el('span', 'hw-en', ' / ' + item.columns_en[i]));
+    }
+    hrow.appendChild(th);
+  }
+  thead.appendChild(hrow);
+  table.appendChild(thead);
+
+  const tbody = document.createElement('tbody');
+  for (const row of item.rows) {
+    const tr = document.createElement('tr');
+    for (const cell of row) {
+      const td = document.createElement('td');
+      td.textContent = cell;
+      tr.appendChild(td);
+    }
+    tbody.appendChild(tr);
+  }
+  table.appendChild(tbody);
+  root.appendChild(table);
+}
+
 // ---- Public exports ----
 
 export function renderPracticeForLesson(lesson, root) {
@@ -498,7 +761,7 @@ export function renderPracticeForLesson(lesson, root) {
 
   // Sub-mode buttons
   const modes = el('div', 'practice-modes');
-  const modeNames = ['Flashcards', 'Exercises', 'Mix'];
+  const modeNames = ['Flashcards', 'Exercises', 'Mix', 'Homework'];
   let activeMode = 'Exercises';
 
   const sessionRoot = el('div', 'practice-session');
@@ -527,6 +790,15 @@ export function renderPracticeForLesson(lesson, root) {
 
     if (activeMode === 'Flashcards') {
       renderFlashcards(flashcards, sessionRoot);
+      return;
+    }
+
+    if (activeMode === 'Homework') {
+      if (!lesson.homework?.length) {
+        sessionRoot.appendChild(el('p', 'placeholder', 'No homework for this lesson yet.'));
+        return;
+      }
+      renderHomework(lesson.homework, sessionRoot);
       return;
     }
 
