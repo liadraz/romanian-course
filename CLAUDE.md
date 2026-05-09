@@ -35,7 +35,8 @@ romanian-project/
     ├── lesson_01.json  ← Alphabet, Pronunciation & Greetings
     ├── lesson_02.json  ← Pronouns, A fi, A avea, Daily Vocabulary
     ├── book.json       ← book chapter manifest ({ chapters: [{n, title, title_en, file, step_count}] })
-    └── book_01.json    ← Colloquial Romanian Chapter 1: Bună ziua (16 steps)
+    ├── book_01.json    ← Colloquial Romanian Chapter 1: Bună ziua (16 steps)
+    └── book_02.json    ← Colloquial Romanian Chapter 2: Bun venit în România (16 steps)
 ```
 
 ## Routing
@@ -202,7 +203,8 @@ Renders the Romanian question, a hint, a free-form textarea, and "I answered" bu
 - [x] Phase 12: Back to top button on every page
 - [x] Phase 13: Book reader — two-panel textbook reader, 5 step kinds, inline exercises, step progress
 - [x] Phase 14: Book reader UX polish — audio on grammar/verb tables, Back/Next nav labels, free navigation, loose diacritic answer checking
-- [x] Phase 15: Home page redesign — SVG flag, removed action buttons, "Private Lessons" section, removed All Exercises page
+- [x] Phase 15: Book Chapter 2 — "Bun venit în România" (16 steps); map image extracted from PDF; image field support in exercise steps
+- [x] Phase 16: Home page redesign — SVG flag, removed action buttons, "Private Lessons" section, removed All Exercises page
 
 ## Current phase
 Open — ready for next features (see Roadmap below)
@@ -210,9 +212,15 @@ Open — ready for next features (see Roadmap below)
 ## Roadmap / future phases
 - [ ] Google Cloud TTS Neural2 (`ro-RO-Neural2`) — consistent audio on all devices
 - [ ] Lesson 3+ — add new lessons as teacher provides material
-- [ ] Book chapters 2+ — add Colloquial Romanian chapters as needed
+- [ ] Book chapters 3+ — add Colloquial Romanian chapters as needed
 - [ ] Spaced repetition — flag weak words, resurface them in practice
 - [ ] Short story generator — uses only vocabulary covered in opened lessons
+
+## Source materials
+- **Colloquial Romanian textbook PDF**: `G:\My Drive\Romanian Course\Colloquial_Romanian-Complete_course_for_Beginners.pdf` (344 pages)
+- Chapter 1 content = PDF pages 18–28; Chapter 2 content = PDF pages 29–42
+- Use PyMuPDF (`import fitz`) to extract images from the PDF — `pip install pymupdf` is available
+- Lesson PDFs (teacher-provided): `G:\My Drive\Romanian Course\LESSON_1.pdf`, `LESSON_2.pdf`, etc.
 
 ## Do not touch
 - `lessons-source/` — teacher's original PDFs, gitignored, never commit

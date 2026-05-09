@@ -6,6 +6,13 @@
       "title_en": "Good day",
       "file": "data/book_01.json",
       "step_count": 16
+    },
+    {
+      "n": 2,
+      "title": "Bun venit în România",
+      "title_en": "Welcome to Romania",
+      "file": "data/book_02.json",
+      "step_count": 16
     }
   ]
 }
