@@ -121,18 +121,64 @@ Hide English toggle covers all three sections.
 - Auto exercises do NOT affect `isLessonComplete` — only hand-authored ones count
 
 ## Practice tab sub-modes
-Three mode buttons at top: **Flashcards · Exercises · Mix**
+Four mode buttons at top: **Flashcards · Exercises · Mix · Homework**
 
 | Mode | Content |
 |---|---|
 | Flashcards | Flip cards from all `vocab_set` items; click to reveal English |
 | Exercises | Hand-authored + auto-generated exercises in sequence |
 | Mix | All exercises shuffled together |
+| Homework | Teacher-provided homework PDF, rendered as a scrollable interactive page |
 
-Session features:
+Session features (Flashcards / Exercises / Mix):
 - **Skip for now**: appends current exercise to end of queue; skipped counter shown in progress bar
 - **Answer reveal**: after every submission (right or wrong), shows correct answer + translation
 - **Fuzzy checking**: tolerates minor typos based on word length
+
+## Homework tab
+Driven by a `homework` array in the lesson JSON (top-level key alongside `exercises`, `blocks`, `stories`).
+
+- A **🇬🇧 Show/Hide English** toggle at the top reveals all English translations globally
+- Sections render in PDF order; all item types are non-blocking (no progression gate)
+- `speak()` from `audio.js` is imported into `exercises.js` for 🔊 buttons on pronunciation words
+
+### Homework item types
+
+| Type | Description |
+|---|---|
+| `pronunciation` | Reading-aloud sections — letter/group labels + word chips with 🔊 buttons |
+| `open` | Oral practice prompt — instruction + hint text, no checking |
+| `match` | Two-column interactive match — click A item then B item; correct = green, wrong = flash red |
+| `reading_mc` | Dialogue(s) displayed above inline multiple-choice comprehension questions |
+| `multiple_choice` | Emoji-hinted word-form selection — image hint + 3 choices; wrong reveals correct |
+| `reference` | Informational table (e.g. countries/nationalities/languages) |
+
+### Homework item JSON schema
+```json
+{
+  "type": "pronunciation | open | match | reading_mc | multiple_choice | reference",
+  "title": "Romanian title",
+  "title_en": "English title",
+  "instruction": "Romanian instruction (as written in PDF)",
+  "instruction_en": "English translation of instruction"
+}
+```
+
+**`pronunciation`** additional fields: `sections[]` → each has `label`, optional `label_en`, `words[]` → `{ "ro": "...", "en": "..." }`
+
+**`open`** additional fields: `hint` (Romanian), `hint_en`
+
+**`match`** additional fields: `id`, `pairs[]` → `{ "left": "...", "right": "..." }`
+
+**`reading_mc`** additional fields: `id`, `dialogues[]` → `{ label, lines[]: { speaker, text } }`, `questions[]` → `{ id, prompt, choices[], answer }`
+
+**`multiple_choice`** additional fields: `id`, `items[]` → `{ id, hint (emoji), hint_en, choices[], answer }`
+
+**`reference`** additional fields: `note`, `note_en`, `columns[]`, `columns_en[]`, `rows[][]`
+
+### Homework source materials
+- Lesson 1 homework: `G:\My Drive\Romanian Course\LESSON_1_exercises_IA_1.pdf` (17 pages, image-based)
+- Extract pages as images with PyMuPDF: `page.get_pixmap(dpi=150).save(path)`
 
 ## Vocabulary tab sub-tabs
 Two pill-style sub-tabs: **Words · Sentences & Phrases**
@@ -150,7 +196,7 @@ Two pill-style sub-tabs: **Words · Sentences & Phrases**
 
 ## UI components
 - **Back to top button**: appears at the bottom of every view; shows `↑` arrow only (no text); scrolls smoothly to top
-- **Hide English toggle**: available on Stories tab and book Dialogue steps
+- **Hide English toggle**: available on Stories tab, book Dialogue steps, and Homework tab
 - **🔊 speak buttons**: on vocabulary rows, story new-word cards, dialogue bubbles, book grammar example tables, book verb conjugation rows
 - **No-voice warning**: shown async if `ro-RO` TTS voice is not installed
 
@@ -205,6 +251,7 @@ Renders the Romanian question, a hint, a free-form textarea, and "I answered" bu
 - [x] Phase 14: Book reader UX polish — audio on grammar/verb tables, Back/Next nav labels, free navigation, loose diacritic answer checking
 - [x] Phase 15: Book Chapter 2 — "Bun venit în România" (16 steps); map image extracted from PDF; image field support in exercise steps
 - [x] Phase 16: Home page redesign — SVG flag, removed action buttons, "Private Lessons" section, removed All Exercises page
+- [x] Phase 17: Homework tab — 4th practice mode; renders teacher PDF as interactive scrollable page; pronunciation/match/reading_mc/multiple_choice/reference item types; Show/Hide English toggle
 
 ## Current phase
 Open — ready for next features (see Roadmap below)
@@ -221,6 +268,7 @@ Open — ready for next features (see Roadmap below)
 - Chapter 1 content = PDF pages 18–28; Chapter 2 content = PDF pages 29–42
 - Use PyMuPDF (`import fitz`) to extract images from the PDF — `pip install pymupdf` is available
 - Lesson PDFs (teacher-provided): `G:\My Drive\Romanian Course\LESSON_1.pdf`, `LESSON_2.pdf`, etc.
+- Lesson homework PDFs: `G:\My Drive\Romanian Course\LESSON_1_exercises_IA_1.pdf`, `LESSON_2_exercises_IA_1.pdf`, etc.
 
 ## Do not touch
 - `lessons-source/` — teacher's original PDFs, gitignored, never commit
