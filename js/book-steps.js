@@ -208,6 +208,14 @@ export function renderExerciseStep(step, root, onComplete) {
     body.appendChild(el('div', 'book-ex-note', step.note));
   }
 
+  if (step.image) {
+    const img = document.createElement('img');
+    img.src = step.image;
+    img.alt = step.image_alt || '';
+    img.className = 'book-exercise-image';
+    body.appendChild(img);
+  }
+
   const session = el('div', 'book-ex-session');
   body.appendChild(session);
   root.appendChild(body);
