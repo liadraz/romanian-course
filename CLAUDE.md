@@ -121,16 +121,15 @@ Hide English toggle covers all three sections.
 - Auto exercises do NOT affect `isLessonComplete` — only hand-authored ones count
 
 ## Practice tab sub-modes
-Four mode buttons at top: **Flashcards · Exercises · Mix · Homework**
+Three mode buttons at top: **Flashcards · Exercises · Homework**
 
 | Mode | Content |
 |---|---|
 | Flashcards | Flip cards from all `vocab_set` items; click to reveal English |
 | Exercises | Hand-authored + auto-generated exercises in sequence |
-| Mix | All exercises shuffled together |
 | Homework | Teacher-provided homework PDF, rendered as a scrollable interactive page |
 
-Session features (Flashcards / Exercises / Mix):
+Session features (Flashcards / Exercises):
 - **Skip for now**: appends current exercise to end of queue; skipped counter shown in progress bar
 - **Answer reveal**: after every submission (right or wrong), shows correct answer + translation
 - **Fuzzy checking**: tolerates minor typos based on word length
